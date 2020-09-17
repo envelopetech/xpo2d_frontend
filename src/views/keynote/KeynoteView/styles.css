@@ -1,0 +1,39 @@
+.audi-content-center {
+width: calc(100% - 50%);
+height: calc(100% - 50%);
+z-index: 1;
+position: absolute;
+top: 12%;
+left: -5.3%;
+right: 0;
+margin: 0 auto;
+  }
+
+.background-fluid {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+.audi-content {
+    height: 100%;
+    width: 100%;
+}
+
+.audi-background {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.fullscreen, .exitfullscreen{position: absolute; right:0; background-color: #fff;}
+.exitfullscreen{display: none;}
+.fullscreen.no-display{display: none;}
+.exitfullscreen.display{display: block;
+    top: 65px;
+    right: 4px;
+    z-index: 99999;
+    position: fixed;}
+
+.audi-frame-full{position: fixed; top:0; right:0}

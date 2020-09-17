@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto+Slab|Roboto:300,400,500,700"
+    rel="stylesheet" />
+    
+  <title>Xporium</title> 
+  <script src="https://apis.google.com/js/client:platform.js"></script>
+  <script>
+    // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/a5iw6q1x'
+    (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/a5iw6q1x';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+    </script>
+
+    <style>
+      .carousel .slide {
+        background: none !important;
+      }
+      .closebuttonclass {
+      /* position: absolute;
+      width: 10%;      
+      height: 50px;
+      right: 0;
+      bottom: 0; */
+      position: fixed;
+      border: none;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      z-index: 1000;
+      background-color: #0785f2;
+      background-position: center 17px;
+      background-size: 30px 30px;
+      background-repeat: no-repeat;
+      color: #fff;
+      text-align: center;
+      box-shadow: 2px 2px 19px 1px rgba(0, 0, 0, 0.1);
+      visibility: hidden;
+    }
+      #talkjs-container {
+      position: absolute;
+      width: 40%;
+      /* margin: 30px; */
+      height: 500px;
+      right: 0;
+      bottom: 0;
+      z-index: 9999;
+      visibility: hidden;
+      }
+      
+    .__talkjs_launcher.closed {
+      background-image: none !important;
+    }
+
+    .__talkjs_launcher {
+      display: none !important;
+    }
+
+
+    .display_none {
+      display: none;
+    }
+    </style>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <button id="btn-close" class="closebuttonclass"><i class="fa fa-close" style="font-size:24px; color:#fff"></i></button>
+  <div id="talkjs-container" />
+</body>
+<script>
+  window.intercomSettings = {
+    app_id: "a5iw6q1x"       
+};
+</script>
+<script>
+(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/a5iw6q1x' ;var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+</script>
+</html>
