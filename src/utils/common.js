@@ -70,6 +70,37 @@ export const applyFilters = (list_object, query, filters, properties) => {
   });
 };
 
+export const applyFiltersLeaderboard = (list_object, query, filters, properties) => {
+  return list_object.filter((selectedobject) => {
+    let matches = true;
+
+    if (query) {
+      let properties = ['exhibitor__name', 'visitor__first_name', 'visitor__last_name'];
+      let containsQuery = false;
+
+      properties.forEach((property) => {
+        if (selectedobject[property].toLowerCase().includes(query.toLowerCase())) {
+          containsQuery = true;
+        }
+      });
+
+      if (!containsQuery) {
+        matches = false;
+      }
+    }
+
+    Object.keys(filters).forEach((key) => {
+      const value = filters[key];
+
+      if (value && selectedobject[key] !== value) {
+        matches = false;
+      }
+    });
+
+    return matches;
+  });
+};
+
 export const applyPagination = (list_objects, page, limit) => {
   return list_objects.slice(page * limit, page * limit + limit);
 };

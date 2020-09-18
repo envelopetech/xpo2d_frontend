@@ -3,7 +3,8 @@ import axios from 'src/utils/axios';
 import _ from 'lodash';
 
 const initialState = {
-    briefcase: [],    
+    briefcase: [],
+    leaderboard: []
 };
 
 const slice = createSlice({
@@ -15,12 +16,17 @@ const slice = createSlice({
             briefcase = action.payload
             state.briefcase = briefcase;
         },
-        deletebriefcase(state, action) {            
+        getleaderboard(state, action) {
+            let leaderboard = []
+            leaderboard = action.payload
+            state.leaderboard = leaderboard;
+        },
+        deletebriefcase(state, action) {
             let briefcase = []
-            briefcase = action.payload            
+            briefcase = action.payload
             _.map(briefcase, (item) => {
-                state.briefcase = _.reject(state.briefcase, { id: item });              
-              })
+                state.briefcase = _.reject(state.briefcase, { id: item });
+            })
         },
     }
 });
@@ -35,6 +41,17 @@ export const getbriefcase = () => async (dispatch) => {
 export const deletebriefcase = (data) => async (dispatch) => {
     const response = await axios.post('/api/briefcase/remove', data);
     dispatch(slice.actions.deletebriefcase(data));
+};
+
+export const getleaderboard = () => async (dispatch) => {
+    const response = await axios.get(`/api/leadertype/list`);
+    dispatch(slice.actions.getleaderboard(response.data));
+};
+
+
+export const lederboardsave = (data) => async () => {
+    const response = await axios.post('/api/leadertype/save', data);
+    //debugger;
 };
 
 export default slice;

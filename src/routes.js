@@ -143,7 +143,7 @@ const routes = [
       {
         exact: true,
         path: '/app/leaderboard',
-        component: lazy(() => import('src/views/leaderboard'))
+        component: lazy(() => import('src/views/leaderboard/LeaderboardView'))
       },
       {
         exact: true,

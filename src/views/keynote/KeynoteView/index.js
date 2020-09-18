@@ -136,14 +136,11 @@ export function KeynoteView() {
     const handleOpen2 = () => {
         setOpen(true);
     };
-
     const handleClose2 = () => {
         setOpen(false);
     };
-
     const handleplaybutton = () => {
     };
-
     const handleFullScreen = () => {
         document.getElementById("full-screen").classList.add("no-display");;
         document.getElementById("audi-iframe").classList.add("audi-frame-full");

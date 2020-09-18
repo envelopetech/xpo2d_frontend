@@ -186,9 +186,10 @@ const Results = ({
                                 const data = {
                                     message: values.message,
                                     exhibitor_id: exhibitor.id,
-                                    visitor_id: user.id
+                                    visitor_id: user.id,
+                                    leader_type: "enquiry",
                                 };
-                                await dispatch(createEnquiry(data));
+                                await dispatch(createEnquiry(data));                                
                                 dispatch(closeModal());
                                 resetForm();
                                 setStatus({ success: true });

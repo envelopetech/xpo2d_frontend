@@ -73,7 +73,7 @@ export default function Stallview() {
             <div className="users">
                 <Link href='/app/exhibitor' className={classes.anchorStall1}></Link>
                 <Link href='/app/exhibitor' className={classes.anchorStall2}></Link>
-                <Link href='/app/exexhibitor' className={classes.anchorStall3}></Link>
+                <Link href='/app/exhibitor' className={classes.anchorStall3}></Link>
                 <Link href='/app/exhibitor' className={classes.anchorStall4}></Link>
                 <Link href='/app/exhibitor' className={classes.anchorStall5}></Link>
                 <Link href='/app/exhibitor' className={classes.anchorStall6}></Link>

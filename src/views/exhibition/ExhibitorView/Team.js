@@ -13,6 +13,7 @@ import {
     closeModal
 } from 'src/slices/exhibitor';
 import track from 'src/utils/analytics';
+import {lederboardsave} from 'src/slices/visitor'
 
 const useStyles = makeStyles(theme => ({
     root: {},
@@ -36,6 +37,7 @@ const Team = ({
     const dispatch = useDispatch();
     const handlechat = (event, user_id, first_name, email, avatar) => {
         event.preventDefault();
+        
         const data = ({
             id: user.user_id,
             name: user.first_name,
@@ -90,6 +92,13 @@ const Team = ({
         });
 
     }
+    const handleclick = (exhibitorid) => {       
+        const dataleaderboard = {            
+            exhibitor_id: exhibitorid,            
+            leader_type: "videocall",
+        };
+        dispatch (lederboardsave(dataleaderboard));
+    }
     return (
         <React.Fragment>
             {team.map((staff) => {
@@ -114,6 +123,7 @@ const Team = ({
                                                     startIcon={<VideoCallIcon />}
                                                     href={staff.zoom_meeting_url}
                                                     target="_blank"
+                                                    onClick={() => handleclick(staff.exhibitor_id)}
                                                 >
                                                     Video Call
                                                 </Button>
