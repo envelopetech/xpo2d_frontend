@@ -38,6 +38,7 @@ import { tabs, sortOptions, applyPagination, applySort, applyFilters } from 'src
 import Talk from "talkjs";
 import useAuth from 'src/hooks/useAuth';
 import ChatIcon from '@material-ui/icons/Chat';
+import styles from './style.css'
 
 const useStyles = makeStyles((theme) => ({
     root: {},
@@ -63,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
         height: 42,
         width: 42,
         marginRight: theme.spacing(1)
-    }
+    },    
 }));
 
 const Users = ({
@@ -71,9 +72,6 @@ const Users = ({
     exhibitors,
     ...rest
 }) => {
-
-
-
     const classes = useStyles();
     const [currentTab, setCurrentTab] = useState('all');
     const [selectedExhibitors, setselectedExhibitors] = useState([]);
@@ -85,9 +83,7 @@ const Users = ({
     const [selectedExhibitor, setselectedExhibitor] = React.useState();
     const dispatch = useDispatch();
     const { user, client } = useAuth();
-
-    const [isOpen, setisOpen] = useState(false);
-
+    const [isOpen, setisOpen] = useState(false);    
     const [filters, setFilters] = useState({
         hasAcceptedMarketing: null,
         isProspect: null,
@@ -249,8 +245,7 @@ const Users = ({
                                 value={query}
                                 variant="outlined"
                             />
-                            <Box flexGrow={1} />
-                           
+                            <Box flexGrow={1} />                           
                         </Box>
                         <Box mt={5}>
                         <PerfectScrollbar>  
@@ -258,14 +253,14 @@ const Users = ({
                                 {paginatedExhibitors.map((exhibitor) => {                                  
                                     return (
                                         <>
-                                        <ListItem>
+                                        <ListItem ContainerComponent="div">
                                             <ListItemAvatar>
                                                 <Avatar className={classes.avatar_small} src={exhibitor.avatar}>
                                                 </Avatar>
                                             </ListItemAvatar>                                           
                                             <ListItemText primary={exhibitor.name} secondary={exhibitor.designation} />                                            
                                             <ListItemSecondaryAction className="user-action">                                                
-                                                    <Button onClick={(event) => handlemessage(event, exhibitor.user_id, exhibitor.first_name, exhibitor.email, exhibitor.avatar)}>
+                                                    <Button onClick={(event) => handlemessage(event, exhibitor.id, exhibitor.name, exhibitor.email, exhibitor.avatar)}>
                                                         Message
                                                 </Button>                                                                                              
                                             </ListItemSecondaryAction>                                            
@@ -287,9 +282,7 @@ Users.propTypes = {
     className: PropTypes.string,
     exhibitors: PropTypes.array.isRequired
 };
-
 Users.defaultProps = {
     exhibitors: []
 };
-
 export default Users;
