@@ -24,7 +24,8 @@ import {
     Tabs,
     TextField,
     Typography,
-    makeStyles
+    makeStyles,
+    Paper
 
 } from '@material-ui/core';
 import {
@@ -40,10 +41,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import {deletebriefcase} from 'src/slices/visitor'
+import { deletebriefcase } from 'src/slices/visitor'
 
 const useStyles = makeStyles((theme) => ({
-    root: {},
+    root: {        
+    },    
     queryField: {
         width: 500
     },
@@ -70,6 +72,9 @@ const useStyles = makeStyles((theme) => ({
     link: {
         color: '#304ffe',
     },
+    fontWeightMedium: {
+        fontWeight: theme.typography.fontWeightMedium
+    }   
 }));
 
 const Results = ({
@@ -87,6 +92,10 @@ const Results = ({
     const [open, setOpen] = React.useState(false);
     const [selectedExhibitor, setselectedExhibitor] = React.useState();
     const dispatch = useDispatch();
+
+
+    const [expandtable, setexpandtable] = React.useState(false);
+    const [viewcardtext, setviewcardtext]  = React.useState("Expand");
 
     const [filters, setFilters] = useState({
         hasAcceptedMarketing: null,
@@ -106,8 +115,24 @@ const Results = ({
     const handledelete = (event) => {
         event.persist();
         setOpen(true);
-        //alert(JSON.stringify(selectedExhibitors))
     };
+
+
+    const handlevisitingcardview = () => {
+        if (expandtable)
+        {
+            setexpandtable(false);
+            setviewcardtext("Expand")
+        }
+           
+        else
+        {
+            setexpandtable(true);
+            setviewcardtext("Collapse")
+        }
+           
+    };
+
     const handleDeletebriefcase = async () => {
         try {
             await dispatch(deletebriefcase(selectedExhibitors));
@@ -270,47 +295,121 @@ const Results = ({
                             <TableBody>
                                 {paginatedExhibitors.map((exhibitor) => {
                                     const isExhibitorSelected = selectedExhibitors.includes(exhibitor.id);
-
                                     return (
-                                        <TableRow
-                                            hover
-                                            key={exhibitor.id}
-                                            selected={isExhibitorSelected}
-                                        >
-                                            <TableCell padding="checkbox">
-                                                <Checkbox
-                                                    checked={isExhibitorSelected}
-                                                    onChange={(event) => handleSelectOneExhibitor(event, exhibitor.id)}
-                                                    value={isExhibitorSelected}
-                                                />
-                                            </TableCell>
+                                        <>
+                                            <TableRow
+                                                hover
+                                                key={exhibitor.id}
+                                                selected={isExhibitorSelected}
+                                            >
+                                                <TableCell padding="checkbox">
+                                                    <Checkbox
+                                                        checked={isExhibitorSelected}
+                                                        onChange={(event) => handleSelectOneExhibitor(event, exhibitor.id)}
+                                                        value={isExhibitorSelected}
+                                                    />
+                                                </TableCell>
 
-                                            <TableCell>
-                                                <Box
-                                                    display="flex"
-                                                    alignItems="center"
-                                                >
-                                                    <Avatar
-                                                        className={classes.avatar}
-                                                        src={exhibitor.avatar}
+                                                <TableCell>
+                                                    <Box
+                                                        display="flex"
+                                                        alignItems="center"
                                                     >
-                                                        {getInitials(exhibitor.name)}
-                                                    </Avatar>
-                                                    <div>
-                                                        <Typography
-                                                            color="inherit"
-                                                            variant="h6"
+                                                        <Avatar
+                                                            className={classes.avatar}
+                                                            src={exhibitor.avatar}
                                                         >
-                                                            {exhibitor.name}
-                                                        </Typography>
-                                                    </div>
-                                                </Box>
-                                            </TableCell>
-                                            <TableCell>{exhibitor.typename}</TableCell>
-                                            <TableCell numeric component="a" target="_blank" href={exhibitor.assets_url}
-                                                className={classes.link}
-                                                onClick={(event) => handleclick(event, exhibitor.typename)}>View</TableCell>
-                                        </TableRow>
+                                                            {getInitials(exhibitor.name)}
+                                                        </Avatar>
+                                                        <div>
+                                                            <Typography
+                                                                color="inherit"
+                                                                variant="h6"
+                                                            >
+                                                                {exhibitor.name}
+                                                            </Typography>
+                                                        </div>
+                                                    </Box>
+                                                </TableCell>
+                                                <TableCell>{exhibitor.typename}</TableCell>
+                                                {
+                                                    (exhibitor.assets_url !== null) && (<TableCell numeric component="a" target="_blank" href={exhibitor.assets_url}
+                                                        className={classes.link}
+                                                        onClick={(event) => handleclick(event, exhibitor.typename)}>View</TableCell>)
+                                                }
+                                                {
+                                                    (exhibitor.assets_url === null) && (<TableCell
+                                                        className={classes.link} component="a" href="#"
+                                                        onClick={() => handlevisitingcardview()}>{viewcardtext}</TableCell>)
+                                                }
+
+                                            </TableRow>
+                                            {
+                                                (expandtable && exhibitor.visitingcarddata !== null) && (
+                                                    <Paper className={classes.root}>
+                                                        
+                                                        <Table className={classes.table}>
+                                                            <TableBody>
+                                                                <TableRow>
+                                                                    <TableCell className={classes.fontWeightMedium}>
+                                                                        Name
+                                                                </TableCell>
+                                                                    <TableCell>
+                                                                        <Typography
+                                                                            variant="body2"
+                                                                            color="textSecondary"
+                                                                        >
+                                                                            {exhibitor.visitingcarddata[2]} {exhibitor.visitingcarddata[3]}
+                                                                        </Typography>
+                                                                    </TableCell>
+                                                                </TableRow>
+                                                                <TableRow>
+                                                                    <TableCell className={classes.fontWeightMedium}>
+                                                                        Email
+                                                                </TableCell>
+                                                                    <TableCell>
+                                                                        <Typography
+                                                                            variant="body2"
+                                                                            color="textSecondary"
+                                                                        >
+                                                                            {exhibitor.visitingcarddata[0]}
+                                                                        </Typography>
+                                                                    </TableCell>
+                                                                </TableRow>
+                                                                <TableRow>
+                                                                    <TableCell className={classes.fontWeightMedium}>
+                                                                        Phone
+                                                                </TableCell>
+                                                                    <TableCell>
+                                                                        <Typography
+                                                                            variant="body2"
+                                                                            color="textSecondary"
+                                                                        >
+                                                                            {exhibitor.visitingcarddata[1]}
+                                                                        </Typography>
+                                                                    </TableCell>
+                                                                </TableRow>
+                                                                <TableRow>
+                                                                    <TableCell className={classes.fontWeightMedium}>
+                                                                        Designation
+                                                                </TableCell>
+                                                                    <TableCell>
+                                                                        <Typography
+                                                                            variant="body2"
+                                                                            color="textSecondary"
+                                                                        >
+                                                                            {exhibitor.visitingcarddata[4]}
+                                                                        </Typography>
+                                                                    </TableCell>
+                                                                </TableRow>
+                                                            </TableBody>
+                                                        </Table>
+                                                    </Paper>
+
+                                                )
+                                            }
+                                        </>
+
                                     );
                                 })}
                             </TableBody>

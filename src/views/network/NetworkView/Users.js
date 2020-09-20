@@ -38,7 +38,8 @@ import { tabs, sortOptions, applyPagination, applySort, applyFilters } from 'src
 import Talk from "talkjs";
 import useAuth from 'src/hooks/useAuth';
 import ChatIcon from '@material-ui/icons/Chat';
-import styles from './style.css'
+import { briefcasesave } from 'src/slices/event'
+
 
 const useStyles = makeStyles((theme) => ({
     root: {},
@@ -64,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
         height: 42,
         width: 42,
         marginRight: theme.spacing(1)
-    },    
+    },
 }));
 
 const Users = ({
@@ -83,7 +84,8 @@ const Users = ({
     const [selectedExhibitor, setselectedExhibitor] = React.useState();
     const dispatch = useDispatch();
     const { user, client } = useAuth();
-    const [isOpen, setisOpen] = useState(false);    
+    const [isOpen, setisOpen] = useState(false);
+    const [sharedisabled, setsharedisabled]  = useState(false)
     const [filters, setFilters] = useState({
         hasAcceptedMarketing: null,
         isProspect: null,
@@ -93,11 +95,11 @@ const Users = ({
 
     const handleOpen = () => {
         setisOpen(true);
-      };
-    
-      const handleClose = () => {
+    };
+
+    const handleClose = () => {
         setisOpen(false);
-      };
+    };
 
     const handleTabsChange = (event, value) => {
         const updatedFilters = {
@@ -139,6 +141,20 @@ const Users = ({
             setselectedExhibitors((prevSelected) => prevSelected.filter((id) => id !== exhibitorId));
         }
     };
+
+    const handlesharevisitongcard = (user_id, user_type, index) => {
+
+        const data = {
+            index:index,
+            from_form: "sharecard",
+            table_primary_id: user_id,
+            user_type: user_type,
+            type : "visitongcard"
+        }
+        dispatch(briefcasesave(data))
+        //setsharedisabled(true)
+    }
+
 
     const handlemessage = (event, user_id, first_name, email, avatar) => {
         event.preventDefault();
@@ -217,10 +233,10 @@ const Users = ({
                         className={clsx(classes.root, className)}
                         {...rest}
                     >
-                        
+
                         <Divider />
                         <Box
-                            mt= {5}
+                            mt={5}
                             p={2}
                             minHeight={56}
                             display="flex"
@@ -245,31 +261,37 @@ const Users = ({
                                 value={query}
                                 variant="outlined"
                             />
-                            <Box flexGrow={1} />                           
+                            <Box flexGrow={1} />
+
                         </Box>
                         <Box mt={5}>
-                        <PerfectScrollbar>  
-                        <Divider />                          
-                                {paginatedExhibitors.map((exhibitor) => {                                  
+                            <PerfectScrollbar>
+                                <Divider />
+                                {paginatedExhibitors.map((exhibitor, index) => {                                    
+                                    let status_briefcase = exhibitor.briefcase_status
                                     return (
                                         <>
-                                        <ListItem ContainerComponent="div">
-                                            <ListItemAvatar>
-                                                <Avatar className={classes.avatar_small} src={exhibitor.avatar}>
-                                                </Avatar>
-                                            </ListItemAvatar>                                           
-                                            <ListItemText primary={exhibitor.name} secondary={exhibitor.designation} />                                            
-                                            <ListItemSecondaryAction className="user-action">                                                
+                                            <ListItem ContainerComponent="div">
+                                                <ListItemAvatar>
+                                                    <Avatar className={classes.avatar_small} src={exhibitor.avatar}>
+                                                    </Avatar>
+                                                </ListItemAvatar>
+                                                <ListItemText primary={exhibitor.name} secondary={exhibitor.designation} />
+                                                <ListItemSecondaryAction className="user-action">
                                                     <Button onClick={(event) => handlemessage(event, exhibitor.id, exhibitor.name, exhibitor.email, exhibitor.avatar)}>
                                                         Message
-                                                </Button>                                                                                              
-                                            </ListItemSecondaryAction>                                            
-                                        </ListItem>
-                                        <Divider />
-                                        </>                                        
+                                                    </Button>
+                                                    <Box ml={1}>
+                                                    <Button onClick={() => handlesharevisitongcard(exhibitor.id, exhibitor.user_type, index)} disabled={status_briefcase}>
+                                                        Share
+                                                    </Button></Box>
+                                                </ListItemSecondaryAction>
+                                            </ListItem>
+                                            <Divider />
+                                        </>
                                     );
                                 })}
-                        </PerfectScrollbar>
+                            </PerfectScrollbar>
                         </Box>
                     </Card>
                 </PerfectScrollbar>
@@ -282,7 +304,9 @@ Users.propTypes = {
     className: PropTypes.string,
     exhibitors: PropTypes.array.isRequired
 };
+
 Users.defaultProps = {
     exhibitors: []
 };
+
 export default Users;

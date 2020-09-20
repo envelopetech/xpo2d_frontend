@@ -69,7 +69,7 @@ pre {
   font-size: 14px;
   }
   .user-action {
-  width: 25%;
+  width: 30%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,8 +78,7 @@ pre {
   background-color: transparent;
   color: #0073b1;
   border: 1px solid #0073b1;
-  height: 32px;
-  width: 92px;
+  height: 32px;  
   font-size: 14px;
   font-weight: bold;
   border-radius: 2px;
