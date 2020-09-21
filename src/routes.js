@@ -158,7 +158,7 @@ const routes = [
 
   {
     path: '*',
-    layout: MainLayout,   
+    // layout: MainLayout,   
     guard: GuestGuard, 
     routes: [
       {

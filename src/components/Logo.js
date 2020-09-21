@@ -4,14 +4,20 @@ import logoimg from '../assets/images/logo.png';
 
 const useStyles = makeStyles((theme) => ({
  logo: {
-  height: '60px',
+  height: '220px',
 },
 
 }));
 
-export default function Logo() {
+export default function Logo (page)  {
   const classes = useStyles()
+
   let logo1 = localStorage.getItem("org_logo")
+
+  if(page === "inner")
+  {
+    logo1 = localStorage.getItem("org_other_logo")
+  }
 
   return (
 <img

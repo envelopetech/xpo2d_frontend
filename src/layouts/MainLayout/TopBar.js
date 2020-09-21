@@ -45,7 +45,7 @@ const TopBar = ({ className, ...rest }) => {
     >
       <Toolbar className={classes.toolbar}>
         <RouterLink to="/">
-          <Logo className={classes.logo} />
+          <Logo className={classes.logo} page="main"/>
         </RouterLink>            
       </Toolbar>
     </AppBar>

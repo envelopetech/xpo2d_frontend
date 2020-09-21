@@ -174,7 +174,7 @@ export default function TopBar(props) {
         <React.Fragment>
             <AppBar className={classes.appbar}>
                 <Toolbar>
-                   <Logo></Logo>
+                   <Logo page="inner"></Logo>
                     <Tabs 
                     value={value} 
                     onChange={handleChange} 
