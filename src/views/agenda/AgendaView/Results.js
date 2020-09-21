@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -53,7 +53,7 @@ const Results = ({
     //const [data, setdata] = useState(null);
     const isMountedRef = useIsMountedRef();
     const history = useHistory();
-    const handleagenda = async (webinarid)  => {
+    const handleagenda = async (webinarid) => {
         try {
 
             let data = {
@@ -61,8 +61,8 @@ const Results = ({
                 email: user.email,
                 name: user.name
             }
-            const response = await axios.post('/api/eventspeaker/userenterwebinar', data);            
-            if (isMountedRef.current) {                
+            const response = await axios.post('/api/eventspeaker/userenterwebinar', data);
+            if (isMountedRef.current) {
                 //setdata(response.data.enter_uri);
                 localStorage.setItem("webinarurl", response.data.enter_uri)
                 history.push(`/app/keynote`);
@@ -72,14 +72,15 @@ const Results = ({
             console.error(err);
         }
     }
-
-
     return (
         <React.Fragment>
             {eventagenda.map((event1) => {
+                debugger;
                 let startdate = moment(event1.start_date).format("h:mm A");
                 let enddate = moment(event1.end_date).format("h:mm A");
                 let finaltime = `${startdate} - ${enddate}`
+                var today = moment()
+                var result = moment(today).isBetween(event1.start_date, event1.end_date)
                 return (
                     <Container className={classes.agendaContainer}>
                         <Card className={classes.root}>
@@ -99,18 +100,28 @@ const Results = ({
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Link>
-                                    {/* <Button href={event.webinar_url} target="_blank" size="small" variant="contained" color="primary">Watch Now</Button> */}
-                                    <Button
-                                        color="secondary"
-                                        variant="contained"
-                                        onClick={() => handleagenda(event1.webinar_url)}
-                                    // component={RouterLink}
-                                    // to={`/app/keynote/${user.id}/${event.id}`}
-                                    >
-                                        Watch Now
-                                    </Button>
-                                </Link>
+                                {
+                                    result ? (
+                                        <Button
+                                            color="secondary"
+                                            variant="contained"
+                                            onClick={() => handleagenda(event1.webinar_url)}
+                                        // component={RouterLink}
+                                        // to={`/app/keynote/${user.id}/${event.id}`}
+                                        >
+                                            Enter Now
+                                        </Button>
+                                    )
+                                        : (<Button
+                                            color="secondary"
+                                            variant="contained"
+                                            disabled={true}
+                                        // component={RouterLink}
+                                        // to={`/app/keynote/${user.id}/${event.id}`}
+                                        >
+                                            Enter Now
+                                        </Button>)
+                                }                                
                             </CardActions>
                         </Card>
                     </Container>

@@ -25,7 +25,7 @@ const slice = createSlice({
 export const reducer = slice.reducer;
 
 export const getEventAgendas = (event_id) => async (dispatch) => {
-    const response = await axios.get(`/api/eventspeaker/list?event_id=${event_id}`);
+    const response = await axios.get(`/api/eventspeaker/frontlist?event_id=${event_id}`);
     dispatch(slice.actions.getEventAgendas(response.data));
 };
 

@@ -11,7 +11,8 @@ const slice = createSlice({
     name: 'organizer',
     initialState,
     reducers: {        
-        getorganizer(state, action) {           
+        getorganizer(state, action) {   
+            debugger;        
             let organizer = []            
             organizer = action.payload
             state.organizers = organizer;             

@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Logo (page)  {
+  debugger;
   const classes = useStyles()
 
   let logo1 = localStorage.getItem("org_logo")

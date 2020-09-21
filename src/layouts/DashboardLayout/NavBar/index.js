@@ -241,7 +241,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     height: '60px',
-    marginLeft: '35%',
+    marginLeft: '20%',
   },
   appBar: {
     background: '#ffffff',
@@ -312,24 +312,19 @@ export default function NavBar() {
   const theme = useTheme();
   const { user } = useAuth();
   const [open, setOpen] = React.useState(false);
-  let logo1 = localStorage.getItem("org_logo")
+  let logo1 = localStorage.getItem("org_other_logo")
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget)
     setOpen(true)
   }
-
   const handleClose = (e) => {
     setAnchorEl(null)
     setOpen(false)
   }
-
   const [anchorEl, setAnchorEl] = useState(null);
-
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-
   const handleDrawerClose = () => {
     setOpen(false);
   };
