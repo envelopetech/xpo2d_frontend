@@ -13,8 +13,7 @@ const slice = createSlice({
             exhibitor = action.payload
             state.exhibitorstaff = exhibitor;           
         },  
-        briefcasesave(state, action) {  
-            debugger;         
+        briefcasesave(state, action) {             
             const index  = action.payload;            
             let data = state.exhibitorstaff;
             data[index].briefcase_status = true;

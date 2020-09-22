@@ -157,10 +157,7 @@ export default function LobbyView() {
                 <div className="audi-background">
                 <img alt="auditorium" src={background} className="background-fluid" />
                 </div>
-                <div className="audi-content">
-                    <div className="lobby-content-center">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ElnqwnadBGY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
+                <div className="audi-content">                   
                     <div className="users">
                     <Link href='/app/keynote' className={classes.anchorKeynote}>
                     <LightTooltip title="Click here to attend panel discussions by healthcare industry leaders">

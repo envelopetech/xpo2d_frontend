@@ -43,29 +43,10 @@ import { briefcasesave } from 'src/slices/event'
 
 const useStyles = makeStyles((theme) => ({
     root: {},
-    queryField: {
-        width: 500
-    },
-    bulkOperations: {
-        position: 'relative'
-    },
-    bulkActions: {
-        paddingLeft: 4,
-        paddingRight: 4,
-        marginTop: 6,
-        position: 'absolute',
-        width: '100%',
-        zIndex: 2,
-        backgroundColor: theme.palette.background.default
-    },
-    bulkAction: {
-        marginLeft: theme.spacing(2)
-    },
-    avatar: {
-        height: 42,
-        width: 42,
-        marginRight: theme.spacing(1)
-    },
+    drawer: {
+        width: 500,
+        maxWidth: '100%'
+    }
 }));
 
 const Users = ({
@@ -85,7 +66,7 @@ const Users = ({
     const dispatch = useDispatch();
     const { user, client } = useAuth();
     const [isOpen, setisOpen] = useState(false);
-    const [sharedisabled, setsharedisabled]  = useState(false)
+    const [sharedisabled, setsharedisabled] = useState(false)
     const [filters, setFilters] = useState({
         hasAcceptedMarketing: null,
         isProspect: null,
@@ -145,11 +126,11 @@ const Users = ({
     const handlesharevisitongcard = (user_id, user_type, index) => {
 
         const data = {
-            index:index,
+            index: index,
             from_form: "sharecard",
             table_primary_id: user_id,
             user_type: user_type,
-            type : "visitongcard"
+            type: "visitongcard"
         }
         dispatch(briefcasesave(data))
         //setsharedisabled(true)
@@ -217,6 +198,7 @@ const Users = ({
                     <SvgIcon fontSize="large">
                         <ChatIcon />
                     </SvgIcon>
+                    <Typography>Click to Network</Typography>
                 </IconButton>
             </Tooltip>
             <Drawer
@@ -267,7 +249,7 @@ const Users = ({
                         <Box mt={5}>
                             <PerfectScrollbar>
                                 <Divider />
-                                {paginatedExhibitors.map((exhibitor, index) => {                                    
+                                {paginatedExhibitors.map((exhibitor, index) => {
                                     let status_briefcase = exhibitor.briefcase_status
                                     return (
                                         <>
@@ -282,8 +264,8 @@ const Users = ({
                                                         Message
                                                     </Button>
                                                     <Box ml={1}>
-                                                    <Button onClick={() => handlesharevisitongcard(exhibitor.id, exhibitor.user_type, index)} disabled={status_briefcase}>
-                                                        Share
+                                                        <Button onClick={() => handlesharevisitongcard(exhibitor.id, exhibitor.user_type, index)} disabled={status_briefcase}>
+                                                            Share
                                                     </Button></Box>
                                                 </ListItemSecondaryAction>
                                             </ListItem>

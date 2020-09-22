@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import {
-    Button,
-    Card,
+    Box,
     CardContent,
     Typography,
     Container,
     makeStyles,
     CardActions,
-    Link
+    AppBar,
+    Tabs,
+    Tab
 
 } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
@@ -19,115 +20,75 @@ import ReactHtmlParser from 'react-html-parser';
 import useAuth from 'src/hooks/useAuth';
 import axios from 'src/utils/axios';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
+import Itemdata from './Itemdata'
+import Skeleton from 'src/components/Skeletonagenda';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         minWidth: 275,
         marginBottom: 15,
     },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-
-    agendaContainer: {
-        marginTop: '2em',
-    }
 }));
+
+function a11yProps(index) {
+    return {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+    };
+}
+
+const TabPanel = (props) => {
+    const { children, value, index, ...other } = props;
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box p={3}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
+}
+TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.any.isRequired,
+    value: PropTypes.any.isRequired,
+};
 
 const Results = ({
     className,
-    eventagenda,
+    eventagenda1,
+    eventagenda2,
     ...rest
 }) => {
-
-    const classes = useStyles();
-    const { user } = useAuth();
-    //const [data, setdata] = useState(null);
-    const isMountedRef = useIsMountedRef();
-    const history = useHistory();
-    const handleagenda = async (webinarid) => {
-        try {
-
-            let data = {
-                webinarid: webinarid,
-                email: user.email,
-                name: user.name
-            }
-            const response = await axios.post('/api/eventspeaker/userenterwebinar', data);
-            if (isMountedRef.current) {
-                //setdata(response.data.enter_uri);
-                localStorage.setItem("webinarurl", response.data.enter_uri)
-                history.push(`/app/keynote`);
-
-            }
-        } catch (err) {
-            console.error(err);
-        }
-    }
+    const classes = useStyles();    
+    const [value, setValue] = React.useState(0);
+    const handleChange = (event, newValue) => {
+        setValue(newValue);        
+    };   
+   
     return (
-        <React.Fragment>
-            {eventagenda.map((event1) => {
-                debugger;
-                let startdate = moment(event1.start_date).format("h:mm A");
-                let enddate = moment(event1.end_date).format("h:mm A");
-                let finaltime = `${startdate} - ${enddate}`
-                var today = moment()
-                var result = moment(today).isBetween(event1.start_date, event1.end_date)
-                return (
-                    <Container className={classes.agendaContainer}>
-                        <Card className={classes.root}>
-                            <CardContent>
-                                <Typography className={classes.title} color="textSecondary" gutterBottom>
-                                    {finaltime}
-                                </Typography>
-                                <Typography variant="h5" component="h2">
-                                    {event1.title}
-                                </Typography>
-                                <Typography className={classes.pos} color="textSecondary">
-                                    {event1.speaker_name}
-                                </Typography>
-                                <Typography variant="body2" component="p">
-                                    {ReactHtmlParser(event1.description)}
-                                    <br />
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                {
-                                    result ? (
-                                        <Button
-                                            color="secondary"
-                                            variant="contained"
-                                            onClick={() => handleagenda(event1.webinar_url)}
-                                        // component={RouterLink}
-                                        // to={`/app/keynote/${user.id}/${event.id}`}
-                                        >
-                                            Enter Now
-                                        </Button>
-                                    )
-                                        : (<Button
-                                            color="secondary"
-                                            variant="contained"
-                                            disabled={true}
-                                        // component={RouterLink}
-                                        // to={`/app/keynote/${user.id}/${event.id}`}
-                                        >
-                                            Enter Now
-                                        </Button>)
-                                }                                
-                            </CardActions>
-                        </Card>
-                    </Container>
-                );
-            })}
-        </React.Fragment>
+        <div className={classes.root}>
+            <AppBar position="static">
+                <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+                    <Tab label="Day 1" {...a11yProps(0)} />
+                    <Tab label="Day 2" {...a11yProps(1)} />
+
+                </Tabs>
+            </AppBar>
+            <TabPanel value={value} index={0}>
+                <Itemdata eventagenda={eventagenda1}> </Itemdata>
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+                <Itemdata eventagenda={eventagenda2}> </Itemdata>
+            </TabPanel>
+        </div>
     );
 };
 

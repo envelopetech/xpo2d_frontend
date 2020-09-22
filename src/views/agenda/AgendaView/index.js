@@ -34,7 +34,7 @@ const useStyles = makeStyles({
 });
 export default function AgendaView() {
     const classes = useStyles();
-    const { eventagenda } = useSelector((state) => state.eventagenda);
+    const { eventagenda1, eventagenda2 } = useSelector((state) => state.eventagenda);
     // const { eventId } = useSelector((state) => state.organizer); 
     // alert(eventId)   
     const eventId = localStorage.getItem("eventId")
@@ -50,7 +50,7 @@ export default function AgendaView() {
         dispatch(getEventAgendas(eventId));
     }, [dispatch]);
 
-    if (eventagenda !== undefined && eventagenda.length === 0) {
+    if (eventagenda1 !== undefined && eventagenda1.length === 0) {
         return <Skeleton></Skeleton>;
     }
     return (
@@ -58,8 +58,7 @@ export default function AgendaView() {
             className={classes.root}
             title="Event Agenda"
         >
-
-            <Results eventagenda={eventagenda}></Results>
+            <Results eventagenda1={eventagenda1} eventagenda2={eventagenda2}></Results>
         </Page>
 
     )

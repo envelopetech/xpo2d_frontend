@@ -50,7 +50,7 @@ export default function NetworkView() {
                 backgroundRepeat: "no-repeat",
                 height: "100vh"
             }}>
-                <Grid item style={{ position: 'absolute', right: '25%', top: ' 28%' }}>
+                <Grid item style={{position: 'absolute', right: '0%', top:' 50%', backgroundColor: 'forestgreen', color:'white'}}>
                     <Users  exhibitors={exhibitorstaff} />
                 </Grid>
             </Grid>
