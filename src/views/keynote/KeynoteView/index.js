@@ -30,6 +30,7 @@ import { useParams } from "react-router-dom";
 import { withRouter } from "react-router";
 import { useDispatch } from 'src/store';
 import { userpage_save } from 'src/slices/notification'
+import Iframe from 'react-iframe'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -99,10 +100,10 @@ export function KeynoteView() {
     const [hidden, setHidden] = React.useState(false);
 
 
-           
+
     const webinarurl = localStorage.getItem("webinarurl")
-       
-    
+
+
     // let webinarurl = ""
     // if (agenda_id !== null && agenda_id !== undefined) {
     //     let data = JSON.parse(localStorage.getItem('agenda_data'))
@@ -111,7 +112,7 @@ export function KeynoteView() {
     //         webinarurl = agendadata.webinar_url;
     //     }
     // }
-    
+
     useEffect(() => {
         const data = {
             pagename: "Keynote"
@@ -199,10 +200,18 @@ export function KeynoteView() {
                         <Button className="fullscreen" id="full-screen" onClick={handleFullScreen}>Full Screen</Button>
                         <Button className="exitfullscreen" id="exit-full-screen" onClick={handleExitFullScreen}>Exit Full Screen</Button>
 
-                        <iframe id="audi-iframe" scrolling="no" width="100%" height="100%" src={webinarurl}
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true">
-                                </iframe>
+                        {
+                            (webinarurl != "undefined") && (
+                                <Iframe url={webinarurl}
+                                    width="100%"
+                                    height="100%"
+                                    id="audi-iframe"
+                                    className="myClassname"
+                                    display="initial"
+                                    position="relative"
+                                    allowFullScreen />
+                            )
+                        }
                     </div>
 
                 </div>

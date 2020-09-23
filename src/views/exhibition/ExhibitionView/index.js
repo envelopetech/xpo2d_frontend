@@ -40,7 +40,7 @@ export default function ExhibitionView() {
     return (
         <Page
             title="Exhibitor">
-                <Box>
+            {/* <Box>
                 <FormControlLabel
                     control={
                         <Switch
@@ -58,9 +58,9 @@ export default function ExhibitionView() {
             }
             {
                 (!state.iscard) && (<Stallview exhibitors={exhibitors}></Stallview>)
-            }
+            } */}
 
-            
+            <Stallview exhibitors={exhibitors}></Stallview>
 
         </Page>
     )

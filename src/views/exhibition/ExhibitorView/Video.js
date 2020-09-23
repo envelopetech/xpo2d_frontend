@@ -16,6 +16,10 @@ const Video = ({
     ...rest
 }) => {
 
+    if (video === null || video.length == 0 ) {
+        return <div>No Videos Aavailable</div>;
+    }
+
     //const classes = useStyles();
     return (
         <React.Fragment>

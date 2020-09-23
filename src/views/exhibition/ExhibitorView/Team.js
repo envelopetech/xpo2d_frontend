@@ -99,6 +99,9 @@ const Team = ({
         };
         dispatch (lederboardsave(dataleaderboard));
     }
+    if (team === null || team.length == 0 ) {
+        return <div>No Team Aavailable</div>;
+    }
     return (
         <React.Fragment>
             {team.map((staff) => {

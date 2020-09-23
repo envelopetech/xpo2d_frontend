@@ -54,7 +54,10 @@ const useStyles = makeStyles((theme) => ({
     },
     link: {
         color: '#304ffe',
-    },    
+    },  
+    footerpag: {
+        marginBottom: "50px",
+    },  
 }));
 
 const StyledTableCell = withStyles((theme) => ({
@@ -244,6 +247,7 @@ const Results = ({
                     page={page}
                     rowsPerPage={limit}
                     rowsPerPageOptions={[5, 10, 25]}
+                    className={classes.footerpag}
                 />
             </Card>
         </React.Fragment>

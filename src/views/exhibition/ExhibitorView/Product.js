@@ -27,6 +27,10 @@ const Product = ({
             "event_label": user.email
         });
     }
+    if (product === null || product.length == 0 ) {
+        return <div>No Products Aavailable</div>;
+    }
+
     return (
         <React.Fragment>
             {product.map((pro) => {

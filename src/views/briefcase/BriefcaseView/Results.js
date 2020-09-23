@@ -44,8 +44,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { deletebriefcase } from 'src/slices/visitor'
 
 const useStyles = makeStyles((theme) => ({
-    root: {        
-    },    
+    root: {
+    },
     queryField: {
         width: 500
     },
@@ -74,7 +74,10 @@ const useStyles = makeStyles((theme) => ({
     },
     fontWeightMedium: {
         fontWeight: theme.typography.fontWeightMedium
-    }   
+    },
+    footerpag: {
+        marginBottom: "50px",
+    },
 }));
 
 const Results = ({
@@ -95,7 +98,7 @@ const Results = ({
 
 
     const [expandtable, setexpandtable] = React.useState(false);
-    const [viewcardtext, setviewcardtext]  = React.useState("Expand");
+    const [viewcardtext, setviewcardtext] = React.useState("Expand");
 
     const [filters, setFilters] = useState({
         hasAcceptedMarketing: null,
@@ -119,18 +122,16 @@ const Results = ({
 
 
     const handlevisitingcardview = () => {
-        if (expandtable)
-        {
+        if (expandtable) {
             setexpandtable(false);
             setviewcardtext("Expand")
         }
-           
-        else
-        {
+
+        else {
             setexpandtable(true);
             setviewcardtext("Collapse")
         }
-           
+
     };
 
     const handleDeletebriefcase = async () => {
@@ -270,7 +271,7 @@ const Results = ({
                     </div>
                 )}
                 <PerfectScrollbar>
-                    <Box minWidth={700}>
+                    <Box minWidth={700} >
                         <Table>
                             <TableHead>
                                 <TableRow>
@@ -347,7 +348,7 @@ const Results = ({
                                             {
                                                 (expandtable && exhibitor.visitingcarddata !== null) && (
                                                     <Paper className={classes.root}>
-                                                        
+
                                                         <Table className={classes.table}>
                                                             <TableBody>
                                                                 <TableRow>
@@ -424,6 +425,7 @@ const Results = ({
                     page={page}
                     rowsPerPage={limit}
                     rowsPerPageOptions={[5, 10, 25]}
+                    className={classes.footerpag}
                 />
             </Card>
         </React.Fragment>

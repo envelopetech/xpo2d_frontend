@@ -33,6 +33,9 @@ const Assets = ({
             "event_label": user.email
         });
     }
+    if (assets === null || assets.length == 0 ) {
+        return <div>No Assets Aavailable</div>;
+    }
 
     return (
         <React.Fragment>

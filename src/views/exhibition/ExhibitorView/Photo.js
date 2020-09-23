@@ -17,6 +17,11 @@ const Photo = ({
     ...rest
 }) => {
     const classes = useStyles();
+
+    if (photo === null || photo.length == 0 ) {
+        return <div>No Photos Aavailable</div>;
+    }
+    
     return (
         <React.Fragment>
             {photo.map((photodata) => {
