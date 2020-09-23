@@ -56,7 +56,7 @@ export default function ResourceView() {
       title="My Resources"
     >
 
-      <Results exhibitorassets={exhibitorassets}></Results>
+      <Results exhibitors={exhibitorassets}></Results>
     </Page>
 
   )

@@ -61,7 +61,7 @@ const Itemdata = ({
                 email: user.email,
                 name: user.name
             }
-            const response = await axios.post('/api/eventspeaker/userenterwebinar', data);
+            const response = await axios.post('/api/eventspeaker/userenterwebinarcovid', data);
             if (isMountedRef.current) {
                 //setdata(response.data.enter_uri);
                 localStorage.setItem("webinarurl", response.data.enter_uri)

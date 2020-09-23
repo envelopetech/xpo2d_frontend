@@ -1,149 +1,308 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
+    Avatar,
     Box,
-    makeStyles,
-    Collapse,
+    Button,
+    Card,
+    Checkbox,
+    Divider,
     IconButton,
-    Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Paper
+    InputAdornment,
+    Link,
+    SvgIcon,
+    Tab,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TablePagination,
+    TableRow,
+    Tabs,
+    TextField,
+    Typography,
+    makeStyles,
+    Paper
+
 } from '@material-ui/core';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import {
+    Search as SearchIcon
+} from 'react-feather';
+import getInitials from 'src/utils/getInitials';
+import { useDispatch } from 'src/store';
+import { tabs, sortOptions, applyPagination, applySort, applyFilters } from 'src/utils/common'
 import track from 'src/utils/analytics';
 import useAuth from 'src/hooks/useAuth';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { deletebriefcase } from 'src/slices/visitor'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        '& > *': {
-            borderBottom: 'unset',
-        },        
     },
-    tablewrapper: {
-        marginLeft: 20,
-        marginRight: 20,
-        marginTop: 20,
-        marginBottom: 20,
+    queryField: {
+        width: 500
+    },
+    bulkOperations: {
+        position: 'relative'
+    },
+    bulkActions: {
+        paddingLeft: 4,
+        paddingRight: 4,
+        marginTop: 6,
+        position: 'absolute',
+        width: '100%',
+        zIndex: 2,
+        backgroundColor: theme.palette.background.default
+    },
+    bulkAction: {
+        marginLeft: theme.spacing(2)
+    },
+    avatar: {
+        height: 42,
+        width: 42,
+        marginRight: theme.spacing(1)
     },
     link: {
         color: '#304ffe',
     },
+    fontWeightMedium: {
+        fontWeight: theme.typography.fontWeightMedium
+    },
+    footerpag: {
+        marginBottom: "50px",
+    },
 }));
 
-
-
-function Row(props) {
-    const { row } = props;
-    const [open, setOpen] = React.useState(false);
+const Results = ({
+    className,
+    exhibitors,
+    ...rest
+}) => {
     const classes = useStyles();
+    const [currentTab, setCurrentTab] = useState('all');
+    const [selectedExhibitors, setselectedExhibitors] = useState([]);
+    const [page, setPage] = useState(0);
+    const [limit, setLimit] = useState(10);
+    const [query, setQuery] = useState('');
+    const [sort, setSort] = useState(sortOptions[0].value);
+    const [open, setOpen] = React.useState(false);
+    const [selectedExhibitor, setselectedExhibitor] = React.useState();
+    const dispatch = useDispatch();
+
+
+    const [expandtable, setexpandtable] = React.useState(false);
+    const [viewcardtext, setviewcardtext] = React.useState("Expand");
+
+    const [filters, setFilters] = useState({
+        hasAcceptedMarketing: null,
+        isProspect: null,
+        isReturning: null
+    });
+
 
     const { user } = useAuth();
-    const handleclick = (event) => {        
+    const handleclick = (event, type) => {
         track.event("Download Company Brochure ", {
             "event_category": "Company Brochure",
             "event_label": user.email
         });
     }
 
+
+    const handleQueryChange = (event) => {
+        event.persist();
+        setQuery(event.target.value);
+    };
+
+    const handleSortChange = (event) => {
+        event.persist();
+        setSort(event.target.value);
+    };
+
+    const handleSelectAllExhibitors = (event) => {
+        setselectedExhibitors(event.target.checked
+            ? exhibitors.map((exhibitor) => exhibitor.id)
+            : []);
+    };
+
+    const handleSelectOneExhibitor = (event, exhibitorId) => {
+        if (!selectedExhibitors.includes(exhibitorId)) {
+            setselectedExhibitors((prevSelected) => [...prevSelected, exhibitorId]);
+        } else {
+            setselectedExhibitors((prevSelected) => prevSelected.filter((id) => id !== exhibitorId));
+        }
+    };
+    const handlePageChange = (event, newPage) => {
+        setPage(newPage);
+    };
+    const handleLimitChange = (event) => {
+        setLimit(parseInt(event.target.value));
+    };
+    const filteredExhibitors = applyFilters(exhibitors, query, filters, ['name']);
+    const sortedExhibitors = applySort(filteredExhibitors, sort);
+    const paginatedExhibitors = applyPagination(sortedExhibitors, page, limit);
+    const selectedSomeExhibitors = selectedExhibitors.length > 0 && selectedExhibitors.length < exhibitors.length;
+    const selectedAllExhibitors = selectedExhibitors.length === exhibitors.length;
+    const enableBulkOperations = selectedExhibitors.length > 0;
+
+    
     return (
         <React.Fragment>
-            <TableRow className={classes.root}>
-                <TableCell>
-                    <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
-                        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                    </IconButton>
-                </TableCell>
-                <TableCell component="th" scope="row">
-                    {row.name}
-                </TableCell>
-                <TableCell align="right">{row.totalcount}</TableCell>
-                
-            </TableRow>
-            <TableRow>
-                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <Box margin={1}>
-                            <Typography variant="h6" gutterBottom component="div">
-                                Collection
-                            </Typography>
-                            <Table size="small" aria-label="purchases">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>File Name</TableCell>
-                                        <TableCell>Type</TableCell>
-                                        <TableCell align="right">Link</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {row.assets.map((assetsRow) => (
-                                        <TableRow key={assetsRow.id}>
-                                            <TableCell component="th" scope="row">
-                                                {assetsRow.name}
-                                            </TableCell>
-                                            <TableCell>PDF</TableCell>
-                                            <TableCell align="right" numeric component="a" target="_blank" href={assetsRow.assets_url} className={classes.link} onClick={handleclick}>Download</TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </Box>
-                    </Collapse>
-                </TableCell>
-            </TableRow>
-        </React.Fragment>
-    );
-}
-
-Row.propTypes = {
-    row: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        totalcount: PropTypes.number.isRequired,
-        assets: PropTypes.arrayOf(
-            PropTypes.shape({
-                id: PropTypes.number.isRequired,
-                name: PropTypes.string.isRequired
-            }),
-        ).isRequired,
-    }).isRequired,
-};
-
-
-const Results = ({
-    className,
-    exhibitorassets,
-    ...rest
-}) => { 
-
-    return (
-        <React.Fragment>
-            <Box margin={3}>
-            <TableContainer component={Paper}>
-                <Table aria-label="collapsible table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell />
-                            <TableCell>Company Name</TableCell>
-                            <TableCell align="right">Assets</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {exhibitorassets.map((row) => (
-                            <Row key={row.name} row={row} />
+            <Card
+                className={clsx(classes.root, className)}
+                {...rest}
+            >
+                <Box
+                    p={2}
+                    minHeight={56}
+                    display="flex"
+                    alignItems="center"
+                >
+                    <TextField
+                        className={classes.queryField}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <SvgIcon
+                                        fontSize="small"
+                                        color="action"
+                                    >
+                                        <SearchIcon />
+                                    </SvgIcon>
+                                </InputAdornment>
+                            )
+                        }}
+                        onChange={handleQueryChange}
+                        placeholder="Search"
+                        value={query}
+                        variant="outlined"
+                    />
+                    <Box flexGrow={1} />
+                    <TextField
+                        label="Sort By"
+                        name="sort"
+                        onChange={handleSortChange}
+                        select
+                        SelectProps={{ native: true }}
+                        value={sort}
+                        variant="outlined"
+                    >
+                        {sortOptions.map((option) => (
+                            <option
+                                key={option.value}
+                                value={option.value}
+                            >
+                                {option.label}
+                            </option>
                         ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            </Box>
+                    </TextField>
+                </Box>
+
+                <PerfectScrollbar>
+                    <Box minWidth={700}>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell padding="checkbox">
+                                        <Checkbox
+                                            checked={selectedAllExhibitors}
+                                            indeterminate={selectedSomeExhibitors}
+                                            onChange={handleSelectAllExhibitors}
+                                        />
+                                    </TableCell>
+                                    <TableCell>
+                                        File Name
+                                    </TableCell>
+                                    <TableCell>
+                                        Type
+                                    </TableCell>
+                                    <TableCell>
+                                        Link
+                                    </TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {paginatedExhibitors.map((exhibitor) => {
+                                    const isExhibitorSelected = selectedExhibitors.includes(exhibitor.id);
+                                    return (
+                                        <>
+                                            <TableRow
+                                                hover
+                                                key={exhibitor.id}
+                                                selected={isExhibitorSelected}
+                                            >
+                                                <TableCell padding="checkbox">
+                                                    <Checkbox
+                                                        checked={isExhibitorSelected}
+                                                        onChange={(event) => handleSelectOneExhibitor(event, exhibitor.id)}
+                                                        value={isExhibitorSelected}
+                                                    />
+                                                </TableCell>
+
+                                                <TableCell>
+                                                    <Box
+                                                        display="flex"
+                                                        alignItems="center"
+                                                    >
+                                                        <Avatar
+                                                            className={classes.avatar}
+                                                            src={exhibitor.avatar}
+                                                        >
+                                                            {getInitials(exhibitor.name)}
+                                                        </Avatar>
+                                                        <div>
+                                                            <Typography
+                                                                color="inherit"
+                                                                variant="h6"
+                                                            >
+                                                                {exhibitor.name}
+                                                            </Typography>
+                                                        </div>
+                                                    </Box>
+                                                </TableCell>
+                                                <TableCell>PDF</TableCell>
+                                                <TableCell numeric component="a" target="_blank" href={exhibitor.assets_url}
+                                                    className={classes.link}
+                                                    onClick={(event) => handleclick(event, exhibitor.typename)}>View</TableCell>
+
+                                            </TableRow>
+                                        </>
+
+                                    );
+                                })}
+                            </TableBody>
+                        </Table>
+                    </Box>
+                </PerfectScrollbar>
+                <TablePagination
+                    component="div"
+                    count={filteredExhibitors.length}
+                    onChangePage={handlePageChange}
+                    onChangeRowsPerPage={handleLimitChange}
+                    page={page}
+                    rowsPerPage={limit}
+                    rowsPerPageOptions={[5, 10, 25]}
+                    className={classes.footerpag}
+                />
+            </Card>
         </React.Fragment>
     );
 };
 
 Results.propTypes = {
     className: PropTypes.string,
-    exhibitorassets: PropTypes.array.isRequired
+    exhibitors: PropTypes.array.isRequired
 };
 
 Results.defaultProps = {
-    exhibitorassets: []
+    exhibitors: []
 };
 
 export default Results;

@@ -46,7 +46,30 @@ const useStyles = makeStyles((theme) => ({
     drawer: {
         width: 500,
         maxWidth: '100%'
-    }
+    },
+    queryField: {
+        width: 500
+    },
+    bulkOperations: {
+        position: 'relative'
+    },
+    bulkActions: {
+        paddingLeft: 4,
+        paddingRight: 4,
+        marginTop: 6,
+        position: 'absolute',
+        width: '100%',
+        zIndex: 2,
+        backgroundColor: theme.palette.background.default
+    },
+    bulkAction: {
+        marginLeft: theme.spacing(2)
+    },
+    avatar: {
+        height: 42,
+        width: 42,
+        marginRight: theme.spacing(1)
+    },
 }));
 
 const Users = ({
@@ -130,7 +153,7 @@ const Users = ({
             from_form: "sharecard",
             table_primary_id: user_id,
             user_type: user_type,
-            type: "visitongcard"
+            type: "visitingcard"
         }
         dispatch(briefcasesave(data))
         //setsharedisabled(true)
