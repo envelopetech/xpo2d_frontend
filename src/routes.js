@@ -122,6 +122,11 @@ const routes = [
       },
       {
         exact: true,
+        path: '/app/helpdesk',
+        component: lazy(() => import('src/views/helpdesk/HelpDeskView'))
+      },
+      {
+        exact: true,
         path: '/app/profile',
         component: lazy(() => import('src/views/account/AccountView'))
       },

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import Cotter from "cotter"; //  1️⃣  Import Cotter
+
 import PropTypes from 'prop-types';
 import Logo from 'src/components/Logo'
 import {
@@ -35,9 +35,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  cotterContainer: {
-    margin: 'auto',
-  },
   logo: {
     height: '72px',
   },
@@ -58,38 +55,20 @@ const JWTLogin = ({ className, ...rest }) => {
   const dispatch = useDispatch();
   const isMountedRef = useIsMountedRef();
   let domain_name = window.location.hostname;
-  
+
   const [phone, setphone] = useState();
   const { login, newuser, register, client } = useAuth();
   const [open, setOpen] = React.useState(false);
   const { organizers } = useSelector((state) => state.organizer);
-  
+
   console.log(newuser)
   useEffect(() => {
     if (newuser) {
       setOpen(true);
     }
-    dispatch(getorganizer(domain_name));    
-  }, [newuser]);
-  //  2️⃣ Initialize and show the form
-  useEffect(() => {
-    //const initialise = async () => {
-    var cotter = new Cotter('dea0e7e0-e9ac-497a-a500-2225bf389a9b'); // 👈 Specify your API KEY ID here
-    cotter
-      .signInWithOTP()
-      .showPhoneForm()
-      .then(payload => {       
-        console.log("Cotter User Information", payload.phone);
-        setphone(payload.phone)
-        fetchMyAPI(payload.phone)
-        
-      })
-      .catch(err => console.log(err));
-  }, [fetchMyAPI]);
-
-  const fetchMyAPI = useCallback(async (phone) => {  
-    await login(phone)
-  }, [])
+    dispatch(getorganizer(domain_name));
+  }, [newuser]);  
+  
 
   const handleClose = () => {
     setOpen(false);
@@ -109,7 +88,7 @@ const JWTLogin = ({ className, ...rest }) => {
           height="100%"
           display="flex"
           flexDirection="column"
-        >          
+        >
           <Container
             className={classes.cardContainer}
             maxWidth="sm"
@@ -321,12 +300,91 @@ const JWTLogin = ({ className, ...rest }) => {
         </Box>
       </Dialog>
 
-      <div className="container">
-        <div>
-          <div id="cotter-form-container" style={{ width: 300, height: 500 }} />
-          {/* <pre>{JSON.stringify(payload, null, 4)}</pre> */}
-        </div>
-      </div>
+      <Formik
+        initialValues={{
+          phone_number: '+91',
+          submit: null
+        }}
+        validationSchema={Yup.object().shape({
+          phone_number: Yup.string().required('Phone is required'),
+        })}
+        onSubmit={async (values, {
+          setErrors,
+          setStatus,
+          setSubmitting
+        }) => {
+          try {
+
+            await login(values.phone_number)
+            if (isMountedRef.current) {
+              setStatus({ success: true });
+              setSubmitting(false);
+            }
+          } catch (err) {
+            console.error(err);
+            setStatus({ success: false });
+            setErrors({ submit: err.message });
+            setSubmitting(false);
+          }
+        }}
+      >
+        {({
+          errors,
+          handleBlur,
+          handleChange,
+          handleSubmit,
+          isSubmitting,
+          touched,
+          values
+        }) => (
+            <form
+              noValidate
+              className={clsx(classes.root, className)}
+              onSubmit={handleSubmit}
+              {...rest}
+            >
+              <TextField
+                error={Boolean(touched.phone_number && errors.phone_number)}
+                fullWidth
+                helperText={touched.phone_number && errors.phone_number}
+                label="Phone Number"
+                margin="normal"
+                name="phone_number"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.phone_number}
+                variant="outlined"
+              />
+              <Typography
+                color="textPrimary"
+                gutterBottom
+                variant="h5"
+              >
+                Please enter your Registered Mobile Number prefixed with +Country Code
+
+              </Typography>
+              {errors.submit && (
+                <Box mt={3}>
+                  <FormHelperText error>
+                    {errors.submit}
+                  </FormHelperText>
+                </Box>
+              )}
+              <Box mt={2}>
+                <Button
+                  color="secondary"
+                  disabled={isSubmitting}
+                  fullWidth
+                  size="large"
+                  type="submit"
+                  variant="contained"
+                >
+                  Login
+          </Button>
+              </Box>
+            </form>
+          )}
+      </Formik>
     </React.Fragment>
   );
 };

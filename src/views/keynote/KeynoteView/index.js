@@ -7,13 +7,21 @@ import {
     DialogContent,
     DialogContentText,
     IconButton,
-    AppBar,
     Toolbar,
     Slide,
     Typography,
+    Card,
+    CardContent,
+    Container,
+    CardActions,
+    Link,
+    AppBar,
+    Tabs,
+    Tab,
     Box
 
 } from '@material-ui/core';
+import PropTypes from 'prop-types';
 import CloseIcon from '@material-ui/icons/Close';
 import ImageMapper from 'react-image-mapper';
 import audi from 'src/assets/images/audi.jpg';
@@ -26,11 +34,21 @@ import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
 //import Agenda from '../AgendaView'
-import { useParams } from "react-router-dom";
 import { withRouter } from "react-router";
-import { useDispatch } from 'src/store';
+import { useDispatch, useSelector } from 'src/store';
 import { userpage_save } from 'src/slices/notification'
+import { gettrackEventAgendas } from 'src/slices/eventagenda'
+import { useParams } from 'react-router-dom';
+import useAuth from 'src/hooks/useAuth';
+import axios from 'src/utils/axios';
+import useIsMountedRef from 'src/hooks/useIsMountedRef';
+import moment from 'moment';
+import ReactHtmlParser from 'react-html-parser';
 import Iframe from 'react-iframe'
+import Itemdata from 'src/views/agenda/AgendaView/Itemdata'
+import {
+    getEventAgendas
+} from 'src/slices/eventagenda';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -88,36 +106,68 @@ const actions = [
     { icon: <FileCopyIcon />, name: 'All' },
 ];
 
+function a11yProps(index) {
+    return {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+    };
+}
+
+const TabPanel = (props) => {
+    const { children, value, index, ...other } = props;
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box p={3}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
+}
+TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.any.isRequired,
+    value: PropTypes.any.isRequired,
+};
+
+
 export function KeynoteView() {
     const dispatch = useDispatch();
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
     const [open3, setOpen3] = React.useState(false);
-
+    const { user } = useAuth();
+    const isMountedRef = useIsMountedRef();
     const [fullWidth, setFullWidth] = React.useState(true);
     const [maxWidth, setMaxWidth] = React.useState('lg');
     const [hidden, setHidden] = React.useState(false);
 
 
+    const [webinarurl, setwebinarurl] = React.useState(localStorage.getItem("webinarurl"));
+    const { eventagenda1, eventagenda2 } = useSelector((state) => state.eventagenda);
 
-    const webinarurl = localStorage.getItem("webinarurl")
+    const eventId = localStorage.getItem("eventId")
 
 
-    // let webinarurl = ""
-    // if (agenda_id !== null && agenda_id !== undefined) {
-    //     let data = JSON.parse(localStorage.getItem('agenda_data'))
-    //     if (data !== undefined && data !== null && data.length > 0) {
-    //         const agendadata = data.find((_agenda) => _agenda.id === parseInt(agenda_id));
-    //         webinarurl = agendadata.webinar_url;
-    //     }
-    // }
+    const [value, setValue] = React.useState(0);
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
 
     useEffect(() => {
         const data = {
             pagename: "Keynote"
         }
         dispatch(userpage_save(data))
+        dispatch(getEventAgendas(eventId));
     }, [dispatch]);
 
     const handleClickOpen = () => {
@@ -137,11 +187,31 @@ export function KeynoteView() {
     const handleOpen2 = () => {
         setOpen(true);
     };
+
     const handleClose2 = () => {
         setOpen(false);
     };
-    const handleplaybutton = () => {
-    };
+    const handleagenda = async (webinarid) => {
+        try {
+
+
+            let data = {
+                webinarid: webinarid,
+                email: user.email,
+                name: user.name
+            }
+            const response = await axios.post('/api/eventspeaker/userenterwebinarinforma', data);
+
+            if (isMountedRef.current) {
+                setwebinarurl(response.data.enter_uri)
+                setOpen2(false);
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+
     const handleFullScreen = () => {
         document.getElementById("full-screen").classList.add("no-display");;
         document.getElementById("audi-iframe").classList.add("audi-frame-full");
@@ -160,28 +230,6 @@ export function KeynoteView() {
     return (
         <Page className={classes.root}
             title="Keynote">
-            {/* <div>
-                <div className={classes.imgContainer}>
-                    <ImageMapper src={audi} width={'100%'} imgWidth={1920} map={MAP} onClick={handleClickOpen} />
-                </div>
-                <Dialog fullWidth={fullWidth} maxWidth={maxWidth} open={open} onClose={handleClose} TransitionComponent={Transition}>
-                    <AppBar className={classes.appBar}>
-                        <Toolbar>
-                            <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
-                                <CloseIcon />
-                            </IconButton>
-                            <Typography variant="h6" className={classes.title}>
-                                Demo Webinar
-            </Typography>
-
-                        </Toolbar>
-                    </AppBar>
-                    <div className={classes.iframeContainer}>
-                        <iframe width="90%" className={classes.iframeContainer_iframe} src="https://www.bigmarker.com/xporium/Xporium-Demo?bmid=b0f384fa3336" allowfullscreen></iframe>
-                    </div>
-                </Dialog>
-            </div> */}
-
             <Grid item container style={{
                 position: 'relative',
                 webkitTransformOrigin: '0% 0% 0',
@@ -200,6 +248,10 @@ export function KeynoteView() {
                         <Button className="fullscreen" id="full-screen" onClick={handleFullScreen}>Full Screen</Button>
                         <Button className="exitfullscreen" id="exit-full-screen" onClick={handleExitFullScreen}>Exit Full Screen</Button>
 
+                        {/* <iframe id="audi-iframe" scrolling="no" width="100%" height="100%" src={webinarurl}
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true">
+            </iframe> */}
                         {
                             (webinarurl != "undefined") && (
                                 <Iframe url={webinarurl}
@@ -212,6 +264,7 @@ export function KeynoteView() {
                                     allowFullScreen />
                             )
                         }
+
                     </div>
 
                 </div>
@@ -243,13 +296,14 @@ export function KeynoteView() {
                 open={open2}
                 TransitionComponent={Transition}
                 keepMounted
-                onClose={handleClose2}
+                onClose={handleClose3}
                 aria-labelledby="alert-dialog-slide-title"
                 aria-describedby="alert-dialog-slide-description"
                 fullWidth={fullWidth}
                 maxWidth={maxWidth}
             >
-                <AppBar className={classes.appBar}>
+
+                <AppBar position="static">
                     <Toolbar>
                         <IconButton edge="start" color="inherit" onClick={handleClose3} aria-label="close">
                             <CloseIcon />
@@ -260,13 +314,18 @@ export function KeynoteView() {
 
 
                     </Toolbar>
+                    <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+                        <Tab label="Day 1" {...a11yProps(0)} />
+                        <Tab label="Day 2" {...a11yProps(1)} />
+
+                    </Tabs>
                 </AppBar>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-slide-description">
-                        Please click on the desired video to play it in the auditorium.
-          </DialogContentText>
-                    {/* <Agenda /> */}
-                </DialogContent>
+                <TabPanel value={value} index={0}>
+                    <Itemdata eventagenda={eventagenda1}> </Itemdata>
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                    <Itemdata eventagenda={eventagenda2}> </Itemdata>
+                </TabPanel>
             </Dialog>
 
         </Page>

@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react';
-//import ImageMapper from 'react-image-mapper';
-import background from 'src/assets/images/lobby.jpg';
+import ImageMapper from 'react-image-mapper';
+import lobby from 'src/assets/images/lobby.jpg';
 import {withStyles, makeStyles } from '@material-ui/styles';
 import Page from 'src/components/Page';
 import Grid from "@material-ui/core/Grid";
-//import background from '../../../assets/images/lobby.jpg';
+import background from '../../../assets/images/lobby.jpg';
 import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
-//import MovieIcon from '@material-ui/icons/Movie';
+import MovieIcon from '@material-ui/icons/Movie';
 import Tooltip from '@material-ui/core/Tooltip';
 import Styles from './styles.css';
+import ReactPlayer from 'react-player'
+import video from '../../../assets/media/video1.mp4'
 import useAuth from 'src/hooks/useAuth';
 import { useDispatch } from 'src/store';
 import { userpage_save } from 'src/slices/notification'
@@ -50,6 +52,14 @@ const useStyles = makeStyles(theme => ({
         height: '4.85%', 
         zIndex: 2
     },
+    anchorHelp: {
+        position: 'absolute', 
+        left: '12%', 
+        top: '75.5%', 
+        width: '14.2%', 
+        height: '7.85%', 
+        zIndex: 2
+    },
     fab: {
         margin: theme.spacing(2),
       },
@@ -58,6 +68,11 @@ const useStyles = makeStyles(theme => ({
         bottom: theme.spacing(2),
         right: theme.spacing(3),
       },
+      anchorVideo: {
+        position: 'absolute',
+        top: '17%',
+        right: '40.5%',
+        },
 }));
 
 const LightTooltip = withStyles((theme) => ({
@@ -155,24 +170,39 @@ export default function LobbyView() {
                    overflow: 'hidden',
             }}>
                 <div className="audi-background">
+                <ReactPlayer url={video} className={classes.anchorVideo}
+                width='19%' 
+                height='51%'
+                playing='true'
+                volume= '0'
+                loop='true' />
                 <img alt="auditorium" src={background} className="background-fluid" />
                 </div>
-                <div className="audi-content">                   
+                <div className="audi-content">
+                    <div className="lobby-content-center">
+                    {/* <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ElnqwnadBGY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
+                    </div>
                     <div className="users">
-                    <Link href='/app/keynote' className={classes.anchorKeynote}>
+                    <Link href='/app/exhibition' className={classes.anchorKeynote}>
                     <LightTooltip title="Click here to attend panel discussions by healthcare industry leaders">
                         <Button variant="outlined" style={{width:'100%', height:'100%'}} aria-label="auditorium">    
                         </Button>
                     </LightTooltip>
                     </Link>
-                    <Link href='/app/3d' className={classes.anchorExhibition}> 
+                    <Link href='/app/keynote' className={classes.anchorExhibition}> 
                     <LightTooltip title="Visit our expert partners from across the world">
                         <Button variant="outlined" style={{width:'100%', height:'100%'}} aria-label="auditorium">    
                         </Button>
                     </LightTooltip>            
                     </Link>
-                    <Link href='/app/exhibition' className={classes.anchorNetwork}>
+                    <Link href='/app/networking' className={classes.anchorNetwork}>
                     <LightTooltip title="See who all are attending and get a chance to interact with them">
+                        <Button variant="outlined" style={{width:'100%', height:'100%'}} aria-label="auditorium">    
+                        </Button>
+                    </LightTooltip>   
+                    </Link>
+                    <Link href='/app/helpdesk' className={classes.anchorHelp}>
+                    <LightTooltip title="Please feel free to ask us for help. We would be happy to assist.">
                         <Button variant="outlined" style={{width:'100%', height:'100%'}} aria-label="auditorium">    
                         </Button>
                     </LightTooltip>   

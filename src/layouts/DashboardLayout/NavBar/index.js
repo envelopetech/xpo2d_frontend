@@ -220,8 +220,8 @@ import Badge from '@material-ui/core/Badge';
 import Grid from '@material-ui/core/Grid';
 import Account from '../TopBar/Account';
 import Contacts from '../TopBar/Contacts';
-//import Notifications from '../TopBar/Notifications';
-//import Search from '../TopBar/Search';
+import Notifications from '../TopBar/Notifications';
+import Search from '../TopBar/Search';
 import Settings from '../TopBar/Settings';
 import EventIcon from '@material-ui/icons/Event';
 import SlideshowIcon from '@material-ui/icons/Slideshow';
@@ -230,6 +230,9 @@ import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import Tooltip from '@material-ui/core/Tooltip';
 import AspectRatioOutlinedIcon from '@material-ui/icons/AspectRatioOutlined';
 import BusinessCenterOutlinedIcon from '@material-ui/icons/BusinessCenterOutlined';
+import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
+import FeedbackIcon from '@material-ui/icons/Feedback';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import useAuth from 'src/hooks/useAuth';
 
 const drawerWidth = 240;
@@ -241,7 +244,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     height: '60px',
-    marginLeft: '20%',
+    marginLeft: '21%',
   },
   appBar: {
     background: '#ffffff',
@@ -307,24 +310,28 @@ function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
 }
 
-export default function NavBar() { 
+export default function NavBar() {
   const classes = useStyles();
   const theme = useTheme();
   const { user } = useAuth();
   const [open, setOpen] = React.useState(false);
-  let logo1 = localStorage.getItem("org_other_logo")
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget)
     setOpen(true)
   }
+
   const handleClose = (e) => {
     setAnchorEl(null)
     setOpen(false)
   }
+
   const [anchorEl, setAnchorEl] = useState(null);
+
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+
   const handleDrawerClose = () => {
     setOpen(false);
   };
@@ -377,19 +384,19 @@ export default function NavBar() {
               <Grid item>
                 Total Attendees: {user.totalattendee}
                 </Grid>
-              <Grid item>
-                Now Attending: {user.nowattendee}
-                </Grid>
+              {/* <Grid item>
+                Now Attending: 2
+                </Grid> */}
             </Grid>
           </Typography>
-          <img alt="company logo" src={logo1} className={classes.logo} />
+          <img alt="company logo" src={logo} className={classes.logo} />
           <Box
             ml={2}
             flexGrow={1}
           />
-          {/* <Search /> */}
+          <Search />
           <Contacts />
-          {/* <Notifications /> */}
+          <Notifications />
 
 
           <Box ml={2}>
@@ -439,24 +446,7 @@ export default function NavBar() {
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
-        <Divider />
-        {/* <List>
-          {['Lobby', 'Starred'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List> */}
-        <Divider />
-        {/* <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List> */}
+        <Divider />       
         <List component="nav" aria-label="main mailbox folders">
           <Tooltip title="Lobby" placement="right">
             <ListItemLink component={Link} to="/app/lobby">
@@ -476,12 +466,12 @@ export default function NavBar() {
             </ListItemLink>
           </Tooltip>
 
-          <Tooltip title="Keynote" placement="right">
+          <Tooltip title="Auditorium" placement="right">
             <ListItemLink component={Link} to="/app/keynote">
               <ListItemIcon>
                 <SlideshowIcon />
               </ListItemIcon>
-              <ListItemText primary="Keynote" />
+              <ListItemText primary="Auditorium" />
             </ListItemLink>
           </Tooltip>
 
@@ -491,6 +481,14 @@ export default function NavBar() {
                 <ArtTrackIcon />
               </ListItemIcon>
               <ListItemText primary="Exhibition" />
+            </ListItemLink>
+          </Tooltip>
+          <Tooltip title="3D View" placement="right">
+            <ListItemLink component={Link} to="/app/3D">
+              <ListItemIcon>
+                <AspectRatioOutlinedIcon />
+              </ListItemIcon>
+              <ListItemText primary="3D View" />
             </ListItemLink>
           </Tooltip>
 
@@ -512,35 +510,37 @@ export default function NavBar() {
             </ListItemLink>
           </Tooltip>
 
-          <Tooltip title="3D View" placement="right">
-            <ListItemLink component={Link} to="/app/3D">
+          <Tooltip title="HelpDesk" placement="right">
+            <ListItemLink component={Link} to="/app/helpdesk">
               <ListItemIcon>
-                <AspectRatioOutlinedIcon />
+                <HelpOutlineIcon />
               </ListItemIcon>
-              <ListItemText primary="3D View" />
+              <ListItemText primary="HelpDesk" />
             </ListItemLink>
           </Tooltip>
+
+        
 
         </List>
         <Divider />
         <List>
           <ListItemLink component={Link} to="/app/leaderboard">
             <ListItemIcon>
-              <InboxIcon />
+              <SportsEsportsIcon />
             </ListItemIcon>
             <ListItemText primary="Leaderboard" />
           </ListItemLink>
 
-          <ListItemLink component={Link} to="/app/briefcase">
+          {/* <ListItemLink component={Link} to="/app/briefcase">
             <ListItemIcon>
               <BusinessCenterOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Briefcase" />
-          </ListItemLink>
+          </ListItemLink> */}
 
           <ListItemLink component={Link} to="/app/feedback">
             <ListItemIcon>
-              <InboxIcon />
+              <FeedbackIcon />
             </ListItemIcon>
             <ListItemText primary="Feedback" />
           </ListItemLink>
