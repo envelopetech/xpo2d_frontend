@@ -56,7 +56,7 @@ const JWTLogin = ({ className, ...rest }) => {
   const isMountedRef = useIsMountedRef();
   let domain_name = window.location.hostname;
 
-  const [phone, setphone] = useState();
+  const [phone, setphone] = useState("+91");
   const { login, newuser, register, client } = useAuth();
   const [open, setOpen] = React.useState(false);
   const { organizers } = useSelector((state) => state.organizer);
@@ -72,6 +72,16 @@ const JWTLogin = ({ className, ...rest }) => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  // const handleonchange = (e) => {
+  //   setphone(e.targe.value);
+  // };
+
+
+  const handleonchange = (event) => {
+    event.persist();
+    setphone(event.target.value);
   };
 
   return (
@@ -351,8 +361,8 @@ const JWTLogin = ({ className, ...rest }) => {
                 margin="normal"
                 name="phone_number"
                 onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.phone_number}
+                onChange={handleonchange}
+                value={phone}
                 variant="outlined"
               />
               <Typography
