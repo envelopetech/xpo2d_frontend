@@ -158,10 +158,8 @@ const Users = ({
         dispatch(briefcasesave(data))
         //setsharedisabled(true)
     }
-
-
     const handlemessage = (event, user_id, first_name, email, avatar) => {
-        event.preventDefault();
+        setisOpen(false);
         window._demo = {};
         Talk.ready.then(() => {
 

@@ -36,8 +36,7 @@ const Team = ({
     const { user, client } = useAuth();
     const dispatch = useDispatch();
     const handlechat = (event, user_id, first_name, email, avatar) => {
-        event.preventDefault();
-        
+        dispatch(closeModal());        
         const data = ({
             id: user.user_id,
             name: user.first_name,
@@ -77,17 +76,27 @@ const Team = ({
             conversation.setParticipant(other);
 
 
-            var inbox = window.talkSession.createInbox({ selected: conversation });
-            let element = document.getElementById("talkjs-container")
-            element.classList.add("display_block")
-            inbox.mount(document.getElementById("talkjs-container"));
+            // var inbox = window.talkSession.createInbox({ selected: conversation });
+            // let element = document.getElementById("talkjs-container")
+            // element.classList.add("display_block")
+            // inbox.mount(document.getElementById("talkjs-container"));
+
+            var popup = window.talkSession.createPopup(conversation, { keepOpen: true });
+            popup.mount({ show: true });
+            var button = document.getElementById("btn-close");
+            button.classList.add("display_block")
+            button.addEventListener("click", function (event) {
+                event.preventDefault();
+                popup.hide();
+                button.classList.remove("display_block")
+            });
 
             me.current_user_id = user_id;
             me.current_user_name = first_name;
             me.current_user_email = email;
             me.current_user_avatar = avatar;
             client.team_chat(me);
-            dispatch(closeModal());
+            
 
         });
 

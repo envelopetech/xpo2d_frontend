@@ -88,6 +88,27 @@ const useStyles = makeStyles(theme => ({
     root: {
         maxWidth: 345,
     },
+    table: {
+        minWidth: 650,
+    },
+    link: {
+        color: '#304ffe',
+    },
+    large: {
+        width: theme.spacing(9),
+        height: theme.spacing(9),
+    },
+    button: {
+        marginRight: theme.spacing(2),
+    },
+    anchorStall1: {
+        position: 'absolute', 
+        left: '14.88%', 
+        top: '16.67%', 
+        width: '75%', 
+        height: '75%', 
+        zIndex: 2
+    },
 
 }));
 
