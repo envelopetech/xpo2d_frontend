@@ -24,10 +24,23 @@ import { createEnquiry } from 'src/slices/enquiry'
 import useAuth from 'src/hooks/useAuth';
 import Photo from './Photo'
 
-import {   
+import {
     openModal,
     closeModal
-  } from 'src/slices/exhibitor';
+} from 'src/slices/exhibitor';
+
+
+
+
+import background1 from '../../../assets/images/exhibitor-bg.jpg';
+import background2 from '../../../assets/images/exhibitor-bg-.jpg';
+import background3 from '../../../assets/images/exhibitor-bg3.jpg';
+import background4 from '../../../assets/images/exhibitor-bg4.jpg';
+import background5 from '../../../assets/images/exhibitor-bg5.jpg';
+import background6 from '../../../assets/images/exhibitor-bg6.jpg';
+import background7 from '../../../assets/images/exhibitor-bg7.jpg';
+
+
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
     return (
@@ -110,15 +123,49 @@ const Results = ({
         dispatch(closeModal());
     };
 
+
+    
+    let backgroundimage = null
+
+    if (exhibitor.id == 17) {
+        backgroundimage = background1
+    }
+    else if (exhibitor.id == 18) {
+        backgroundimage = background5
+    }
+    else if (exhibitor.id == 19) {
+        backgroundimage = background6
+    }
+    else if (exhibitor.id == 20) {
+        backgroundimage = background3
+    }
+    else if (exhibitor.id == 21) {
+        backgroundimage = background2
+    }
+    else if (exhibitor.id == 22) {
+        backgroundimage = background7
+    }
+
+    else if (exhibitor.id == 35) {
+        backgroundimage = background4
+    }
+
+   
+
     return (
         <React.Fragment>
 
-            <Carousel>
-                <div onClick={handleClickOpen}>
-                    <img src={exhibitor.stall_image} alt={exhibitor.name} />
-                    <p className="legend">{exhibitor.name}</p>
+            <Grid item container style={{
+                backgroundImage: `url(${backgroundimage})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                height: "calc(100vh - 64px)"
+            }}>
+                <div className="users">
+                    <div className={classes.anchorStall1} onClick={handleClickOpen} style={{ cursor: 'pointer' }}></div>
                 </div>
-            </Carousel>
+            </Grid>
 
             <Dialog fullWidth={true}
                 maxWidth="lg" open={isModalOpen} onClose={handleClose} TransitionComponent={Transition}>
@@ -189,7 +236,7 @@ const Results = ({
                                     visitor_id: user.id,
                                     leader_type: "enquiry",
                                 };
-                                await dispatch(createEnquiry(data));                                
+                                await dispatch(createEnquiry(data));
                                 dispatch(closeModal());
                                 resetForm();
                                 setStatus({ success: true });
