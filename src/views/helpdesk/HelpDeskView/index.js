@@ -1,9 +1,9 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Page from 'src/components/Page';
 import Grid from "@material-ui/core/Grid";
 import background from '../../../assets/images/Helpdesk.jpg';
-
+import useAuth from 'src/hooks/useAuth';
 
 
 
@@ -60,8 +60,31 @@ export default function KeynoteView() {
     const [fullWidth, setFullWidth] = React.useState(true);
     const [maxWidth, setMaxWidth] = React.useState('lg');
     const [hidden, setHidden] = React.useState(false);
-    
+    const { user } = useAuth();
 
+    useEffect(() => {
+        // const name = "Nisarg Mehta";
+        // const email = "envelopetech@gmail.com";
+        // const createdAt = Math.floor(Date.now() / 1000);
+        // const userId = "123456";
+        // const script = document.createElement("script");
+        // //const t = document.createTextNode("window.intercomSettings = {app_id: 'a5iw6q1x', name:'"+`${name}`+"', email:'"+`${email}`+"', created_at:'"+`${createdAt}`+"', user_id:'"+`${userId}`+"'};");
+        // const t = document.createTextNode("window.Intercom('boot', {hide_default_launcher: false, app_id: 'a5iw6q1x', name:'" + `${name}` + "', email:'" + `${email}` + "', created_at:'" + `${createdAt}` + "', user_id:'" + `${userId}` + "'});");
+        // script.appendChild(t);
+        // //window.eval(script);
+        // document.body.appendChild(script);
+
+        const name = user.name;
+        const email = user.email;
+        const createdAt = Math.floor(Date.now() / 1000);
+        const userId = user.user_id;
+        const script = document.createElement("script");
+        const t = document.createTextNode(`window.Intercom('boot', {hide_default_launcher: false, app_id: 'a5iw6q1x', name:'" + ${name} + "', email:'" + ${email} + "', created_at:'" + ${createdAt} + "', user_id:'" + ${userId} + "'});`);
+        script.appendChild(t);
+        //window.eval(script);
+        document.body.appendChild(script);
+
+    }, []);
 
     const handleClickOpen = () => {
         setOpen2(true);

@@ -111,7 +111,7 @@ export default function LobbyView() {
         const createdAt = Math.floor(Date.now() / 1000);
         const userId = user.user_id;
         const script = document.createElement("script");
-        const t = document.createTextNode(`window.Intercom('boot', {app_id: 'a5iw6q1x', name:'" + ${name} + "', email:'" + ${email} + "', created_at:'" + ${createdAt} + "', user_id:'" + ${userId} + "'});`);
+        const t = document.createTextNode(`window.Intercom('boot', {hide_default_launcher: true, app_id: 'a5iw6q1x', name:'" + ${name} + "', email:'" + ${email} + "', created_at:'" + ${createdAt} + "', user_id:'" + ${userId} + "'});`);
         script.appendChild(t);
         //window.eval(script);
         document.body.appendChild(script); 
