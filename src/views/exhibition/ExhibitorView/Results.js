@@ -24,13 +24,6 @@ import { createEnquiry } from 'src/slices/enquiry'
 import useAuth from 'src/hooks/useAuth';
 import Photo from './Photo'
 
-import {
-    openModal,
-    closeModal
-} from 'src/slices/exhibitor';
-
-
-
 
 import background1 from '../../../assets/images/exhibitor-bg.jpg';
 import background2 from '../../../assets/images/exhibitor-bg2.jpg';
@@ -41,6 +34,10 @@ import background6 from '../../../assets/images/exhibitor-bg6.jpg';
 import background7 from '../../../assets/images/exhibitor-bg7.jpg';
 
 
+import {
+    openModal,
+    closeModal
+} from 'src/slices/exhibitor';
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
     return (
@@ -144,8 +141,8 @@ const Results = ({
         dispatch(closeModal());
     };
 
-
     
+
     let backgroundimage = null
 
     if (exhibitor.id == 17) {
@@ -170,11 +167,10 @@ const Results = ({
     else if (exhibitor.id == 35) {
         backgroundimage = background4
     }
-
-   
-
+	
     return (
         <React.Fragment>
+
 
             <Grid item container style={{
                 backgroundImage: `url(${backgroundimage})`,
@@ -187,7 +183,6 @@ const Results = ({
                     <div className={classes.anchorStall1} onClick={handleClickOpen} style={{ cursor: 'pointer' }}></div>
                 </div>
             </Grid>
-
             <Dialog fullWidth={true}
                 maxWidth="lg" open={isModalOpen} onClose={handleClose} TransitionComponent={Transition}>
                 <AppBar className={classes.appBar}>
@@ -335,6 +330,7 @@ const Results = ({
                     </Formik>
                 </TabPanel>
             </Dialog>
+
         </React.Fragment>
     )
 }

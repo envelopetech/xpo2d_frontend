@@ -50,7 +50,7 @@ export function Exhibitor() {
     }
     return (
         <React.Fragment>
-            <Grid item container style={{
+            {/* <Grid item container style={{
                 position: 'relative',
                 webkitTransformOrigin: '0% 0% 0',
                 transformOrigin: '0% 0% 0',
@@ -62,10 +62,10 @@ export function Exhibitor() {
                 <div className="audi-background">
                     <img alt="auditorium" src={background} className="background-fluid" />
                 </div>
-                <div className="exhibitor-content" style={{ position: 'absolute', margin: '0 10%' }}>
+                <div className="exhibitor-content" style={{ position: 'absolute', margin: '0 10%' }}> */}
                     <Results exhibitor={selectedExhibitor[0]}></Results>
-                </div>
-            </Grid>
+                {/* </div>
+            </Grid> */}
         </React.Fragment>
     )
 }
