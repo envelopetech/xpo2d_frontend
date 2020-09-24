@@ -33,7 +33,7 @@ import {
 
 
 import background1 from '../../../assets/images/exhibitor-bg.jpg';
-import background2 from '../../../assets/images/exhibitor-bg-.jpg';
+import background2 from '../../../assets/images/exhibitor-bg2.jpg';
 import background3 from '../../../assets/images/exhibitor-bg3.jpg';
 import background4 from '../../../assets/images/exhibitor-bg4.jpg';
 import background5 from '../../../assets/images/exhibitor-bg5.jpg';
