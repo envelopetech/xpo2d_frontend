@@ -127,7 +127,7 @@ const Team = ({
                                             <Grid item xs>
                                                 <Typography variant="h6" >{staff.name}</Typography>
                                                 <Typography variant="subtitle1">{staff.designation} at {staff.exhibitor_name}</Typography>
-                                                <Typography variant="subtitle1" gutterBottom>Meeting ID: {staff.zoom_meeting_id}</Typography>
+                                                {/* <Typography variant="subtitle1" gutterBottom>Meeting ID: {staff.zoom_meeting_id}</Typography>
                                                 <Button
                                                     variant="contained"
                                                     color="secondary"
@@ -138,7 +138,7 @@ const Team = ({
                                                     onClick={() => handleclick(staff.exhibitor_id)}
                                                 >
                                                     Video Call
-                                                </Button>
+                                                </Button> */}
                                                 <Button
                                                     onClick={(event) => handlechat(event, staff.user_id, staff.first_name, staff.email, staff.avatar)}
                                                     variant="outlined"
