@@ -46,6 +46,7 @@ import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser';
 import Iframe from 'react-iframe'
 import Itemdata from 'src/views/agenda/AgendaView/Itemdata'
+import { Link as RouterLink } from 'react-router-dom';
 import {
     getEventAgendas
 } from 'src/slices/eventagenda';
@@ -89,6 +90,12 @@ const useStyles = makeStyles((theme) => ({
         bottom: theme.spacing(10),
         right: theme.spacing(6),
     },
+
+    btnAgenda: {
+        position: 'absolute',
+        bottom: '30%',
+        right: '47%',
+    }
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -244,6 +251,7 @@ export function KeynoteView() {
                             frameborder="0"
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true">
                         </iframe>
+
                         {/* {
                             (webinarurl != "undefined") && (
                                 <iframe url={webinarurl}
@@ -256,11 +264,21 @@ export function KeynoteView() {
                                     allowFullScreen />
                             )
                         } */}
-                    </div>         
+                    </div>
+                    {/* <Button variant="contained" color="primary" className={classes.btnAgenda} href="/app/agenda">Back to Agenda</Button> */}
 
+                    <Button
+                        color="primary"
+                        variant="contained"
+                        component={RouterLink}
+                        to="/app/agenda"
+                        className={classes.btnAgenda}
+                    >
+                        Back to Agenda
+                    </Button>
                 </div>
             </Grid>
-            <Button onClick={handleVisibility}>Toggle Speed Dial</Button>
+            {/* <Button onClick={handleVisibility}>Toggle Speed Dial</Button>
             <Backdrop open={open} style={{ zIndex: '9' }} />
             <SpeedDial
                 ariaLabel="SpeedDial tooltip example"
@@ -301,17 +319,17 @@ export function KeynoteView() {
                         </Typography>
                     </Toolbar>
                     <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                        <Tab label="Day 1" {...a11yProps(0)} />
-                        <Tab label="Day 2" {...a11yProps(1)} />
+                        <Tab label="Day 2" {...a11yProps(0)} />
+                        <Tab label="Day 1" {...a11yProps(1)} />
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
-                    <Itemdata eventagenda={eventagenda1}> </Itemdata>
-                </TabPanel>
-                <TabPanel value={value} index={1}>
                     <Itemdata eventagenda={eventagenda2}> </Itemdata>
                 </TabPanel>
-            </Dialog>
+                <TabPanel value={value} index={1}>
+                    <Itemdata eventagenda={eventagenda1}> </Itemdata>
+                </TabPanel>
+            </Dialog> */}
         </Page>
     );
 }
