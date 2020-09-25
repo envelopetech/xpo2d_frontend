@@ -300,10 +300,10 @@ const Users = ({
                                                     <Button onClick={(event) => handlemessage(event, exhibitor.id, exhibitor.name, exhibitor.email, exhibitor.avatar)}>
                                                         Message
                                                     </Button>
-                                                    <Box ml={1}>
+                                                    {/* <Box ml={1}>
                                                         <Button onClick={() => handlesharevisitongcard(exhibitor.id, exhibitor.user_type, index)} disabled={status_briefcase}>
                                                             Share
-                                                    </Button></Box>
+                                                    </Button></Box> */}
                                                 </ListItemSecondaryAction>
                                             </ListItem>
                                             <Divider />

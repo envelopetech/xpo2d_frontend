@@ -221,7 +221,7 @@ import Grid from '@material-ui/core/Grid';
 import Account from '../TopBar/Account';
 import Contacts from '../TopBar/Contacts';
 import Notifications from '../TopBar/Notifications';
-import Search from '../TopBar/Search';
+//import Search from '../TopBar/Search';
 import Settings from '../TopBar/Settings';
 import EventIcon from '@material-ui/icons/Event';
 import SlideshowIcon from '@material-ui/icons/Slideshow';
@@ -394,9 +394,9 @@ export default function NavBar() {
             ml={2}
             flexGrow={1}
           />
-          <Search />
+          {/* <Search /> */}
           <Contacts />
-          <Notifications />
+          {/* <Notifications /> */}
 
 
           <Box ml={2}>
