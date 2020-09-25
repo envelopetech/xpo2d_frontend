@@ -325,7 +325,7 @@ const JWTLogin = ({ className, ...rest }) => {
         }) => {
           try {
 
-            await login(values.phone_number)
+            await login(phone)
             if (isMountedRef.current) {
               setStatus({ success: true });
               setSubmitting(false);
