@@ -183,20 +183,20 @@ export default function LobbyView() {
                     {/* <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ElnqwnadBGY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
                     </div>
                     <div className="users">
-                    <Link href='/app/exhibition' className={classes.anchorKeynote}>
-                    <LightTooltip title="Click here to attend panel discussions by healthcare industry leaders">
+                    <Link href='/app/networking' className={classes.anchorKeynote}>
+                    <LightTooltip title="See who all are attending and get a chance to interact with them">
                         <Button variant="outlined" style={{width:'100%', height:'100%'}} aria-label="auditorium">    
                         </Button>
                     </LightTooltip>
                     </Link>
                     <Link href='/app/keynote' className={classes.anchorExhibition}> 
-                    <LightTooltip title="Visit our expert partners from across the world">
+                    <LightTooltip title="Click here to attend panel discussions by healthcare industry leaders">
                         <Button variant="outlined" style={{width:'100%', height:'100%'}} aria-label="auditorium">    
                         </Button>
                     </LightTooltip>            
                     </Link>
-                    <Link href='/app/networking' className={classes.anchorNetwork}>
-                    <LightTooltip title="See who all are attending and get a chance to interact with them">
+                    <Link href='/app/exhibition' className={classes.anchorNetwork}>
+                    <LightTooltip title="Visit our expert partners from across the world">
                         <Button variant="outlined" style={{width:'100%', height:'100%'}} aria-label="auditorium">    
                         </Button>
                     </LightTooltip>   
