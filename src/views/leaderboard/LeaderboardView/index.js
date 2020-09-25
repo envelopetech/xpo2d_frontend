@@ -10,6 +10,7 @@ import Page from 'src/components/Page';
 import Skeleton from 'src/components/Skeletonresource';
 import Results from './Results';
 import { userpage_save } from 'src/slices/notification'
+import useAuth from 'src/hooks/useAuth';
 
 const useStyles = makeStyles({
   root: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles({
 export default function LeaderboardView() {
   const classes = useStyles();
   const { leaderboard } = useSelector((state) => state.visitor);
-
+  const { user } = useAuth();
 
   const dispatch = useDispatch();
 
@@ -36,6 +37,16 @@ export default function LeaderboardView() {
     }
     dispatch(userpage_save(data))
     dispatch(getleaderboard());
+
+    const name = user.name;
+    const email = user.email;
+    const createdAt = Math.floor(Date.now() / 1000);
+    const userId = user.user_id;
+    const script = document.createElement("script");
+    const t = document.createTextNode(`window.Intercom('boot', {hide_default_launcher: true, app_id: 'a5iw6q1x', name:'" + ${name} + "', email:'" + ${email} + "', created_at:'" + ${createdAt} + "', user_id:'" + ${userId} + "'});`);
+    script.appendChild(t);
+    //window.eval(script);
+    document.body.appendChild(script);
   }, [dispatch]);
 
   if (leaderboard !== undefined && leaderboard.length === 0) {
