@@ -383,7 +383,7 @@ export default function NavBar() {
             >
               <Grid item>
                 Total Attendees: {user.totalattendee}
-                </Grid>
+              </Grid>
               {/* <Grid item>
                 Now Attending: 2
                 </Grid> */}
@@ -446,7 +446,7 @@ export default function NavBar() {
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
-        <Divider />       
+        <Divider />
         <List component="nav" aria-label="main mailbox folders">
           <Tooltip title="Lobby" placement="right">
             <ListItemLink component={Link} to="/app/lobby">
@@ -457,12 +457,12 @@ export default function NavBar() {
             </ListItemLink>
           </Tooltip>
 
-          <Tooltip title="Agenda" placement="right">
+          <Tooltip title="Auditorium" placement="right">
             <ListItemLink component={Link} to="/app/agenda">
               <ListItemIcon>
-                <EventIcon />
+                <SlideshowIcon />
               </ListItemIcon>
-              <ListItemText primary="Agenda" />
+              <ListItemText primary="Auditorium" />
             </ListItemLink>
           </Tooltip>
 
@@ -517,7 +517,7 @@ export default function NavBar() {
               </ListItemIcon>
               <ListItemText primary="HelpDesk" />
             </ListItemLink>
-          </Tooltip>  
+          </Tooltip>
 
         </List>
         <Divider />
