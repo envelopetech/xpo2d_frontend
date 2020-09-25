@@ -32,7 +32,7 @@ export default function ThreeD() {
                 <Typography variant="h6" gutterbottom>Please click on the play button below to load the 3D environment.</Typography>
                 </Grid> */}
                 <Grid item style={{ width: "80vw", height: "80vh" }}>
-                    <iframe title="3d" width="100%" height="100%" src="https://3d.xporium.com/renewxposuperfinal2staging/" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                    <iframe title="3d" width="100%" height="100%" src="https://uae.xporium.com/timesexpo/" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 </Grid>
 
             </Grid>
