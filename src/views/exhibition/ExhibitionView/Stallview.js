@@ -11,45 +11,42 @@ const useStyles = makeStyles(theme => ({
     },
     anchorStall1: {
         position: 'absolute', 
-        left: '8.75%', 
+        left: '1.75%', 
         top: '83.72%', 
-        width: '9.78%', 
-        height: '11.39%', 
+        width: '13.78%', 
+        height: '16.39%', 
         zIndex: 2,
-       
     },
     anchorStall2: {
         position: 'absolute', 
-        left: '20.25%', 
-        top: '56.11%', 
-        width: '9.38%', 
-        height: '8.61%', 
+        left: '16.25%', 
+        top: '59.11%', 
+        width: '15.38%', 
+        height: '20.61%', 
         zIndex: 2,
-       
     },
     anchorStall3: {
         position: 'absolute', 
-        left: '36.47%', 
-        top: '69.22%', 
-        width: '8.31%', 
-        height: '10%', 
+        left: '32.47%', 
+        top: '78.22%', 
+        width: '10.31%', 
+        height: '15%', 
         zIndex: 2,
-        
     },
     anchorStall4: {
         position: 'absolute', 
-        left: '46.44%', 
-        top: '70.78%', 
-        width: '10%', 
-        height: '13.17%', 
+        left: '43.44%', 
+        top: '82.78%', 
+        width: '13%', 
+        height: '15.17%', 
         zIndex: 2
     },
     anchorStall5: {
         position: 'absolute', 
-        left: '58.38%', 
-        top: '69.44%', 
-        width: '10.63%', 
-        height: '11.67%', 
+        left: '56.38%', 
+        top: '77.44%', 
+        width: '11.63%', 
+        height: '14.67%', 
         zIndex: 2
     },
     anchorStall6: {
@@ -57,15 +54,15 @@ const useStyles = makeStyles(theme => ({
         left: '72.84%', 
         top: '63.39%', 
         width: '11.72%', 
-        height: '10%', 
+        height: '21%', 
         zIndex: 2
     },
     anchorStall7: {
         position: 'absolute', 
         left: '84.84%', 
-        top: '79.39%', 
+        top: '74.39%', 
         width: '11.72%', 
-        height: '10%', 
+        height: '26%', 
         zIndex: 2
     },
 }));

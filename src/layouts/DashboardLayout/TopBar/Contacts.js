@@ -83,8 +83,11 @@ const Contacts = () => {
 
   useEffect(() => {
     const socket = socketIOClient(process.env.REACT_APP_SOCKET_END_POINT, { 'transports': ['websocket', 'polling'] });
-    socket.on('show_network_message', (data) => {
+    console.log("11111111111111111111111")
+    socket.on('show_network_message', (data) => {  
+      console.log("2222222222222222222222")
       if (data.current_user_id === user.user_id) {
+        console.log("3333333333333333333333")
         setmessengerdata(data)
         let message_count = parseInt(messagecount, 10) + 1
         setmessagecount(parseInt(message_count))
