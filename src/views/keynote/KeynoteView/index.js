@@ -149,11 +149,8 @@ export function KeynoteView() {
     const [fullWidth, setFullWidth] = React.useState(true);
     const [maxWidth, setMaxWidth] = React.useState('lg');
     const [hidden, setHidden] = React.useState(false);
-
-
     const [webinarurl, setwebinarurl] = React.useState(localStorage.getItem("webinarurl"));
     const { eventagenda1, eventagenda2 } = useSelector((state) => state.eventagenda);
-
     const eventId = localStorage.getItem("eventId")
 
 
@@ -193,8 +190,6 @@ export function KeynoteView() {
     };
     const handleagenda = async (webinarid) => {
         try {
-
-
             let data = {
                 webinarid: webinarid,
                 email: user.email,
@@ -210,18 +205,15 @@ export function KeynoteView() {
             console.error(err);
         }
     }
-
-
     const handleFullScreen = () => {
         document.getElementById("full-screen").classList.add("no-display");;
         document.getElementById("audi-iframe").classList.add("audi-frame-full");
         document.getElementById("exit-full-screen").classList.add("display");
-
         //setHidden((prevHidden) => !prevHidden);
     };
 
     const handleExitFullScreen = () => {
-        document.getElementById("full-screen").classList.remove("no-display");;
+        document.getElementById("full-screen").classList.remove("no-display");
         document.getElementById("audi-iframe").classList.remove("audi-frame-full");
         document.getElementById("exit-full-screen").classList.remove("display");
         //setHidden((prevHidden) => !prevHidden);
@@ -248,13 +240,13 @@ export function KeynoteView() {
                         <Button className="fullscreen" id="full-screen" onClick={handleFullScreen}>Full Screen</Button>
                         <Button className="exitfullscreen" id="exit-full-screen" onClick={handleExitFullScreen}>Exit Full Screen</Button>
 
-                        {/* <iframe id="audi-iframe" scrolling="no" width="100%" height="100%" src={webinarurl}
-              frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true">
-            </iframe> */}
-                        {
+                        <iframe id="audi-iframe" scrolling="no" width="100%" height="100%" src={webinarurl}
+                            frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true">
+                        </iframe>
+                        {/* {
                             (webinarurl != "undefined") && (
-                                <Iframe url={webinarurl}
+                                <iframe url={webinarurl}
                                     width="100%"
                                     height="100%"
                                     id="audi-iframe"
@@ -263,13 +255,11 @@ export function KeynoteView() {
                                     position="relative"
                                     allowFullScreen />
                             )
-                        }
-
-                    </div>
+                        } */}
+                    </div>         
 
                 </div>
             </Grid>
-
             <Button onClick={handleVisibility}>Toggle Speed Dial</Button>
             <Backdrop open={open} style={{ zIndex: '9' }} />
             <SpeedDial
@@ -291,7 +281,6 @@ export function KeynoteView() {
                     />
                 ))}
             </SpeedDial>
-
             <Dialog
                 open={open2}
                 TransitionComponent={Transition}
@@ -302,7 +291,6 @@ export function KeynoteView() {
                 fullWidth={fullWidth}
                 maxWidth={maxWidth}
             >
-
                 <AppBar position="static">
                     <Toolbar>
                         <IconButton edge="start" color="inherit" onClick={handleClose3} aria-label="close">
@@ -310,14 +298,11 @@ export function KeynoteView() {
                         </IconButton>
                         <Typography variant="h6" className={classes.title}>
                             All Videos
-            </Typography>
-
-
+                        </Typography>
                     </Toolbar>
                     <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
                         <Tab label="Day 1" {...a11yProps(0)} />
                         <Tab label="Day 2" {...a11yProps(1)} />
-
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
@@ -327,9 +312,7 @@ export function KeynoteView() {
                     <Itemdata eventagenda={eventagenda2}> </Itemdata>
                 </TabPanel>
             </Dialog>
-
         </Page>
-
     );
 }
 export default withRouter(KeynoteView);

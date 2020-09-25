@@ -135,21 +135,21 @@ const routes = [
         path: '/app/messages',
         component: lazy(() => import('src/views/messages/MessageView'))
       },
-      {
-        exact: true,
-        path: '/app/3D',
-        component: lazy(() => import('src/views/3D'))
-      },
-      {
-        exact: true,
-        path: '/app/briefcase',
-        component: lazy(() => import('src/views/briefcase/BriefcaseView'))
-      },
-      {
-        exact: true,
-        path: '/app/leaderboard',
-        component: lazy(() => import('src/views/leaderboard/LeaderboardView'))
-      },
+      // {
+      //   exact: true,
+      //   path: '/app/3D',
+      //   component: lazy(() => import('src/views/3D'))
+      // },
+      // {
+      //   exact: true,
+      //   path: '/app/briefcase',
+      //   component: lazy(() => import('src/views/briefcase/BriefcaseView'))
+      // },
+      // {
+      //   exact: true,
+      //   path: '/app/leaderboard',
+      //   component: lazy(() => import('src/views/leaderboard/LeaderboardView'))
+      // },
       {
         exact: true,
         path: '/app/feedback',

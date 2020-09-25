@@ -189,7 +189,7 @@ export default function LobbyView() {
                         </Button>
                     </LightTooltip>
                     </Link>
-                    <Link href='/app/keynote' className={classes.anchorExhibition}> 
+                    <Link href='/app/agenda' className={classes.anchorExhibition}> 
                     <LightTooltip title="Click here to attend panel discussions by healthcare industry leaders">
                         <Button variant="outlined" style={{width:'100%', height:'100%'}} aria-label="auditorium">    
                         </Button>

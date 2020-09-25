@@ -466,14 +466,14 @@ export default function NavBar() {
             </ListItemLink>
           </Tooltip>
 
-          <Tooltip title="Auditorium" placement="right">
+          {/* <Tooltip title="Auditorium" placement="right">
             <ListItemLink component={Link} to="/app/keynote">
               <ListItemIcon>
                 <SlideshowIcon />
               </ListItemIcon>
               <ListItemText primary="Auditorium" />
             </ListItemLink>
-          </Tooltip>
+          </Tooltip> */}
 
           <Tooltip title="Exhibition" placement="right">
             <ListItemLink component={Link} to="/app/exhibition">
@@ -483,14 +483,14 @@ export default function NavBar() {
               <ListItemText primary="Exhibition" />
             </ListItemLink>
           </Tooltip>
-          <Tooltip title="3D View" placement="right">
+          {/* <Tooltip title="3D View" placement="right">
             <ListItemLink component={Link} to="/app/3D">
               <ListItemIcon>
                 <AspectRatioOutlinedIcon />
               </ListItemIcon>
               <ListItemText primary="3D View" />
             </ListItemLink>
-          </Tooltip>
+          </Tooltip> */}
 
           <Tooltip title="Network" placement="right">
             <ListItemLink component={Link} to="/app/networking">
@@ -517,19 +517,17 @@ export default function NavBar() {
               </ListItemIcon>
               <ListItemText primary="HelpDesk" />
             </ListItemLink>
-          </Tooltip>
-
-        
+          </Tooltip>  
 
         </List>
         <Divider />
         <List>
-          <ListItemLink component={Link} to="/app/leaderboard">
+          {/* <ListItemLink component={Link} to="/app/leaderboard">
             <ListItemIcon>
               <SportsEsportsIcon />
             </ListItemIcon>
             <ListItemText primary="Leaderboard" />
-          </ListItemLink>
+          </ListItemLink> */}
 
           {/* <ListItemLink component={Link} to="/app/briefcase">
             <ListItemIcon>
@@ -537,7 +535,6 @@ export default function NavBar() {
             </ListItemIcon>
             <ListItemText primary="Briefcase" />
           </ListItemLink> */}
-
           <ListItemLink component={Link} to="/app/feedback">
             <ListItemIcon>
               <FeedbackIcon />
@@ -546,11 +543,9 @@ export default function NavBar() {
           </ListItemLink>
         </List>
         <Divider />
-
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-
       </main>
     </div>
   );
