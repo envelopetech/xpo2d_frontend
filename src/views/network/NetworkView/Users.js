@@ -212,9 +212,11 @@ const Users = ({
             me.current_user_name = first_name;
             me.current_user_email = email;
             me.current_user_avatar = avatar;
-            //inbox.on("sendMessage", function () {
+            popup.on("sendMessage", function () {
+                console.log("message send")
                 client.network_message(me);
-            //})
+            })
+            client.network_message(me);
         });
     }
 
