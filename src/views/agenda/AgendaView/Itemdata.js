@@ -102,40 +102,40 @@ const Itemdata = ({
                             </CardContent>
                             <CardActions>
                                 {
-                                    (checkafterwebinar) ? (
-                                        <Button
-                                            variant="contained"
-                                            color="secondary"
-                                            className={classes.button}
-                                            href={event1.webinar_url}
-                                            target="_blank"
-                                        >
-                                            Watch on Demand
-                                        </Button>
+                                    // (checkafterwebinar) ? (
+                                    //     <Button
+                                    //         variant="contained"
+                                    //         color="secondary"
+                                    //         className={classes.button}
+                                    //         href={event1.webinar_url}
+                                    //         target="_blank"
+                                    //     >
+                                    //         Watch on Demand
+                                    //     </Button>
 
-                                    ) :
-                                        (
-                                            result ? (
-                                                <Button
-                                                    color="secondary"
-                                                    variant="contained"
-                                                    onClick={() => handleagenda(event1.webinar_url)}
-                                                // component={RouterLink}
-                                                // to={`/app/keynote/${user.id}/${event.id}`}
-                                                >
-                                                    Watch Now
-                                                </Button>
-                                            )
-                                                : (<Button
-                                                    color="secondary"
-                                                    variant="contained"
-                                                    disabled={true}
-                                                // component={RouterLink}
-                                                // to={`/app/keynote/${user.id}/${event.id}`}
-                                                >
-                                                    Watch Now
-                                                </Button>)
-                                        )
+                                    // ) :
+                                    //     (
+                                    result ? (
+                                        <Button
+                                            color="secondary"
+                                            variant="contained"
+                                            onClick={() => handleagenda(event1.webinar_url)}
+                                        // component={RouterLink}
+                                        // to={`/app/keynote/${user.id}/${event.id}`}
+                                        >
+                                            Watch Now
+                                        </Button>
+                                    )
+                                        : (<Button
+                                            color="secondary"
+                                            variant="contained"
+                                            disabled={true}
+                                        // component={RouterLink}
+                                        // to={`/app/keynote/${user.id}/${event.id}`}
+                                        >
+                                            Watch Now
+                                        </Button>)
+                                    //)
                                 }
                             </CardActions>
                         </Card>
