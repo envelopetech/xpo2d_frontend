@@ -225,6 +225,7 @@ const Users = ({
     const paginatedExhibitors = applyPagination(sortedExhibitors, page, limit);
     const selectedSomeExhibitors = selectedExhibitors.length > 0 && selectedExhibitors.length < exhibitors.length;
     const selectedAllExhibitors = selectedExhibitors.length === exhibitors.length;
+    
     return (
         <>
             <Tooltip title="Chat">

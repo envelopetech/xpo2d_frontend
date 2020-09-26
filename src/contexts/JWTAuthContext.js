@@ -135,8 +135,6 @@ export const AuthProvider = ({ children }) => {
           user
         }
       });
-
-
     }
     else {
       dispatch({
