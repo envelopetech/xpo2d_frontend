@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'src/store';
+import useAuth from 'src/hooks/useAuth';
 import {
     getEventAgendas
 } from 'src/slices/eventagenda';
@@ -39,7 +40,7 @@ export default function AgendaView() {
     // alert(eventId)   
     const eventId = localStorage.getItem("eventId")
     const dispatch = useDispatch();
-
+    const { user } = useAuth();
 
 
     useEffect(() => {
@@ -48,6 +49,17 @@ export default function AgendaView() {
         }
         dispatch(userpage_save(data))
         dispatch(getEventAgendas(eventId));
+
+        const name = user.name;
+        const email = user.email;
+        const createdAt = Math.floor(Date.now() / 1000);
+        const userId = user.user_id;
+        const script = document.createElement("script");
+        const t = document.createTextNode(`window.Intercom('boot', {hide_default_launcher: true, app_id: 'a5iw6q1x', name:'" + ${name} + "', email:'" + ${email} + "', created_at:'" + ${createdAt} + "', user_id:'" + ${userId} + "'});`);
+        script.appendChild(t);
+        //window.eval(script);
+        document.body.appendChild(script); 
+
     }, [dispatch]);
 
     if (eventagenda1 !== undefined && eventagenda1.length === 0) {

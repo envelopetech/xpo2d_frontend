@@ -46,7 +46,7 @@ const Itemdata = ({
     eventagenda,
     ...rest
 }) => {
-   
+
 
     const classes = useStyles();
     const { user } = useAuth();
@@ -74,12 +74,14 @@ const Itemdata = ({
     }
     return (
         <React.Fragment>
-            {eventagenda.map((event1) => {              
+            {eventagenda.map((event1) => {
                 let startdate = moment(event1.start_date).format("h:mm A");
                 let enddate = moment(event1.end_date).format("h:mm A");
                 let finaltime = `${startdate} - ${enddate}`
                 var today = moment()
                 var result = moment(today).isBetween(event1.start_date, event1.end_date)
+                console.log(result)
+                var checkafterwebinar = moment(today).isAfter(event1.end_date)
                 return (
                     <Container className={classes.agendaContainer}>
                         <Card className={classes.root}>
@@ -100,26 +102,40 @@ const Itemdata = ({
                             </CardContent>
                             <CardActions>
                                 {
-                                    result ? (
+                                    (checkafterwebinar) ? (
                                         <Button
-                                            color="secondary"
                                             variant="contained"
-                                            onClick={() => handleagenda(event1.webinar_url)}
-                                        // component={RouterLink}
-                                        // to={`/app/keynote/${user.id}/${event.id}`}
+                                            color="secondary"
+                                            className={classes.button}
+                                            href={event1.webinar_url}
+                                            target="_blank"
                                         >
-                                            Enter Now
+                                            Watch on Demand
                                         </Button>
-                                    )
-                                        : (<Button
-                                            color="secondary"
-                                            variant="contained"
-                                            disabled={true}
-                                        // component={RouterLink}
-                                        // to={`/app/keynote/${user.id}/${event.id}`}
-                                        >
-                                            Enter Now
-                                        </Button>)
+
+                                    ) :
+                                        (
+                                            result ? (
+                                                <Button
+                                                    color="secondary"
+                                                    variant="contained"
+                                                    onClick={() => handleagenda(event1.webinar_url)}
+                                                // component={RouterLink}
+                                                // to={`/app/keynote/${user.id}/${event.id}`}
+                                                >
+                                                    Watch Now
+                                                </Button>
+                                            )
+                                                : (<Button
+                                                    color="secondary"
+                                                    variant="contained"
+                                                    disabled={true}
+                                                // component={RouterLink}
+                                                // to={`/app/keynote/${user.id}/${event.id}`}
+                                                >
+                                                    Watch Now
+                                                </Button>)
+                                        )
                                 }
                             </CardActions>
                         </Card>

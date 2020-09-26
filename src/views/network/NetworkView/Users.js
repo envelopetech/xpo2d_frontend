@@ -288,6 +288,15 @@ const Users = ({
                                 <Divider />
                                 {paginatedExhibitors.map((exhibitor, index) => {
                                     let status_briefcase = exhibitor.briefcase_status
+                                    let designation = ""
+                                    if(exhibitor.company !== null)
+                                    {
+                                        designation = exhibitor.designation + " at " +  exhibitor.company 
+                                    }
+                                    else
+                                    {
+                                        designation = exhibitor.designation
+                                    }
                                     return (
                                         <>
                                             <ListItem ContainerComponent="div">
@@ -295,7 +304,7 @@ const Users = ({
                                                     <Avatar className={classes.avatar_small} src={exhibitor.avatar}>
                                                     </Avatar>
                                                 </ListItemAvatar>
-                                                <ListItemText primary={exhibitor.name} secondary={exhibitor.designation} />
+                                                <ListItemText primary={exhibitor.name} secondary={designation} />
                                                 <ListItemSecondaryAction className="user-action">
                                                     <Button onClick={(event) => handlemessage(event, exhibitor.id, exhibitor.name, exhibitor.email, exhibitor.avatar)}>
                                                         Message
