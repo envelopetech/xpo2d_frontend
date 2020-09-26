@@ -9,7 +9,7 @@ import background from '../../../assets/images/exhibitor-bg.jpg';
 import Grid from '@material-ui/core/Grid';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { userpage_save } from 'src/slices/notification'
-
+import useAuth from 'src/hooks/useAuth';
 // const useStyles = makeStyles(theme => ({
 //     root: {
 //         maxWidth: 345,
@@ -22,7 +22,7 @@ export function Exhibitor() {
     const { exhibitorid } = useParams();
     const { selectedExhibitor } = useSelector((state) => state.exhibitor);
     const dispatch = useDispatch();
-
+    const { user } = useAuth();
 
     
 
@@ -43,7 +43,18 @@ export function Exhibitor() {
         }
         else {
             dispatch(getexhibitor(exhibitorid));
-        }       
+        } 
+        
+        const name = user.name;
+        const email = user.email;
+        const createdAt = Math.floor(Date.now() / 1000);
+        const userId = user.user_id;
+        const script = document.createElement("script");
+        const t = document.createTextNode(`window.Intercom('boot', {hide_default_launcher: true, app_id: 'a5iw6q1x', name:'" + ${name} + "', email:'" + ${email} + "', created_at:'" + ${createdAt} + "', user_id:'" + ${userId} + "'});`);
+        script.appendChild(t);
+        //window.eval(script);
+        document.body.appendChild(script); 
+
     }, []);
     if (selectedExhibitor === null) {
         return <Skeleton></Skeleton>;
