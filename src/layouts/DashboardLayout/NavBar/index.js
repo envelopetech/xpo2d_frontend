@@ -381,9 +381,9 @@ export default function NavBar() {
               justify="flex-start"
               alignItems="flex-start"
             >
-              <Grid item>
+              {/* <Grid item>
                 Total Attendees: {user.totalattendee}
-              </Grid>
+              </Grid> */}
               {/* <Grid item>
                 Now Attending: 2
                 </Grid> */}
