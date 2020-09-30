@@ -77,16 +77,16 @@ const Results = ({
         <div className={classes.root}>
             <AppBar position="static">
                 <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                    <Tab label="Day 2" {...a11yProps(0)} />
-                    <Tab label="Day 1" {...a11yProps(1)} />
+                    <Tab label="Day 1" {...a11yProps(0)} />
+                    <Tab label="Day 2" {...a11yProps(1)} />
 
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-                <Itemdata eventagenda={eventagenda2}> </Itemdata>
+                <Itemdata eventagenda={eventagenda1}> </Itemdata>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <Itemdata eventagenda={eventagenda1}> </Itemdata>
+                <Itemdata eventagenda={eventagenda2}> </Itemdata>
             </TabPanel>
         </div>
     );

@@ -35,7 +35,7 @@ const Team = ({
     const classes = useStyles();
     const { user, client } = useAuth();
     const dispatch = useDispatch();
-    const handlechat = (event, user_id, first_name, email, avatar) => {
+    const handlechat = (event, user_id, first_name, email, avatar, exhibitor_id) => {
         dispatch(closeModal());        
         const data = ({
             id: user.user_id,
@@ -47,6 +47,12 @@ const Team = ({
             "event_category": "chat",
             "event_label": user.email
         });
+
+        const dataleaderboard = {            
+            exhibitor_id: exhibitor_id,            
+            leader_type: "chat",
+        };
+        dispatch (lederboardsave(dataleaderboard));
 
         Talk.ready.then(() => {
             const me = new Talk.User({
@@ -140,7 +146,7 @@ const Team = ({
                                                     Video Call
                                                 </Button> */}
                                                 <Button
-                                                    onClick={(event) => handlechat(event, staff.user_id, staff.first_name, staff.email, staff.avatar)}
+                                                    onClick={(event) => handlechat(event, staff.user_id, staff.first_name, staff.email, staff.avatar, staff.exhibitor_idd)}
                                                     variant="outlined"
                                                     className={classes.button}
                                                     startIcon={<ChatIcon />}

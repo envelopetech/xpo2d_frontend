@@ -522,19 +522,18 @@ export default function NavBar() {
         </List>
         <Divider />
         <List>
-          {/* <ListItemLink component={Link} to="/app/leaderboard">
+          <ListItemLink component={Link} to="/app/leaderboard">
             <ListItemIcon>
               <SportsEsportsIcon />
             </ListItemIcon>
             <ListItemText primary="Leaderboard" />
-          </ListItemLink> */}
-
-          {/* <ListItemLink component={Link} to="/app/briefcase">
+          </ListItemLink> 
+           <ListItemLink component={Link} to="/app/briefcase">
             <ListItemIcon>
               <BusinessCenterOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Briefcase" />
-          </ListItemLink> */}
+          </ListItemLink>
           <ListItemLink component={Link} to="/app/feedback">
             <ListItemIcon>
               <FeedbackIcon />

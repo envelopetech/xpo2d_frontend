@@ -42,6 +42,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { deletebriefcase } from 'src/slices/visitor'
+import {lederboardsave} from 'src/slices/visitor'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -108,11 +109,17 @@ const Results = ({
 
 
     const { user } = useAuth();
-    const handleclick = (event, type) => {
+    const handleclick = (event, type, exhibitor_id) => {
         track.event("Download Company Brochure ", {
             "event_category": "Company Brochure",
             "event_label": user.email
         });
+
+        const dataleaderboard = {
+            exhibitor_id: exhibitor_id,
+            leader_type: "downloadresources",
+        };
+        dispatch(lederboardsave(dataleaderboard));
     }
 
 
@@ -152,7 +159,7 @@ const Results = ({
     const selectedAllExhibitors = selectedExhibitors.length === exhibitors.length;
     const enableBulkOperations = selectedExhibitors.length > 0;
 
-    
+
     return (
         <React.Fragment>
             <Card
@@ -270,7 +277,7 @@ const Results = ({
                                                 <TableCell>PDF</TableCell>
                                                 <TableCell numeric component="a" target="_blank" href={exhibitor.assets_url}
                                                     className={classes.link}
-                                                    onClick={(event) => handleclick(event, exhibitor.typename)}>View</TableCell>
+                                                    onClick={(event) => handleclick(event, exhibitor.typename, exhibitor.id)}>View</TableCell>
 
                                             </TableRow>
                                         </>

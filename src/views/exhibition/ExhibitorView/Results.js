@@ -23,7 +23,7 @@ import { useDispatch, useSelector } from 'src/store';
 import { createEnquiry } from 'src/slices/enquiry'
 import useAuth from 'src/hooks/useAuth';
 import Photo from './Photo'
-
+import backgroundimage from '../../../assets/images/solar-panel.jpg';
 
 import background1 from '../../../assets/images/exhibitor-bg.jpg';
 import background2 from '../../../assets/images/exhibitor-bg2.jpg';
@@ -143,30 +143,30 @@ const Results = ({
 
     
 
-    let backgroundimage = null
+    // let backgroundimage = null
 
-    if (exhibitor.id == 17) {
-        backgroundimage = background1
-    }
-    else if (exhibitor.id == 18) {
-        backgroundimage = background5
-    }
-    else if (exhibitor.id == 19) {
-        backgroundimage = background6
-    }
-    else if (exhibitor.id == 20) {
-        backgroundimage = background3
-    }
-    else if (exhibitor.id == 21) {
-        backgroundimage = background2
-    }
-    else if (exhibitor.id == 22) {
-        backgroundimage = background7
-    }
+    // if (exhibitor.id == 17) {
+    //     backgroundimage = background1
+    // }
+    // else if (exhibitor.id == 18) {
+    //     backgroundimage = background5
+    // }
+    // else if (exhibitor.id == 19) {
+    //     backgroundimage = background6
+    // }
+    // else if (exhibitor.id == 20) {
+    //     backgroundimage = background3
+    // }
+    // else if (exhibitor.id == 21) {
+    //     backgroundimage = background2
+    // }
+    // else if (exhibitor.id == 22) {
+    //     backgroundimage = background7
+    // }
 
-    else if (exhibitor.id == 35) {
-        backgroundimage = background4
-    }
+    // else if (exhibitor.id == 35) {
+    //     backgroundimage = background4
+    // }
 	
     return (
         <React.Fragment>

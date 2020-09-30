@@ -4,7 +4,7 @@ import lobby from 'src/assets/images/lobby.jpg';
 import {withStyles, makeStyles } from '@material-ui/styles';
 import Page from 'src/components/Page';
 import Grid from "@material-ui/core/Grid";
-import background from '../../../assets/images/exhibit-hall.jpg';
+import background from '../../../assets/images/solar-panel.jpg';
 import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 import MovieIcon from '@material-ui/icons/Movie';

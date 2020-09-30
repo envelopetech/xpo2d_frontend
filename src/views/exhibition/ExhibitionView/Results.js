@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import background from 'src/assets/images/exhibit-hall.jpg';
+import background from 'src/assets/images/solar-panel.jpg';
 
 const useStyles = makeStyles(theme => ({
     root: {

@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { userpage_save } from 'src/slices/notification'
 import useAuth from 'src/hooks/useAuth';
+import {lederboardsave} from 'src/slices/visitor'
 // const useStyles = makeStyles(theme => ({
 //     root: {
 //         maxWidth: 345,
@@ -30,7 +31,14 @@ export function Exhibitor() {
         const data1 = {
             pagename: "Exhibitor"
         }
-        dispatch(userpage_save(data1))      
+        dispatch(userpage_save(data1)) 
+        
+        const dataleaderboard = {            
+            exhibitor_id: exhibitorid,            
+            leader_type: "stallview",
+        };
+        dispatch (lederboardsave(dataleaderboard));
+
         let data = JSON.parse(localStorage.getItem('exhibitoralldata'))
         if (data !== undefined && data !== null && data.length > 0) {
             const singledata = data.find((_agenda) => _agenda.id === parseInt(exhibitorid));
