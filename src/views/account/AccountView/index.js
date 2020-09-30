@@ -1,102 +1,75 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { Grid, makeStyles, Container } from '@material-ui/core';
-import ProfileDetails from './ProfileDetails';
-import GeneralSettings from './GeneralSettings';
-import { useDispatch, useSelector } from 'src/store';
-import { getuser } from 'src/slices/generalsettings';
-import Skeleton from 'src/components/Skeleton';
+import React, { useState } from 'react';
+import {
+  Box,
+  Container,
+  Divider,
+  Tab,
+  Tabs,
+  makeStyles
+} from '@material-ui/core';
+import Page from 'src/components/Page';
+import Header from './Header';
+import General from './General';
+import Security from './Security';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: '100vh'
-  },
-  banner: {
-    backgroundColor: theme.palette.background.paper,
-    paddingBottom: theme.spacing(2),
-    paddingTop: theme.spacing(2),
-    borderBottom: `1px solid ${theme.palette.divider}`
-  },
-  bannerChip: {
-    marginRight: theme.spacing(2)
-  },
-  methodIcon: {
-    height: 30,
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2)
-  },
-  cardContainer: {
-    paddingBottom: 80,
-    paddingTop: 80,
-  },
-  cardContent: {
-    padding: theme.spacing(4),
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: 400
-  },
-  currentMethodIcon: {
-    height: 40,
-    '& > img': {
-      width: 'auto',
-      maxHeight: '100%'
-    }
+    minHeight: '100%',
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3)
   }
 }));
 
-
-
-const General = () => {
+const AccountView = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const { users } = useSelector((state) => state.generalsettings);
+  const [currentTab, setCurrentTab] = useState('profile');
 
+  const tabs = [
+    { value: 'profile', label: 'Profile' },
+    // { value: 'subscription', label: 'Subscription' },
+    // { value: 'notifications', label: 'Notifications' },
+    { value: 'security', label: 'Security' }
+  ];
 
-  useEffect(() => {
-    dispatch(getuser());
-  }, []);
-  
-  if (users.length === 0) {
-    return <Skeleton bredcrumbname="Settings" headername="Settings"></Skeleton>
-  }
+  const handleTabsChange = (event, value) => {
+    setCurrentTab(value);
+  };
 
   return (
-    <Container
-      className={classes.cardContainer}
-      maxWidth="md"
+    <Page
+      className={classes.root}
+      title="Settings"
     >
-      <Grid
-        container
-        spacing={3}
-      >
-        <Grid
-          item
-          lg={4}
-          md={6}
-          xl={3}
-          xs={6}
-        >
-          <ProfileDetails user={users} />
-        </Grid>
-        <Grid
-          item
-          lg={8}
-          md={6}
-          xl={9}
-          xs={6}
-        >
-          <GeneralSettings user={users} />
-        </Grid>
-      </Grid>
-    </Container>
+      <Container maxWidth="lg">
+        <Header />
+        <Box mt={3}>
+          <Tabs
+            onChange={handleTabsChange}
+            scrollButtons="auto"
+            value={currentTab}
+            variant="scrollable"
+            textColor="secondary"
+          >
+            {tabs.map((tab) => (
+              <Tab
+                key={tab.value}
+                label={tab.label}
+                value={tab.value}
+              />
+            ))}
+          </Tabs>
+        </Box>
+        <Divider />
+        <Box mt={3}>
+          {currentTab === 'profile' && <General />}
+          {/* {currentTab === 'subscription' && <Subscription />}
+          {currentTab === 'notifications' && <Notifications />} */}
+          {currentTab === 'security' && <Security />}
+        </Box>
+      </Container>
+    </Page>
   );
-}
-
-General.propTypes = {
-  className: PropTypes.string
 };
 
-export default General;
+export default AccountView;

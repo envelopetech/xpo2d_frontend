@@ -159,9 +159,7 @@ const Results = ({
                         value={query}
                         variant="outlined"
                     />
-
                 </Box>
-
                 <PerfectScrollbar>
                     <Box minWidth={700}>
                         <Table>
@@ -181,14 +179,12 @@ const Results = ({
                             <TableBody>
                                 {paginatedExhibitors.map((exhibitor) => {
                                     const isExhibitorSelected = selectedExhibitors.includes(exhibitor.id);
-
                                     return (
                                         <TableRow
                                             hover
                                             key={exhibitor.id}
                                             selected={isExhibitorSelected}
                                         >
-
                                             <StyledTableCell>
                                                 <Box
                                                     display="flex"

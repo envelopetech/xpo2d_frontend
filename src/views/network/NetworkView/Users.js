@@ -219,7 +219,7 @@ const Users = ({
                 console.log("message send")
                 client.network_message(me);
             })
-            client.network_message(me);
+            //client.network_message(me);
         });
     }
 
