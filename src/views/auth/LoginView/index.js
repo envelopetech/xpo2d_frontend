@@ -6,7 +6,9 @@ import {
   CardContent,  
   Container,  
   Typography,
-  makeStyles
+  makeStyles,
+  Divider,
+  Link
 } from '@material-ui/core';
 import Page from 'src/components/Page';
 import Logo from 'src/components/Logo';
@@ -110,7 +112,17 @@ const LoginView = () => {
           >
             <JWTLogin /> 
           </Box>
-          
+          <Box my={3}>
+              <Divider />
+            </Box>
+            <Link
+              component={RouterLink}
+              to="/register"
+              variant="body2"
+              color="textSecondary"
+            >
+              Create new account
+            </Link>
         </CardContent>
       </Card>
     </Container>

@@ -11,7 +11,7 @@ const initialAuthState = {
   isAuthenticated: false,
   isInitialised: false,
   user: null,
-  
+
 };
 
 const isValidToken = (accessToken) => {
@@ -53,7 +53,7 @@ const reducer = (state, action) => {
         isAuthenticated,
         isInitialised: true,
         user: user,
-   
+
       };
     }
     case 'LOGIN': {
@@ -62,7 +62,7 @@ const reducer = (state, action) => {
         ...state,
         isAuthenticated: isAuthenticated,
         user: user,
-       
+
       };
     }
     case 'LOGOUT': {
@@ -70,7 +70,16 @@ const reducer = (state, action) => {
         ...state,
         isAuthenticated: false,
         user: null,
-       
+
+      };
+    }
+    case 'REGISTER': {
+      debugger;
+      const { isAuthenticated, user } = action.payload;
+      return {
+        ...state,
+        isAuthenticated: isAuthenticated,
+        user
       };
     }
     default: {
@@ -96,8 +105,6 @@ export const AuthProvider = ({ children }) => {
     let user = []
     user = response.data[0];
 
- 
-
 
     if (user.access_token !== undefined) {
       setSession(user.access_token, user.user_id, user.super_user, user.id, user.user_type, user.organizer_id);
@@ -106,10 +113,35 @@ export const AuthProvider = ({ children }) => {
         payload: {
           isAuthenticated: true,
           user,
-         
+
         }
       });
     }
+  };
+  const register = async (email, first_name, last_name, phone_number, occupation, location, yourrole, childage, organizer_id) => {
+    const response = await axios.post('/api/user/temp_user_create', {
+      email,
+      first_name,
+      last_name,
+      phone_number,
+      occupation,
+      location,
+      yourrole,
+      childage,
+      organizer_id
+    });
+    let user = []
+    user = response.data
+    // if (user.access_token !== undefined) {
+    //   setSession(user.access_token, user.user_id, user.super_user, user.id, user.user_type, user.organizer_id);
+      dispatch({
+        type: 'REGISTER',
+        payload: {
+          isAuthenticated: true,
+          user
+        }
+      });
+    //}
   };
 
   const logout = () => {
@@ -133,14 +165,12 @@ export const AuthProvider = ({ children }) => {
           let user = []
           user = response.data[0];
 
-         
-
           dispatch({
             type: 'INITIALISE',
             payload: {
               isAuthenticated: true,
               user: user,
-             
+
             }
           });
         } else {
@@ -149,7 +179,7 @@ export const AuthProvider = ({ children }) => {
             payload: {
               isAuthenticated: false,
               user: null,
-             
+
             }
           });
         }
@@ -160,7 +190,7 @@ export const AuthProvider = ({ children }) => {
           payload: {
             isAuthenticated: false,
             user: null,
-            
+
           }
         });
       }
@@ -178,7 +208,8 @@ export const AuthProvider = ({ children }) => {
         ...state,
         method: 'JWT',
         login,
-        logout
+        logout,
+        register
       }}
     >
       {children}

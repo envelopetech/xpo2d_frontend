@@ -5,8 +5,10 @@ import useAuth from '../hooks/useAuth';
 
 const GuestGuard = ({ children }) => {    
   const { isAuthenticated} = useAuth();  
+  debugger;
   
   if (isAuthenticated) {
+    debugger;
     return <Redirect to="/app/lobby" />;
   }
   return (

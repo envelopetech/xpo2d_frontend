@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import clsx from 'clsx';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
@@ -12,6 +12,8 @@ import {
 } from '@material-ui/core';
 import useAuth from 'src/hooks/useAuth';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
+import { getorganizer } from 'src/slices/organizer';
+import { useDispatch } from 'src/store';
 
 const useStyles = makeStyles(() => ({
   root: {}
@@ -21,6 +23,13 @@ const JWTLogin = ({ className, ...rest }) => {
   const classes = useStyles();
   let { login } = useAuth();
   const isMountedRef = useIsMountedRef();
+  //const { organizers } = useSelector((state) => state.organizer);
+  let domain_name = window.location.hostname;
+  const dispatch = useDispatch();
+
+  useEffect(() => {    
+    dispatch(getorganizer(domain_name));
+  }, []); 
 
   return (
     <Formik

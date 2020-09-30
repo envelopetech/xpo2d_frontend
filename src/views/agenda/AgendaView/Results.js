@@ -79,7 +79,6 @@ const Results = ({
                 <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
                     <Tab label="Day 1" {...a11yProps(0)} />
                     <Tab label="Day 2" {...a11yProps(1)} />
-
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
