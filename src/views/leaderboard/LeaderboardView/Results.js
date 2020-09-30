@@ -4,16 +4,16 @@ import PropTypes from 'prop-types';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
     Avatar,
-    Box,    
-    Card,    
-    InputAdornment,    
-    SvgIcon,    
+    Box,
+    Card,
+    InputAdornment,
+    SvgIcon,
     Table,
     TableBody,
     TableCell,
     TableHead,
     TablePagination,
-    TableRow,    
+    TableRow,
     TextField,
     Typography,
     makeStyles,
@@ -54,21 +54,21 @@ const useStyles = makeStyles((theme) => ({
     },
     link: {
         color: '#304ffe',
-    },  
+    },
     footerpag: {
         marginBottom: "50px",
-    },  
+    },
 }));
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
     },
     body: {
-      fontSize: 14,
+        fontSize: 14,
     },
-  }))(TableCell);
+}))(TableCell);
 
 const Results = ({
     className,
@@ -155,11 +155,11 @@ const Results = ({
                             )
                         }}
                         onChange={handleQueryChange}
-                        placeholder="Search by company name"
+                        placeholder="Search"
                         value={query}
                         variant="outlined"
-                    />                 
-                    
+                    />
+
                 </Box>
 
                 <PerfectScrollbar>
@@ -180,7 +180,7 @@ const Results = ({
                             </TableHead>
                             <TableBody>
                                 {paginatedExhibitors.map((exhibitor) => {
-                                     const isExhibitorSelected = selectedExhibitors.includes(exhibitor.id);
+                                    const isExhibitorSelected = selectedExhibitors.includes(exhibitor.id);
 
                                     return (
                                         <TableRow
@@ -205,13 +205,19 @@ const Results = ({
                                                             color="inherit"
                                                             variant="h6"
                                                         >
-                                                            {exhibitor.visitor__first_name} {exhibitor.visitor__last_name}  
+                                                            {exhibitor.visitor__first_name} {exhibitor.visitor__last_name}
+                                                        </Typography>
+                                                        <Typography
+                                                            variant="body2"
+                                                            color="textSecondary"
+                                                        >
+                                                            {exhibitor.visitor__company}
                                                         </Typography>
                                                     </div>
                                                 </Box>
                                             </StyledTableCell>
                                             <StyledTableCell>
-                                            <Box
+                                                <Box
                                                     display="flex"
                                                     alignItems="center"
                                                 >
@@ -230,7 +236,7 @@ const Results = ({
                                                         </Typography>
                                                     </div>
                                                 </Box>
-                                                </StyledTableCell>
+                                            </StyledTableCell>
                                             <StyledTableCell>{exhibitor.totalscore}</StyledTableCell>
                                         </TableRow>
                                     );

@@ -146,7 +146,7 @@ const Team = ({
                                                     Video Call
                                                 </Button>
                                                 <Button
-                                                    onClick={(event) => handlechat(event, staff.user_id, staff.first_name, staff.email, staff.avatar, staff.exhibitor_idd)}
+                                                    onClick={(event) => handlechat(event, staff.user_id, staff.first_name, staff.email, staff.avatar, staff.exhibitor_id)}
                                                     variant="outlined"
                                                     className={classes.button}
                                                     startIcon={<ChatIcon />}

@@ -7,6 +7,8 @@ import {
 import PropTypes from 'prop-types';
 import useAuth from 'src/hooks/useAuth';
 import track from 'src/utils/analytics';
+import { lederboardsave } from 'src/slices/visitor'
+import { useDispatch } from 'src/store';
 
 const useStyles = makeStyles(theme => ({
     root: {},
@@ -26,12 +28,19 @@ const Assets = ({
 
     const classes = useStyles();
     const { user } = useAuth();
+    const dispatch = useDispatch();
 
-    const handleclick = (event) => {       
+    const handleclick = (exhibitor_id) => {       
         track.event("Download Assets", {
             "event_category": "Assets",
             "event_label": user.email
         });
+
+        const dataleaderboard = {
+            exhibitor_id: exhibitor_id,
+            leader_type: "chat",
+        };
+        dispatch(lederboardsave(dataleaderboard));
     }
     if (assets === null || assets.length == 0 ) {
         return <div>No Assets Aavailable</div>;
@@ -54,7 +63,10 @@ const Assets = ({
                                     <TableCell component="th" scope="row">
                                         {asset.name}
                                     </TableCell>                                    
-                                    <TableCell align="right" numeric component="a" target="_blank" href={asset.assets_url} className={classes.link} onClick={handleclick}>Download</TableCell>
+                                    <TableCell align="right" numeric component="a" target="_blank" href={asset.assets_url} 
+                                    className={classes.link} 
+                                    onClick={() => handleclick(asset.exhibitor_id)}
+                                    >Download</TableCell>
                                 </TableRow>
                             );
                         })}
@@ -72,5 +84,4 @@ Assets.propTypes = {
 Assets.defaultProps = {
     assets: []
 };
-
 export default Assets;
