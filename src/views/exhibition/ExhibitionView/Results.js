@@ -83,5 +83,4 @@ Results.propTypes = {
 Results.defaultProps = {
     exhibitors: []
 };
-
 export default Results;

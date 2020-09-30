@@ -48,7 +48,6 @@ export const getleaderboard = () => async (dispatch) => {
     dispatch(slice.actions.getleaderboard(response.data));
 };
 
-
 export const lederboardsave = (data) => async () => {
     const response = await axios.post('/api/leadertype/save', data);
     //debugger;

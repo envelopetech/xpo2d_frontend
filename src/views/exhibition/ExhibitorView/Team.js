@@ -13,7 +13,7 @@ import {
     closeModal
 } from 'src/slices/exhibitor';
 import track from 'src/utils/analytics';
-import {lederboardsave} from 'src/slices/visitor'
+import { lederboardsave } from 'src/slices/visitor'
 
 const useStyles = makeStyles(theme => ({
     root: {},
@@ -36,7 +36,7 @@ const Team = ({
     const { user, client } = useAuth();
     const dispatch = useDispatch();
     const handlechat = (event, user_id, first_name, email, avatar, exhibitor_id) => {
-        dispatch(closeModal());        
+        dispatch(closeModal());
         const data = ({
             id: user.user_id,
             name: user.first_name,
@@ -48,11 +48,11 @@ const Team = ({
             "event_label": user.email
         });
 
-        const dataleaderboard = {            
-            exhibitor_id: exhibitor_id,            
+        const dataleaderboard = {
+            exhibitor_id: exhibitor_id,
             leader_type: "chat",
         };
-        dispatch (lederboardsave(dataleaderboard));
+        dispatch(lederboardsave(dataleaderboard));
 
         Talk.ready.then(() => {
             const me = new Talk.User({
@@ -102,19 +102,19 @@ const Team = ({
             me.current_user_email = email;
             me.current_user_avatar = avatar;
             client.team_chat(me);
-            
+
 
         });
 
     }
-    const handleclick = (exhibitorid) => {       
-        const dataleaderboard = {            
-            exhibitor_id: exhibitorid,            
+    const handleclick = (exhibitorid) => {
+        const dataleaderboard = {
+            exhibitor_id: exhibitorid,
             leader_type: "videocall",
         };
-        dispatch (lederboardsave(dataleaderboard));
+        dispatch(lederboardsave(dataleaderboard));
     }
-    if (team === null || team.length == 0 ) {
+    if (team === null || team.length == 0) {
         return <div>No Team Aavailable</div>;
     }
     return (
@@ -133,7 +133,7 @@ const Team = ({
                                             <Grid item xs>
                                                 <Typography variant="h6" >{staff.name}</Typography>
                                                 <Typography variant="subtitle1">{staff.designation} at {staff.exhibitor_name}</Typography>
-                                                {/* <Typography variant="subtitle1" gutterBottom>Meeting ID: {staff.zoom_meeting_id}</Typography>
+                                                {/* <Typography variant="subtitle1" gutterBottom>Meeting ID: {staff.zoom_meeting_id}</Typography> */}
                                                 <Button
                                                     variant="contained"
                                                     color="secondary"
@@ -144,7 +144,7 @@ const Team = ({
                                                     onClick={() => handleclick(staff.exhibitor_id)}
                                                 >
                                                     Video Call
-                                                </Button> */}
+                                                </Button>
                                                 <Button
                                                     onClick={(event) => handlechat(event, staff.user_id, staff.first_name, staff.email, staff.avatar, staff.exhibitor_idd)}
                                                     variant="outlined"
