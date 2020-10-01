@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { userpage_save } from 'src/slices/notification'
 import useAuth from 'src/hooks/useAuth';
-import {lederboardsave} from 'src/slices/visitor'
+import { lederboardsave } from 'src/slices/visitor'
 // const useStyles = makeStyles(theme => ({
 //     root: {
 //         maxWidth: 345,
@@ -25,34 +25,34 @@ export function Exhibitor() {
     const dispatch = useDispatch();
     const { user } = useAuth();
 
-    
 
-    useEffect(() => {  
+
+    useEffect(() => {
         const data1 = {
             pagename: "Exhibitor"
         }
-        dispatch(userpage_save(data1)) 
-        
-        const dataleaderboard = {            
-            exhibitor_id: exhibitorid,            
+        dispatch(userpage_save(data1))
+
+        const dataleaderboard = {
+            exhibitor_id: exhibitorid,
             leader_type: "stallview",
         };
-        dispatch (lederboardsave(dataleaderboard));
+        dispatch(lederboardsave(dataleaderboard));
 
-        let data = JSON.parse(localStorage.getItem('exhibitoralldata'))
-        if (data !== undefined && data !== null && data.length > 0) {
-            const singledata = data.find((_agenda) => _agenda.id === parseInt(exhibitorid));
-            if (singledata !== null && singledata !== undefined) {
-                dispatch(localstorageexhibitor(data));
-            }
-            else {
-                dispatch(getexhibitor(exhibitorid));
-            }
-        }
-        else {
-            dispatch(getexhibitor(exhibitorid));
-        } 
-        
+        // let data = JSON.parse(localStorage.getItem('exhibitoralldata'))
+        // if (data !== undefined && data !== null && data.length > 0) {
+        //     const singledata = data.find((_agenda) => _agenda.id === parseInt(exhibitorid));
+        //     if (singledata !== null && singledata !== undefined) {
+        //         dispatch(localstorageexhibitor(data));
+        //     }
+        //     else {
+        //         dispatch(getexhibitor(exhibitorid));
+        //     }
+        // }
+        // else {
+        dispatch(getexhibitor(exhibitorid));
+        // } 
+
         const name = user.name;
         const email = user.email;
         const createdAt = Math.floor(Date.now() / 1000);
@@ -61,7 +61,7 @@ export function Exhibitor() {
         const t = document.createTextNode(`window.Intercom('boot', {hide_default_launcher: true, app_id: 'a5iw6q1x', name:'" + ${name} + "', email:'" + ${email} + "', created_at:'" + ${createdAt} + "', user_id:'" + ${userId} + "'});`);
         script.appendChild(t);
         //window.eval(script);
-        document.body.appendChild(script); 
+        document.body.appendChild(script);
 
     }, []);
     if (selectedExhibitor === null) {
@@ -82,8 +82,8 @@ export function Exhibitor() {
                     <img alt="auditorium" src={background} className="background-fluid" />
                 </div>
                 <div className="exhibitor-content" style={{ position: 'absolute', margin: '0 10%' }}> */}
-                    <Results exhibitor={selectedExhibitor[0]}></Results>
-                {/* </div>
+            <Results exhibitor={selectedExhibitor[0]}></Results>
+            {/* </div>
             </Grid> */}
         </React.Fragment>
     )
