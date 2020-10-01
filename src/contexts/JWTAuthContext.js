@@ -119,7 +119,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
   const register = async (email, first_name, last_name, phone_number, occupation, location, yourrole, childage, organizer_id) => {
-    const response = await axios.post('/api/user/temp_user_create', {
+    const response = await axios.post('/api/user/bsei_user_create', {
       email,
       first_name,
       last_name,
