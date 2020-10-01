@@ -132,8 +132,8 @@ export const AuthProvider = ({ children }) => {
     });
     let user = []
     user = response.data
-    // if (user.access_token !== undefined) {
-    //   setSession(user.access_token, user.user_id, user.super_user, user.id, user.user_type, user.organizer_id);
+    if (user.access_token !== undefined) {
+      setSession(user.access_token, user.user_id, user.super_user, user.id, user.user_type, user.organizer_id);
       dispatch({
         type: 'REGISTER',
         payload: {
@@ -141,7 +141,7 @@ export const AuthProvider = ({ children }) => {
           user
         }
       });
-    //}
+    }
   };
 
   const logout = () => {
