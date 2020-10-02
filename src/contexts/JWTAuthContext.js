@@ -6,11 +6,13 @@ import React, {
 import jwtDecode from 'jwt-decode';
 import SplashScreen from 'src/components/SplashScreen';
 import axios from 'src/utils/axios';
+import socket from 'src/slices/socket';
 
 const initialAuthState = {
   isAuthenticated: false,
   isInitialised: false,
   user: null,
+  client: socket()
 
 };
 

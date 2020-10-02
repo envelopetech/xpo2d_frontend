@@ -342,5 +342,4 @@ Results.propTypes = {
 Results.defaultProps = {
     exhibitor: []
 };
-
 export default Results;
