@@ -109,7 +109,7 @@ const Results = ({
 
 
     const { user } = useAuth();
-    const handleclick = (event, type, exhibitor_id) => {
+    const handleclick = (event, type, exhibitor_id, assetsid) => {
         track.event("Download Company Brochure ", {
             "event_category": "Company Brochure",
             "event_label": user.email
@@ -117,6 +117,7 @@ const Results = ({
 
         const dataleaderboard = {
             exhibitor_id: exhibitor_id,
+            assetsid: assetsid,
             leader_type: "downloadresources",
         };
         dispatch(lederboardsave(dataleaderboard));
@@ -277,7 +278,7 @@ const Results = ({
                                                 <TableCell>PDF</TableCell>
                                                 <TableCell numeric component="a" target="_blank" href={exhibitor.assets_url}
                                                     className={classes.link}
-                                                    onClick={(event) => handleclick(event, exhibitor.typename, exhibitor.id)}>View</TableCell>
+                                                    onClick={(event) => handleclick(event, exhibitor.typename, exhibitor.exhibitor_id, exhibitor.id)}>View</TableCell>
 
                                             </TableRow>
                                         </>

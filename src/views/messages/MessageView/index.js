@@ -9,7 +9,6 @@ import {
 const MessageView = () => {
     const { user } = useAuth();
     useEffect(() => {
-
         Talk.ready.then(() => {
             const me = new Talk.User({
                 id: user.user_id,
@@ -35,8 +34,4 @@ const MessageView = () => {
         </Fragment>
     );
 }
-
-
-
-
 export default MessageView;

@@ -129,8 +129,9 @@ const Results = ({
     //const [maxWidth, setMaxWidth] = React.useState('lg');
     const { user } = useAuth();
 
-    const handleChange = (event, newValue) => {
+    const handleChange1 = (event, newValue) => {
         setValue(newValue);
+        alert(newValue)
     };
 
     const handleClickOpen = () => {
@@ -195,7 +196,7 @@ const Results = ({
                         </Typography>
                     </Toolbar>
                 </AppBar>
-                <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+                <Tabs value={value} onChange={handleChange1} aria-label="simple tabs example">
                     <Tab label="About" {...a11yProps(0)} />
                     <Tab label="Products" {...a11yProps(1)} />
                     <Tab label="Team" {...a11yProps(2)} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
     Grid,
     makeStyles, Typography, Button, Card, CardContent, Avatar
@@ -13,7 +13,7 @@ import {
     closeModal
 } from 'src/slices/exhibitor';
 import track from 'src/utils/analytics';
-import { lederboardsave } from 'src/slices/visitor'
+import { lederboardsave, customlog_save } from 'src/slices/visitor'
 
 const useStyles = makeStyles(theme => ({
     root: {},
@@ -35,6 +35,18 @@ const Team = ({
     const classes = useStyles();
     const { user, client } = useAuth();
     const dispatch = useDispatch();
+    const orgid = localStorage.getItem('org_id')  
+
+
+    useEffect(() => {        
+        const dataleaderboard = {
+            log_type: "stall_tabs",
+            tab_type: 'tab_team',  
+            organizer_id: orgid           
+        };
+        dispatch(customlog_save(dataleaderboard));
+
+    }, []);
     const handlechat = (event, user_id, first_name, email, avatar, exhibitor_id) => {
         dispatch(closeModal());
         const data = ({

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     Grid,
     makeStyles, Card, CardActionArea, CardMedia
@@ -6,7 +6,8 @@ import {
 
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
-
+import { customlog_save } from 'src/slices/visitor'
+import { useDispatch } from 'src/store';
 
 const useStyles = makeStyles(theme => ({
     root: { maxWidth: 345, },
@@ -17,11 +18,25 @@ const Photo = ({
     ...rest
 }) => {
     const classes = useStyles();
+    const dispatch = useDispatch();
 
-    if (photo === null || photo.length == 0 ) {
+    const orgid = localStorage.getItem('org_id')
+
+
+    useEffect(() => {
+        const dataleaderboard = {
+            log_type: "stall_tabs",
+            tab_type: 'tab_photo',
+            organizer_id: orgid
+        };
+        dispatch(customlog_save(dataleaderboard));
+
+    }, []);
+
+    if (photo === null || photo.length == 0) {
         return <div>No Photos Aavailable</div>;
     }
-    
+
     return (
         <React.Fragment>
             {photo.map((photodata) => {

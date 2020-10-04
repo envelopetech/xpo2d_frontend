@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     Grid,
     makeStyles, Typography, Card, CardActionArea, CardActions, CardContent, CardMedia
@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
 import track from 'src/utils/analytics';
 import useAuth from 'src/hooks/useAuth';
+import { customlog_save } from 'src/slices/visitor'
+import { useDispatch } from 'src/store';
 
 const useStyles = makeStyles(theme => ({
     root: { maxWidth: 345, },
@@ -21,13 +23,35 @@ const Product = ({
 
     const classes = useStyles();
     const { user } = useAuth();
-    const handleclick = (event) => {       
+    const dispatch = useDispatch();
+
+    const orgid = localStorage.getItem('org_id')
+
+
+    useEffect(() => {
+        const dataleaderboard = {
+            log_type: "stall_tabs",
+            tab_type: 'tab_product',
+            organizer_id: orgid
+        };
+        dispatch(customlog_save(dataleaderboard));
+
+    }, []);
+
+    const handleclick = (id) => {
         track.event("Download Product Brochure", {
             "event_category": "Product Brochure",
             "event_label": user.email
         });
+
+        const dataleaderboard = {
+            log_type: "productbrochure",
+            organizer_id: orgid,
+            visited_id: id
+        };
+        dispatch(customlog_save(dataleaderboard));
     }
-    if (product === null || product.length == 0 ) {
+    if (product === null || product.length == 0) {
         return <div>No Products Aavailable</div>;
     }
 
@@ -55,9 +79,9 @@ const Product = ({
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Link href={pro.product_brochure} target="_blank" onClick={handleclick}>
-                                    View Brochure                                   
-                                </Link>                                
+                                <Link href={pro.product_brochure} target="_blank" onClick={() => handleclick(pro.id)}>
+                                    View Brochure
+                                </Link>
                             </CardActions>
                         </Card>
                     </Grid>
