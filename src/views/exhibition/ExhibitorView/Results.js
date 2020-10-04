@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import {
     Dialog, Grid,
     AppBar, Toolbar, IconButton, makeStyles, Typography, Slide, Button, Tabs, Tab
@@ -23,6 +23,7 @@ import { useDispatch, useSelector } from 'src/store';
 import { createEnquiry } from 'src/slices/enquiry'
 import useAuth from 'src/hooks/useAuth';
 import Photo from './Photo'
+import { customlog_save } from 'src/slices/visitor'
 import backgroundimage from '../../../assets/images/solar-panel.jpg';
 
 import background1 from '../../../assets/images/exhibitor-bg.jpg';
@@ -99,11 +100,11 @@ const useStyles = makeStyles(theme => ({
         marginRight: theme.spacing(2),
     },
     anchorStall1: {
-        position: 'absolute', 
-        left: '14.88%', 
-        top: '16.67%', 
-        width: '75%', 
-        height: '75%', 
+        position: 'absolute',
+        left: '14.88%',
+        top: '16.67%',
+        width: '75%',
+        height: '75%',
         zIndex: 2
     },
 
@@ -128,10 +129,31 @@ const Results = ({
     //const [fullWidth, setFullWidth] = React.useState(true);
     //const [maxWidth, setMaxWidth] = React.useState('lg');
     const { user } = useAuth();
+    const orgid = localStorage.getItem('org_id')
 
+
+    useEffect(() => {
+        if (value == 0) {
+            const dataleaderboard = {
+                log_type: "stall_tabs",
+                tab_type: 'tab_about',
+                organizer_id: orgid
+            };
+            dispatch(customlog_save(dataleaderboard));
+        }
+
+
+    }, []);
     const handleChange1 = (event, newValue) => {
         setValue(newValue);
-        alert(newValue)
+        if (newValue === 0) {
+            const dataleaderboard = {
+                log_type: "stall_tabs",
+                tab_type: 'tab_about',
+                organizer_id: orgid
+            };
+            dispatch(customlog_save(dataleaderboard));
+        }
     };
 
     const handleClickOpen = () => {
@@ -142,7 +164,7 @@ const Results = ({
         dispatch(closeModal());
     };
 
-    
+
 
     // let backgroundimage = null
 
@@ -168,7 +190,7 @@ const Results = ({
     // else if (exhibitor.id == 35) {
     //     backgroundimage = background4
     // }
-	
+
     return (
         <React.Fragment>
 

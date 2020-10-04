@@ -75,8 +75,7 @@ const reducer = (state, action) => {
 
       };
     }
-    case 'REGISTER': {
-      debugger;
+    case 'REGISTER': {     
       const { isAuthenticated, user } = action.payload;
       return {
         ...state,

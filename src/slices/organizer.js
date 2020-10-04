@@ -11,14 +11,12 @@ const slice = createSlice({
     name: 'organizer',
     initialState,
     reducers: {        
-        getorganizer(state, action) {  
-            debugger;             
+        getorganizer(state, action) {              
             let organizer = []            
             organizer = action.payload
             state.organizers = organizer;             
             if(organizer.length > 0)              
-            {
-                debugger;
+            {               
                 state.eventId = organizer[0].event_id;
                 localStorage.setItem('eventId', organizer[0].event_id); 
                 localStorage.setItem('org_logo', organizer[0].company_logo);  

@@ -4,11 +4,9 @@ import PropTypes from 'prop-types';
 import useAuth from '../hooks/useAuth';
 
 const GuestGuard = ({ children }) => {    
-  const { isAuthenticated} = useAuth();  
-  debugger;
+  const { isAuthenticated} = useAuth();    
   
-  if (isAuthenticated) {
-    debugger;
+  if (isAuthenticated) {    
     return <Redirect to="/app/lobby" />;
   }
   return (

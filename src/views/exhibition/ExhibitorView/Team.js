@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import {
     Grid,
     makeStyles, Typography, Button, Card, CardContent, Avatar
@@ -35,19 +35,19 @@ const Team = ({
     const classes = useStyles();
     const { user, client } = useAuth();
     const dispatch = useDispatch();
-    const orgid = localStorage.getItem('org_id')  
+    const orgid = localStorage.getItem('org_id')
 
 
-    useEffect(() => {        
+    useEffect(() => {
         const dataleaderboard = {
             log_type: "stall_tabs",
-            tab_type: 'tab_team',  
-            organizer_id: orgid           
+            tab_type: 'tab_team',
+            organizer_id: orgid
         };
         dispatch(customlog_save(dataleaderboard));
 
     }, []);
-    const handlechat = (event, user_id, first_name, email, avatar, exhibitor_id) => {
+    const handlechat = (event, user_id, first_name, email, avatar, exhibitor_id, assetsid) => {
         dispatch(closeModal());
         const data = ({
             id: user.user_id,
@@ -63,6 +63,7 @@ const Team = ({
         const dataleaderboard = {
             exhibitor_id: exhibitor_id,
             leader_type: "chat",
+            assetsid: assetsid
         };
         dispatch(lederboardsave(dataleaderboard));
 
@@ -119,10 +120,11 @@ const Team = ({
         });
 
     }
-    const handleclick = (exhibitorid) => {
+    const handleclick = (exhibitorid, assetsid) => {
         const dataleaderboard = {
             exhibitor_id: exhibitorid,
             leader_type: "videocall",
+            assetsid: assetsid
         };
         dispatch(lederboardsave(dataleaderboard));
     }
@@ -153,12 +155,12 @@ const Team = ({
                                                     startIcon={<VideoCallIcon />}
                                                     href={staff.zoom_meeting_url}
                                                     target="_blank"
-                                                    onClick={() => handleclick(staff.exhibitor_id)}
+                                                    onClick={() => handleclick(staff.exhibitor_id, staff.id)}
                                                 >
                                                     Video Call
                                                 </Button>
                                                 <Button
-                                                    onClick={(event) => handlechat(event, staff.user_id, staff.first_name, staff.email, staff.avatar, staff.exhibitor_id)}
+                                                    onClick={(event) => handlechat(event, staff.user_id, staff.first_name, staff.email, staff.avatar, staff.exhibitor_id, staff.id)}
                                                     variant="outlined"
                                                     className={classes.button}
                                                     startIcon={<ChatIcon />}

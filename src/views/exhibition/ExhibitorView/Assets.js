@@ -51,7 +51,7 @@ const Assets = ({
         const dataleaderboard = {
             exhibitor_id: exhibitor_id,
             assetsid: assetsid,
-            leader_type: "chat",
+            leader_type: "downloadresources",
         };
         dispatch(lederboardsave(dataleaderboard));
     }
