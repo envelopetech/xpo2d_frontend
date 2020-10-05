@@ -15,6 +15,7 @@ const useStyles = makeStyles(theme => ({
 const Photo = ({
     className,
     photo,
+    exhibitorid,
     ...rest
 }) => {
     const classes = useStyles();
@@ -26,8 +27,9 @@ const Photo = ({
     useEffect(() => {
         const dataleaderboard = {
             log_type: "stall_tabs",
-            tab_type: 'tab_photo',
-            organizer_id: orgid
+            tab_type: 'photo',
+            organizer_id: orgid,
+            exhibitor_id: exhibitorid
         };
         dispatch(customlog_save(dataleaderboard));
 

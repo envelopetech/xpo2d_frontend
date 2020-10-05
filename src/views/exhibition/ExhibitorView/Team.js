@@ -29,6 +29,7 @@ const useStyles = makeStyles(theme => ({
 const Team = ({
     className,
     team,
+    exhibitorid,
     ...rest
 }) => {
 
@@ -41,8 +42,9 @@ const Team = ({
     useEffect(() => {
         const dataleaderboard = {
             log_type: "stall_tabs",
-            tab_type: 'tab_team',
-            organizer_id: orgid
+            tab_type: 'team',
+            organizer_id: orgid,
+            exhibitor_id: exhibitorid
         };
         dispatch(customlog_save(dataleaderboard));
 

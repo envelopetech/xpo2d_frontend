@@ -122,35 +122,30 @@ const Results = ({
 }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const { enqueueSnackbar } = useSnackbar();
-    //const [open, setOpen] = useState(false);
+    const { enqueueSnackbar } = useSnackbar();    
     const [value, setValue] = React.useState(0);
-    const { isModalOpen } = useSelector((state) => state.exhibitor);
-    //const [fullWidth, setFullWidth] = React.useState(true);
-    //const [maxWidth, setMaxWidth] = React.useState('lg');
+    const { isModalOpen } = useSelector((state) => state.exhibitor);   
     const { user } = useAuth();
     const orgid = localStorage.getItem('org_id')
-
-
-    useEffect(() => {
-        if (value == 0) {
-            const dataleaderboard = {
-                log_type: "stall_tabs",
-                tab_type: 'tab_about',
-                organizer_id: orgid
-            };
-            dispatch(customlog_save(dataleaderboard));
-        }
-
-
-    }, []);
+    // useEffect(() => {
+    //     if (value == 0) {
+    //         const dataleaderboard = {
+    //             log_type: "stall_tabs",
+    //             tab_type: 'about',
+    //             organizer_id: orgid,
+    //             exhibitor_id: exhibitor.id
+    //         };
+    //         dispatch(customlog_save(dataleaderboard));
+    //     }
+    // }, []);
     const handleChange1 = (event, newValue) => {
         setValue(newValue);
         if (newValue === 0) {
             const dataleaderboard = {
                 log_type: "stall_tabs",
-                tab_type: 'tab_about',
-                organizer_id: orgid
+                tab_type: 'about',
+                organizer_id: orgid,
+                exhibitor_id: exhibitor.id
             };
             dispatch(customlog_save(dataleaderboard));
         }
@@ -167,7 +162,6 @@ const Results = ({
 
 
     // let backgroundimage = null
-
     // if (exhibitor.id == 17) {
     //     backgroundimage = background1
     // }
@@ -232,26 +226,26 @@ const Results = ({
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     <Grid container xs={12} sm spacing={2}>
-                        <Product product={exhibitor.product_data}></Product>
+                        <Product exhibitorid={exhibitor.id} product={exhibitor.product_data}></Product>
                     </Grid>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     <Grid container xs={12} sm spacing={2}>
-                        <Team team={exhibitor.staff_data}></Team>
+                        <Team team={exhibitor.staff_data} exhibitorid={exhibitor.id}></Team>
                     </Grid>
                 </TabPanel>
                 <TabPanel value={value} index={3}>
                     <Grid container xs={12} sm spacing={2}>
-                        <Photo photo={exhibitor.photo_data}></Photo>
+                        <Photo photo={exhibitor.photo_data} exhibitorid={exhibitor.id}></Photo>
                     </Grid>
                 </TabPanel>
                 <TabPanel value={value} index={4}>
                     <Grid container xs={12} sm spacing={2}>
-                        <Video video={exhibitor.video_data}></Video>
+                        <Video video={exhibitor.video_data} exhibitorid={exhibitor.id}></Video>
                     </Grid>
                 </TabPanel>
                 <TabPanel value={value} index={5}>
-                    <Assets assets={exhibitor.assets_data}></Assets>
+                    <Assets assets={exhibitor.assets_data} exhibitorid={exhibitor.id}></Assets>
                 </TabPanel>
                 <TabPanel value={value} index={6}>
                     <Formik

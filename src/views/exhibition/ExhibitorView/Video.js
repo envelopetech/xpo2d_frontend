@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import {
     Grid,
     makeStyles
@@ -19,6 +19,7 @@ const useStyles = makeStyles(theme => ({
 const Video = ({
     className,
     video,
+    exhibitorid,
     ...rest
 }) => {
     const classes = useStyles();
@@ -29,24 +30,26 @@ const Video = ({
     useEffect(() => {
         const dataleaderboard = {
             log_type: "stall_tabs",
-            tab_type: 'tab_video',
-            organizer_id: orgid
+            tab_type: 'video',
+            organizer_id: orgid,
+            exhibitor_id: exhibitorid
         };
         dispatch(customlog_save(dataleaderboard));
 
-    }, []);   
+    }, []);
 
 
-    const customloghandler = (id) => {       
+    const customloghandler = (id) => {
         track.event("Play Video", {
             "event_category": "Video",
             "event_label": user.email
         });
 
         const dataleaderboard = {
-            log_type: "playvideo",            
+            log_type: "playvideo",
             organizer_id: orgid,
-            visited_id: id         
+            visited_id: id,
+            exhibitor_id: exhibitorid
         };
         dispatch(customlog_save(dataleaderboard));
     }
@@ -64,8 +67,8 @@ const Video = ({
                             width="100%" height="240"
                             playing='true'
                             volume='6'
-                            loop='true' 
-                            onStart = {() => customloghandler(videodata.id)}/>
+                            loop='true'
+                            onStart={() => customloghandler(videodata.id)} />
                     </Grid>
                 );
             })}

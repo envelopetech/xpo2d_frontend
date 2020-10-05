@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
 const Product = ({
     className,
     product,
+    exhibitorid,
     ...rest
 }) => {
 
@@ -31,14 +32,15 @@ const Product = ({
     useEffect(() => {
         const dataleaderboard = {
             log_type: "stall_tabs",
-            tab_type: 'tab_product',
-            organizer_id: orgid
+            tab_type: 'product',
+            organizer_id: orgid,
+            exhibitor_id: exhibitorid
         };
         dispatch(customlog_save(dataleaderboard));
 
     }, []);
 
-    const handleclick = (id) => {
+    const handleclick = (id, name) => {
         track.event("Download Product Brochure", {
             "event_category": "Product Brochure",
             "event_label": user.email
@@ -47,7 +49,9 @@ const Product = ({
         const dataleaderboard = {
             log_type: "productbrochure",
             organizer_id: orgid,
-            visited_id: id
+            visited_id: id,
+            exhibitor_id: exhibitorid,
+            tab_type: name,
         };
         dispatch(customlog_save(dataleaderboard));
     }
@@ -79,7 +83,7 @@ const Product = ({
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Link href={pro.product_brochure} target="_blank" onClick={() => handleclick(pro.id)}>
+                                <Link href={pro.product_brochure} target="_blank" onClick={() => handleclick(pro.id, pro.name)}>
                                     View Brochure
                                 </Link>
                             </CardActions>

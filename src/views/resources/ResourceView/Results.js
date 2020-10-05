@@ -42,7 +42,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { deletebriefcase } from 'src/slices/visitor'
-import {lederboardsave} from 'src/slices/visitor'
+import { lederboardsave } from 'src/slices/visitor'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -109,7 +109,7 @@ const Results = ({
 
 
     const { user } = useAuth();
-    const handleclick = (event, type, exhibitor_id, assetsid) => {
+    const handleclick = (event, type, exhibitor_id, assetsid, typetitle) => {
         track.event("Download Company Brochure ", {
             "event_category": "Company Brochure",
             "event_label": user.email
@@ -119,6 +119,7 @@ const Results = ({
             exhibitor_id: exhibitor_id,
             assetsid: assetsid,
             leader_type: "downloadresources",
+            typetitle: typetitle
         };
         dispatch(lederboardsave(dataleaderboard));
     }
@@ -278,7 +279,7 @@ const Results = ({
                                                 <TableCell>PDF</TableCell>
                                                 <TableCell numeric component="a" target="_blank" href={exhibitor.assets_url}
                                                     className={classes.link}
-                                                    onClick={(event) => handleclick(event, exhibitor.typename, exhibitor.exhibitor_id, exhibitor.id)}>View</TableCell>
+                                                    onClick={(event) => handleclick(event, exhibitor.typename, exhibitor.exhibitor_id, exhibitor.id, exhibitor.name)}>View</TableCell>
 
                                             </TableRow>
                                         </>

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import {
     makeStyles
     , Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
@@ -23,6 +23,7 @@ const useStyles = makeStyles(theme => ({
 const Assets = ({
     className,
     assets,
+    exhibitorid,
     ...rest
 }) => {
 
@@ -35,14 +36,15 @@ const Assets = ({
     useEffect(() => {
         const dataleaderboard = {
             log_type: "stall_tabs",
-            tab_type: 'tab_assets',
-            organizer_id: orgid
+            tab_type: 'assets',
+            organizer_id: orgid,
+            exhibitor_id: exhibitorid
         };
         dispatch(customlog_save(dataleaderboard));
 
     }, []);
 
-    const handleclick = (exhibitor_id, assetsid) => {
+    const handleclick = (exhibitor_id, assetsid, typetitle) => {
         track.event("Download Assets", {
             "event_category": "Assets",
             "event_label": user.email
@@ -52,6 +54,7 @@ const Assets = ({
             exhibitor_id: exhibitor_id,
             assetsid: assetsid,
             leader_type: "downloadresources",
+            typetitle: typetitle
         };
         dispatch(lederboardsave(dataleaderboard));
     }
@@ -78,7 +81,7 @@ const Assets = ({
                                     </TableCell>
                                     <TableCell align="right" numeric component="a" target="_blank" href={asset.assets_url}
                                         className={classes.link}
-                                        onClick={() => handleclick(asset.exhibitor_id, asset.id)}
+                                        onClick={() => handleclick(asset.exhibitor_id, asset.id, asset.name)}
                                     >Download</TableCell>
                                 </TableRow>
                             );
