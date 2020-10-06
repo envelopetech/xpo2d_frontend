@@ -149,26 +149,33 @@ const Team = ({
                                             <Grid item xs>
                                                 <Typography variant="h6" >{staff.name}</Typography>
                                                 <Typography variant="subtitle1">{staff.designation} at {staff.exhibitor_name}</Typography>
-                                                {/* <Typography variant="subtitle1" gutterBottom>Meeting ID: {staff.zoom_meeting_id}</Typography> */}
-                                                <Button
-                                                    variant="contained"
-                                                    color="secondary"
-                                                    className={classes.button}
-                                                    startIcon={<VideoCallIcon />}
-                                                    href={staff.zoom_meeting_url}
-                                                    target="_blank"
-                                                    onClick={() => handleclick(staff.exhibitor_id, staff.id)}
-                                                >
-                                                    Video Call
-                                                </Button>
-                                                <Button
-                                                    onClick={(event) => handlechat(event, staff.user_id, staff.first_name, staff.email, staff.avatar, staff.exhibitor_id, staff.id)}
-                                                    variant="outlined"
-                                                    className={classes.button}
-                                                    startIcon={<ChatIcon />}
-                                                >
-                                                    Chat
-                                                </Button>
+                                                {
+                                                    (staff.allowvideocall) && (
+                                                        <Button
+                                                            variant="contained"
+                                                            color="secondary"
+                                                            className={classes.button}
+                                                            startIcon={<VideoCallIcon />}
+                                                            href={staff.zoom_meeting_url}
+                                                            target="_blank"
+                                                            onClick={() => handleclick(staff.exhibitor_id, staff.id)}
+                                                        >
+                                                            Video Call
+                                                        </Button>
+                                                    )
+                                                }
+                                                {
+                                                    (staff.allowchat) && (
+                                                        <Button
+                                                            onClick={(event) => handlechat(event, staff.user_id, staff.first_name, staff.email, staff.avatar, staff.exhibitor_id, staff.id)}
+                                                            variant="outlined"
+                                                            className={classes.button}
+                                                            startIcon={<ChatIcon />}
+                                                        >
+                                                            Chat
+                                                        </Button>
+                                                    )
+                                                }
                                             </Grid>
                                         </Grid>
                                     </Grid>

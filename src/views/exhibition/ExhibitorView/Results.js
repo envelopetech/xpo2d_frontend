@@ -149,6 +149,15 @@ const Results = ({
             };
             dispatch(customlog_save(dataleaderboard));
         }
+        else if (newValue === 6) {
+            const dataleaderboard = {
+                log_type: "stall_tabs",
+                tab_type: 'contact',
+                organizer_id: orgid,
+                exhibitor_id: exhibitor.id
+            };
+            dispatch(customlog_save(dataleaderboard));
+        }
     };
 
     const handleClickOpen = () => {
