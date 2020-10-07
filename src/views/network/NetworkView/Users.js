@@ -293,16 +293,16 @@ const Users = ({
                                 <Divider />
                                 {paginatedExhibitors.map((exhibitor, index) => {
                                     let status_briefcase = exhibitor.briefcase_status
-                                    let designation = ""
-                                    if (exhibitor.company !== null && exhibitor.designation !== null) {
-                                        designation = exhibitor.designation + " at " + exhibitor.company
-                                    }
-                                    else if (exhibitor.company === null && exhibitor.designation !== null) {
-                                        designation = exhibitor.designation
-                                    }
-                                    else if (exhibitor.company !== null && exhibitor.designation === null) {
-                                        designation = exhibitor.company
-                                    }
+                                    let designation = exhibitor.designation
+                                    // if (exhibitor.company !== null && exhibitor.designation !== null && exhibitor.company !== '' && exhibitor.designation !== '') {
+                                    //     designation = exhibitor.designation + " " + exhibitor.company
+                                    // }
+                                    // else if (exhibitor.company === null && exhibitor.designation !== null) {
+                                    //     designation = exhibitor.designation
+                                    // }
+                                    // else if (exhibitor.company !== null && exhibitor.designation === null) {
+                                    //     designation = exhibitor.company
+                                    // }
                                     return (
                                         <>
                                             <LazyLoad placeholder="Loading...">
