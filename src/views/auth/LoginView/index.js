@@ -115,14 +115,14 @@ const LoginView = () => {
           <Box my={3}>
               <Divider />
             </Box>
-            <Link
+            {/* <Link
               component={RouterLink}
               to="/register"
               variant="body2"
               color="textSecondary"
             >
               Create new account
-            </Link>
+            </Link> */}
         </CardContent>
       </Card>
     </Container>
