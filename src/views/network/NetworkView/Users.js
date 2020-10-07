@@ -294,11 +294,14 @@ const Users = ({
                                 {paginatedExhibitors.map((exhibitor, index) => {
                                     let status_briefcase = exhibitor.briefcase_status
                                     let designation = ""
-                                    if (exhibitor.company !== null) {
+                                    if (exhibitor.company !== null && exhibitor.designation !== null) {
                                         designation = exhibitor.designation + " at " + exhibitor.company
                                     }
-                                    else {
+                                    else if (exhibitor.company === null && exhibitor.designation !== null) {
                                         designation = exhibitor.designation
+                                    }
+                                    else if (exhibitor.company !== null && exhibitor.designation === null) {
+                                        designation = exhibitor.company
                                     }
                                     return (
                                         <>
