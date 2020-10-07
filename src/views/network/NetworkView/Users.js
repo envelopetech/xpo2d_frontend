@@ -38,7 +38,8 @@ import { tabs, sortOptions, applyPagination, applySort, applyFilters } from 'src
 import Talk from "talkjs";
 import useAuth from 'src/hooks/useAuth';
 import ChatIcon from '@material-ui/icons/Chat';
-import { briefcasesave } from 'src/slices/event'
+import { briefcasesave } from 'src/slices/event';
+import LazyLoad from "react-lazyload";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -160,8 +161,8 @@ const Users = ({
     }
     const handlemessage = (event, user_id, first_name, email, avatar) => {
         setisOpen(false);
-        
-        
+
+
 
         window._demo = {};
         Talk.ready.then(() => {
@@ -209,7 +210,7 @@ const Users = ({
             });
 
 
-            
+
 
             me.current_user_id = user_id;
             me.current_user_name = first_name;
@@ -228,7 +229,7 @@ const Users = ({
     const paginatedExhibitors = applyPagination(sortedExhibitors, page, limit);
     const selectedSomeExhibitors = selectedExhibitors.length > 0 && selectedExhibitors.length < exhibitors.length;
     const selectedAllExhibitors = selectedExhibitors.length === exhibitors.length;
-    
+
     return (
         <>
             <Tooltip title="Chat">
@@ -293,16 +294,14 @@ const Users = ({
                                 {paginatedExhibitors.map((exhibitor, index) => {
                                     let status_briefcase = exhibitor.briefcase_status
                                     let designation = ""
-                                    if(exhibitor.company !== null)
-                                    {
-                                        designation = exhibitor.designation + " at " +  exhibitor.company 
+                                    if (exhibitor.company !== null) {
+                                        designation = exhibitor.designation + " at " + exhibitor.company
                                     }
-                                    else
-                                    {
+                                    else {
                                         designation = exhibitor.designation
                                     }
                                     return (
-                                        <>
+                                        <> <LazyLoad placeholder="Loading...">
                                             <ListItem ContainerComponent="div">
                                                 <ListItemAvatar>
                                                     <Avatar className={classes.avatar_small} src={exhibitor.avatar}>
@@ -319,6 +318,7 @@ const Users = ({
                                                     </Button></Box> */}
                                                 </ListItemSecondaryAction>
                                             </ListItem>
+                                        </LazyLoad>
                                             <Divider />
                                         </>
                                     );
