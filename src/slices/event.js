@@ -22,7 +22,6 @@ const slice = createSlice({
         }      
     }
 });
-
 export const reducer = slice.reducer;
 
 export const geteventexhibitorstaff = (event_id) => async (dispatch) => {

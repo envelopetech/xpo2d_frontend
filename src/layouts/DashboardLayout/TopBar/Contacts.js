@@ -70,17 +70,14 @@ const Contacts = () => {
   const [isOpen, setOpen] = useState(false);
   const [messengerdata, setmessengerdata] = useState([]);
   const { user, client } = useAuth();
-
   const [messagecount, setmessagecount] = useState(0);
 
   const handleOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
-
   useEffect(() => {
     const socket = socketIOClient(process.env.REACT_APP_SOCKET_END_POINT, { 'transports': ['websocket', 'polling'] });
     console.log("11111111111111111111111")
@@ -90,8 +87,7 @@ const Contacts = () => {
         console.log("3333333333333333333333")
         setmessengerdata(data)
         let message_count = parseInt(messagecount, 10) + 1
-        setmessagecount(parseInt(message_count))
-
+        setmessagecount(parseInt(message_count));
       }
     })
     return () => {
@@ -182,7 +178,6 @@ const Contacts = () => {
               </Box>
             </>
           )}
-
       </Popover>
     </>
   );

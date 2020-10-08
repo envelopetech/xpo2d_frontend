@@ -157,13 +157,10 @@ const Users = ({
             type: "visitingcard"
         }
         dispatch(briefcasesave(data))
-        //setsharedisabled(true)
+        setsharedisabled(true)
     }
     const handlemessage = (event, user_id, first_name, email, avatar) => {
         setisOpen(false);
-
-
-
         window._demo = {};
         Talk.ready.then(() => {
 
@@ -292,7 +289,7 @@ const Users = ({
                             <PerfectScrollbar>
                                 <Divider />
                                 {paginatedExhibitors.map((exhibitor, index) => {
-                                    let status_briefcase = exhibitor.briefcase_status
+                                    let status_briefcase = exhibitor.briefcase_status                                    
                                     let designation = exhibitor.designation
                                     // if (exhibitor.company !== null && exhibitor.designation !== null && exhibitor.company !== '' && exhibitor.designation !== '') {
                                     //     designation = exhibitor.designation + " " + exhibitor.company
@@ -316,10 +313,10 @@ const Users = ({
                                                         <Button onClick={(event) => handlemessage(event, exhibitor.id, exhibitor.name, exhibitor.email, exhibitor.avatar)}>
                                                             Message
                                                     </Button>
-                                                        {/* <Box ml={1}>
+                                                        <Box ml={1}>
                                                         <Button onClick={() => handlesharevisitongcard(exhibitor.id, exhibitor.user_type, index)} disabled={status_briefcase}>
                                                             Share
-                                                    </Button></Box> */}
+                                                    </Button></Box>
                                                     </ListItemSecondaryAction>
                                                 </ListItem>
                                             </LazyLoad>
