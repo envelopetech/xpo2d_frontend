@@ -5,9 +5,11 @@ import {
     , Link,
 
 } from '@material-ui/core';
+
 import PropTypes from 'prop-types';
 import { customlog_save } from 'src/slices/visitor'
 import { useDispatch } from 'src/store';
+import ModalImage from "react-modal-image"
 
 const useStyles = makeStyles(theme => ({
     root: { maxWidth: 345, },
@@ -45,15 +47,23 @@ const Photo = ({
                 return (
                     <Grid item xs={4}>
                         <Card className={classes.root}>
-                            <CardActionArea>
-                                <CardMedia
+                            <CardActionArea >
+                                {/* <CardMedia
                                     component="img"
                                     alt={photodata.name}
                                     height="240"
                                     width="240"
                                     image={photodata.assets_url}
                                     title={photodata.name}
+                                /> */}
+                                <ModalImage
+                                    small={photodata.assets_url}
+                                    large={photodata.assets_url}
+                                    alt={photodata.name}
+                                    hideDownload='true'
+                                    hideZoom='true'
                                 />
+                                
                             </CardActionArea>
                         </Card>
                     </Grid>

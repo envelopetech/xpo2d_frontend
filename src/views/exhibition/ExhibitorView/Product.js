@@ -10,6 +10,9 @@ import track from 'src/utils/analytics';
 import useAuth from 'src/hooks/useAuth';
 import { customlog_save } from 'src/slices/visitor'
 import { useDispatch } from 'src/store';
+import BusinessCenterOutlinedIcon from '@material-ui/icons/BusinessCenterOutlined';
+import { IconButton,Tooltip } from '@material-ui/core'
+import { briefcasesave } from 'src/slices/event'
 
 const useStyles = makeStyles(theme => ({
     root: { maxWidth: 345, },
@@ -46,6 +49,8 @@ const Product = ({
             "event_label": user.email
         });
 
+    
+
         const dataleaderboard = {
             log_type: "productbrochure",
             organizer_id: orgid,
@@ -57,6 +62,18 @@ const Product = ({
     }
     if (product === null || product.length == 0) {
         return <div>No Products Aavailable</div>;
+    }
+
+    const briefcaseClick = (productid) => {
+
+        const data = {
+           
+            from_form: "exhibitor_product", //exhibitor product   exhibitor asset
+            table_primary_id: productid,//product id  assetid
+            type: "product" //product assets
+        }
+        dispatch(briefcasesave(data))
+        //setsharedisabled(true)
     }
 
     return (
@@ -85,7 +102,13 @@ const Product = ({
                             <CardActions>
                                 <Link href={pro.product_brochure} target="_blank" onClick={() => handleclick(pro.id, pro.name)}>
                                     View Brochure
+                                    
                                 </Link>
+                                <Tooltip title='Briefcase'>
+                                <IconButton onClick={() => briefcaseClick(pro.id)}  >
+                                <BusinessCenterOutlinedIcon />
+                                </IconButton>
+                                </Tooltip>
                             </CardActions>
                         </Card>
                     </Grid>

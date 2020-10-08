@@ -52,6 +52,10 @@ export const lederboardsave = (data) => async () => {
     const response = await axios.post('/api/leadertype/save', data);    
 };
 
+// export const briefcasesave = (data) => async () => {
+//     const response = await axios.post('/api/briefcase/save', data);    
+// };
+
 export const customlog_save = (data) => async () => {
     const response = await axios.post('/api/customlog/save', data);    
 };

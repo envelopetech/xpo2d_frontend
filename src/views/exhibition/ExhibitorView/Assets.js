@@ -9,6 +9,9 @@ import useAuth from 'src/hooks/useAuth';
 import track from 'src/utils/analytics';
 import { lederboardsave, customlog_save } from 'src/slices/visitor'
 import { useDispatch } from 'src/store';
+import BusinessCenterOutlinedIcon from '@material-ui/icons/BusinessCenterOutlined';
+import { IconButton,Tooltip } from '@material-ui/core'
+import { briefcasesave } from 'src/slices/event'
 
 const useStyles = makeStyles(theme => ({
     root: {},
@@ -50,6 +53,8 @@ const Assets = ({
             "event_label": user.email
         });
 
+        
+
         const dataleaderboard = {
             exhibitor_id: exhibitor_id,
             assetsid: assetsid,
@@ -62,6 +67,18 @@ const Assets = ({
         return <div>No Assets Aavailable</div>;
     }
 
+    const briefcaseClick = (assetid) => {
+
+        const data = {
+           
+            from_form: "exhibitor_asset", //exhibitor product   exhibitor asset
+            table_primary_id: assetid,//product id  assetid
+            type: "asset" //product assets
+        }
+        dispatch(briefcasesave(data))
+        //setsharedisabled(true)
+    }
+
     return (
         <React.Fragment>
             <TableContainer component={Paper}>
@@ -70,6 +87,7 @@ const Assets = ({
                         <TableRow>
                             <TableCell>File Name</TableCell>
                             <TableCell align="right">Link</TableCell>
+                            <TableCell></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -82,7 +100,17 @@ const Assets = ({
                                     <TableCell align="right" numeric component="a" target="_blank" href={asset.assets_url}
                                         className={classes.link}
                                         onClick={() => handleclick(asset.exhibitor_id, asset.id, asset.name)}
-                                    >Download</TableCell>
+                                    >Download
+                                   
+                                    </TableCell>
+                                    <TableCell>
+                                    <Tooltip title='Briefcase'>
+                                <IconButton  onClick={() => briefcaseClick(asset.id)}>
+                                <BusinessCenterOutlinedIcon />
+                                </IconButton>
+                                </Tooltip>
+                                </TableCell>
+                                    
                                 </TableRow>
                             );
                         })}

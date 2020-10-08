@@ -16,7 +16,13 @@ const slice = createSlice({
         briefcasesave(state, action) {             
             const index  = action.payload;            
             let data = state.exhibitorstaff;
-            data[index].briefcase_status = true;
+            data= new function(){
+                this[index]={
+                    briefcase_status : 'true'
+                }
+            }
+           
+            //data[index].briefcase_status = true;
             state.exhibitorstaff = data
 
         }      

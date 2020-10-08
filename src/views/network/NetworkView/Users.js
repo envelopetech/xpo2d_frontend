@@ -150,10 +150,10 @@ const Users = ({
 
         const data = {
             index: index,
-            from_form: "sharecard",
-            table_primary_id: user_id,
+            from_form: "sharecard", //exhibitor product   exhibitor asset
+            table_primary_id: user_id,//product id  assetid
             user_type: user_type,
-            type: "visitingcard"
+            type: "visitingcard" //product assets
         }
         dispatch(briefcasesave(data))
         //setsharedisabled(true)
@@ -313,10 +313,10 @@ const Users = ({
                                                     <Button onClick={(event) => handlemessage(event, exhibitor.id, exhibitor.name, exhibitor.email, exhibitor.avatar)}>
                                                         Message
                                                     </Button>
-                                                    {/* <Box ml={1}>
+                                                      <Box ml={1}>
                                                         <Button onClick={() => handlesharevisitongcard(exhibitor.id, exhibitor.user_type, index)} disabled={status_briefcase}>
                                                             Share
-                                                    </Button></Box> */}
+                                                    </Button></Box>  
                                                 </ListItemSecondaryAction>
                                             </ListItem>
                                             <Divider />
