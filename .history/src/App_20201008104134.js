@@ -21,7 +21,6 @@ import useSettings from 'src/hooks/useSettings';
 import { createTheme } from 'src/theme';
 import routes, { renderRoutes } from 'src/routes';
 import ReactGA from 'react-ga';
-import Session from './Session'
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 const history = createBrowserHistory();
@@ -44,10 +43,6 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <React.StrictMode>
-      <Session></Session>
-      </React.StrictMode>
-      
        <BrowserRouter>
       <StylesProvider jss={jss}>
         <MuiPickersUtilsProvider utils={MomentUtils}>

@@ -44,10 +44,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <React.StrictMode>
       <Session></Session>
-      </React.StrictMode>
-      
        <BrowserRouter>
       <StylesProvider jss={jss}>
         <MuiPickersUtilsProvider utils={MomentUtils}>
