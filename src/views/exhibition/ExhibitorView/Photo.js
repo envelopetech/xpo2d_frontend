@@ -1,4 +1,5 @@
 import React from 'react';
+import ModalImage from 'react-modal-image'
 import {
     Grid,
     makeStyles, Card, CardActionArea, CardMedia
@@ -29,14 +30,20 @@ const Photo = ({
                     <Grid item xs={4}>
                         <Card className={classes.root}>
                             <CardActionArea>
-                                <CardMedia
+                                {/* <CardMedia
                                     component="img"
                                     alt={photodata.name}
                                     height="240"
                                     width="240"
                                     image={photodata.assets_url}
                                     title={photodata.name}
+                                /> */}
+                                <ModalImage 
+                                small={photodata.assets_url}
+                                large={photodata.assets_url}
+                                alt={photodata.name}
                                 />
+
                             </CardActionArea>
                         </Card>
                     </Grid>
