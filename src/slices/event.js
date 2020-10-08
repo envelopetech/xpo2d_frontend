@@ -5,7 +5,7 @@ const initialState = {
     exhibitorstaff: [],   
 };
 const slice = createSlice({
-    name: 'exhibitor',
+    name: 'event',
     initialState,
     reducers: {
         geteventexhibitorstaff(state, action) {

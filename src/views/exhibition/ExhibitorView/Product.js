@@ -13,9 +13,20 @@ import { useDispatch } from 'src/store';
 import BusinessCenterOutlinedIcon from '@material-ui/icons/BusinessCenterOutlined';
 import { IconButton,Tooltip } from '@material-ui/core'
 import { briefcasesave } from 'src/slices/event'
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
 const useStyles = makeStyles(theme => ({
-    root: { maxWidth: 345, },
+    root: {width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },},
+    snackbar: {
+        bottom: "45px"
+    }
 }));
 
 const Product = ({
@@ -30,7 +41,7 @@ const Product = ({
     const dispatch = useDispatch();
 
     const orgid = localStorage.getItem('org_id')
-
+    const [open, setOpen] = React.useState(false);
 
     useEffect(() => {
         const dataleaderboard = {
@@ -42,6 +53,14 @@ const Product = ({
         dispatch(customlog_save(dataleaderboard));
 
     }, []);
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpen(false);
+      };
 
     const handleclick = (id, name) => {
         track.event("Download Product Brochure", {
@@ -70,14 +89,22 @@ const Product = ({
            
             from_form: "exhibitor_product", //exhibitor product   exhibitor asset
             table_primary_id: productid,//product id  assetid
-            type: "product" //product assets
+            type: "product" ,
+            organizer_id: orgid
         }
         dispatch(briefcasesave(data))
-        //setsharedisabled(true)
+        setOpen(true);
     }
 
     return (
         <React.Fragment>
+            <Snackbar open={open}  className={classes.snackbar}
+            autoHideDuration={6000} 
+            onClose={handleClose}>
+                <Alert onClose={handleClose} severity="success">
+                Data saved in your briefcase
+                </Alert>
+            </Snackbar>
             {product.map((pro) => {
                 return (
                     <Grid item xs={6}>

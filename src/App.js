@@ -46,12 +46,9 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-<<<<<<< HEAD
-=======
       <React.StrictMode>
       <Session></Session>
       </React.StrictMode>
->>>>>>> b1f980f9d2ba0aee9d0155a86427b7d0649ef4a5
       
        <BrowserRouter>
       <StylesProvider jss={jss}>
