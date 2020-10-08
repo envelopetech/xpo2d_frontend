@@ -22,6 +22,7 @@ import useSettings from 'src/hooks/useSettings';
 import { createTheme } from 'src/theme';
 import routes, { renderRoutes } from 'src/routes';
 import ReactGA from 'react-ga';
+import Session from './Session'
 
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -45,6 +46,12 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+<<<<<<< HEAD
+=======
+      <React.StrictMode>
+      <Session></Session>
+      </React.StrictMode>
+>>>>>>> b1f980f9d2ba0aee9d0155a86427b7d0649ef4a5
       
        <BrowserRouter>
       <StylesProvider jss={jss}>

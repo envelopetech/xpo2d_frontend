@@ -13,6 +13,7 @@ import {
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import background from 'src/assets/images/solar-panel.jpg';
+import ReactHtmlParser from 'react-html-parser';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -60,8 +61,8 @@ const Results = ({
                                             <Typography gutterBottom variant="h5" component="h2">
                                                 {exhibitor.name}
                                             </Typography>
-                                            <Typography variant="body2" color="textSecondary" component="p">
-                                                {exhibitor.description}
+                                            <Typography variant="body2" color="textSecondary" component="p">                                                
+                                                {ReactHtmlParser(exhibitor.description)}
                                             </Typography>
                                         </CardContent>
                                     </CardActionArea>

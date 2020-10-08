@@ -39,6 +39,7 @@ import Talk from "talkjs";
 import useAuth from 'src/hooks/useAuth';
 import ChatIcon from '@material-ui/icons/Chat';
 import { briefcasesave } from 'src/slices/event'
+import LazyLoad from "react-lazyload";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -160,8 +161,8 @@ const Users = ({
     }
     const handlemessage = (event, user_id, first_name, email, avatar) => {
         setisOpen(false);
-        
-        
+
+
 
         window._demo = {};
         Talk.ready.then(() => {
@@ -209,7 +210,7 @@ const Users = ({
             });
 
 
-            
+
 
             me.current_user_id = user_id;
             me.current_user_name = first_name;
@@ -228,7 +229,7 @@ const Users = ({
     const paginatedExhibitors = applyPagination(sortedExhibitors, page, limit);
     const selectedSomeExhibitors = selectedExhibitors.length > 0 && selectedExhibitors.length < exhibitors.length;
     const selectedAllExhibitors = selectedExhibitors.length === exhibitors.length;
-    
+
     return (
         <>
             <Tooltip title="Chat">
@@ -292,33 +293,45 @@ const Users = ({
                                 <Divider />
                                 {paginatedExhibitors.map((exhibitor, index) => {
                                     let status_briefcase = exhibitor.briefcase_status
-                                    let designation = ""
-                                    if(exhibitor.company !== null)
-                                    {
-                                        designation = exhibitor.designation + " at " +  exhibitor.company 
-                                    }
-                                    else
-                                    {
-                                        designation = exhibitor.designation
-                                    }
+                                    let designation = exhibitor.designation
+                                    // if (exhibitor.company !== null && exhibitor.designation !== null && exhibitor.company !== '' && exhibitor.designation !== '') {
+                                    //     designation = exhibitor.designation + " " + exhibitor.company
+                                    // }
+                                    // else if (exhibitor.company === null && exhibitor.designation !== null) {
+                                    //     designation = exhibitor.designation
+                                    // }
+                                    // else if (exhibitor.company !== null && exhibitor.designation === null) {
+                                    //     designation = exhibitor.company
+                                    // }
                                     return (
                                         <>
-                                            <ListItem ContainerComponent="div">
-                                                <ListItemAvatar>
-                                                    <Avatar className={classes.avatar_small} src={exhibitor.avatar}>
-                                                    </Avatar>
-                                                </ListItemAvatar>
-                                                <ListItemText primary={exhibitor.name} secondary={designation} />
-                                                <ListItemSecondaryAction className="user-action">
-                                                    <Button onClick={(event) => handlemessage(event, exhibitor.id, exhibitor.name, exhibitor.email, exhibitor.avatar)}>
-                                                        Message
+                                            <LazyLoad placeholder="Loading...">
+                                                <ListItem ContainerComponent="div">
+                                                    <ListItemAvatar>
+                                                        <Avatar className={classes.avatar_small} src={exhibitor.avatar}>
+                                                        </Avatar>
+                                                    </ListItemAvatar>
+                                                    <ListItemText primary={exhibitor.name} secondary={designation} />
+                                                    <ListItemSecondaryAction className="user-action">
+                                                        <Button onClick={(event) => handlemessage(event, exhibitor.id, exhibitor.name, exhibitor.email, exhibitor.avatar)}>
+                                                            Message
                                                     </Button>
+<<<<<<< HEAD
                                                       <Box ml={1}>
                                                         <Button onClick={() => handlesharevisitongcard(exhibitor.id, exhibitor.user_type, index)} disabled={status_briefcase}>
                                                             Share
                                                     </Button></Box>  
                                                 </ListItemSecondaryAction>
                                             </ListItem>
+=======
+                                                        {/* <Box ml={1}>
+                                                        <Button onClick={() => handlesharevisitongcard(exhibitor.id, exhibitor.user_type, index)} disabled={status_briefcase}>
+                                                            Share
+                                                    </Button></Box> */}
+                                                    </ListItemSecondaryAction>
+                                                </ListItem>
+                                            </LazyLoad>
+>>>>>>> b1f980f9d2ba0aee9d0155a86427b7d0649ef4a5
                                             <Divider />
                                         </>
                                     );

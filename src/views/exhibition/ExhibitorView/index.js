@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import { withRouter } from "react-router";
-import { getexhibitor, localstorageexhibitor } from 'src/slices/exhibitor';
+import { getexhibitor } from 'src/slices/exhibitor';
 import Skeleton from 'src/components/Skeletonexhibitor';
 import Results from './Results';
 import { useDispatch, useSelector } from 'src/store';
-import background from '../../../assets/images/exhibitor-bg.jpg';
-import Grid from '@material-ui/core/Grid';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { userpage_save } from 'src/slices/notification'
 import useAuth from 'src/hooks/useAuth';

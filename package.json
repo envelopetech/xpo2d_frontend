@@ -94,6 +94,7 @@
     "react-html-parser": "^2.0.2",
     "react-iframe": "^1.8.0",
     "react-image-mapper": "0.0.15",
+    "react-lazyload": "^3.0.0",
     "react-markdown": "^4.3.1",
     "react-modal-image": "^2.5.0",
     "react-perfect-scrollbar": "^1.5.8",
@@ -105,8 +106,11 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
+<<<<<<< HEAD
     "react-shepherd": "^3.3.0",
     "reactour": "^1.18.0",
+=======
+>>>>>>> b1f980f9d2ba0aee9d0155a86427b7d0649ef4a5
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-form": "^8.3.6",
