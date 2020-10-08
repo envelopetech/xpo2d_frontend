@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     Grid,
     makeStyles, Typography, Button, Card, CardContent, Avatar
@@ -13,7 +13,7 @@ import {
     closeModal
 } from 'src/slices/exhibitor';
 import track from 'src/utils/analytics';
-import { lederboardsave } from 'src/slices/visitor'
+import { lederboardsave, customlog_save } from 'src/slices/visitor'
 
 const useStyles = makeStyles(theme => ({
     root: {},
@@ -29,13 +29,27 @@ const useStyles = makeStyles(theme => ({
 const Team = ({
     className,
     team,
+    exhibitorid,
     ...rest
 }) => {
 
     const classes = useStyles();
     const { user, client } = useAuth();
     const dispatch = useDispatch();
-    const handlechat = (event, user_id, first_name, email, avatar, exhibitor_id) => {
+    const orgid = localStorage.getItem('org_id')
+
+
+    useEffect(() => {
+        const dataleaderboard = {
+            log_type: "stall_tabs",
+            tab_type: 'team',
+            organizer_id: orgid,
+            exhibitor_id: exhibitorid
+        };
+        dispatch(customlog_save(dataleaderboard));
+
+    }, []);
+    const handlechat = (event, user_id, first_name, email, avatar, exhibitor_id, assetsid) => {
         dispatch(closeModal());
         const data = ({
             id: user.user_id,
@@ -51,6 +65,7 @@ const Team = ({
         const dataleaderboard = {
             exhibitor_id: exhibitor_id,
             leader_type: "chat",
+            assetsid: assetsid
         };
         dispatch(lederboardsave(dataleaderboard));
 
@@ -107,10 +122,11 @@ const Team = ({
         });
 
     }
-    const handleclick = (exhibitorid) => {
+    const handleclick = (exhibitorid, assetsid) => {
         const dataleaderboard = {
             exhibitor_id: exhibitorid,
             leader_type: "videocall",
+            assetsid: assetsid
         };
         dispatch(lederboardsave(dataleaderboard));
     }
@@ -133,26 +149,33 @@ const Team = ({
                                             <Grid item xs>
                                                 <Typography variant="h6" >{staff.name}</Typography>
                                                 <Typography variant="subtitle1">{staff.designation} at {staff.exhibitor_name}</Typography>
-                                                {/* <Typography variant="subtitle1" gutterBottom>Meeting ID: {staff.zoom_meeting_id}</Typography> */}
-                                                <Button
-                                                    variant="contained"
-                                                    color="secondary"
-                                                    className={classes.button}
-                                                    startIcon={<VideoCallIcon />}
-                                                    href={staff.zoom_meeting_url}
-                                                    target="_blank"
-                                                    onClick={() => handleclick(staff.exhibitor_id)}
-                                                >
-                                                    Video Call
-                                                </Button>
-                                                <Button
-                                                    onClick={(event) => handlechat(event, staff.user_id, staff.first_name, staff.email, staff.avatar, staff.exhibitor_id)}
-                                                    variant="outlined"
-                                                    className={classes.button}
-                                                    startIcon={<ChatIcon />}
-                                                >
-                                                    Chat
-                                                </Button>
+                                                {
+                                                    (staff.allowvideocall) && (
+                                                        <Button
+                                                            variant="contained"
+                                                            color="secondary"
+                                                            className={classes.button}
+                                                            startIcon={<VideoCallIcon />}
+                                                            href={staff.zoom_meeting_url}
+                                                            target="_blank"
+                                                            onClick={() => handleclick(staff.exhibitor_id, staff.id)}
+                                                        >
+                                                            Video Call
+                                                        </Button>
+                                                    )
+                                                }
+                                                {
+                                                    (staff.allowchat) && (
+                                                        <Button
+                                                            onClick={(event) => handlechat(event, staff.user_id, staff.first_name, staff.email, staff.avatar, staff.exhibitor_id, staff.id)}
+                                                            variant="outlined"
+                                                            className={classes.button}
+                                                            startIcon={<ChatIcon />}
+                                                        >
+                                                            Chat
+                                                        </Button>
+                                                    )
+                                                }
                                             </Grid>
                                         </Grid>
                                     </Grid>

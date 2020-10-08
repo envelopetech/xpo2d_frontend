@@ -528,12 +528,12 @@ export default function NavBar() {
             </ListItemIcon>
             <ListItemText primary="Leaderboard" />
           </ListItemLink> 
-           <ListItemLink component={Link} to="/app/briefcase">
+           {/* <ListItemLink component={Link} to="/app/briefcase">
             <ListItemIcon>
               <BusinessCenterOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Briefcase" />
-          </ListItemLink>
+          </ListItemLink> */}
           <ListItemLink component={Link} to="/app/feedback">
             <ListItemIcon>
               <FeedbackIcon />

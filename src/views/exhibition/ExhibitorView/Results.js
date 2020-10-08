@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import {
     Dialog, Grid,
     AppBar, Toolbar, IconButton, makeStyles, Typography, Slide, Button, Tabs, Tab
@@ -23,15 +23,10 @@ import { useDispatch, useSelector } from 'src/store';
 import { createEnquiry } from 'src/slices/enquiry'
 import useAuth from 'src/hooks/useAuth';
 import Photo from './Photo'
+import { customlog_save } from 'src/slices/visitor'
 import backgroundimage from '../../../assets/images/solar-panel.jpg';
 
-import background1 from '../../../assets/images/exhibitor-bg.jpg';
-import background2 from '../../../assets/images/exhibitor-bg2.jpg';
-import background3 from '../../../assets/images/exhibitor-bg3.jpg';
-import background4 from '../../../assets/images/exhibitor-bg4.jpg';
-import background5 from '../../../assets/images/exhibitor-bg5.jpg';
-import background6 from '../../../assets/images/exhibitor-bg6.jpg';
-import background7 from '../../../assets/images/exhibitor-bg7.jpg';
+
 
 
 import {
@@ -99,11 +94,11 @@ const useStyles = makeStyles(theme => ({
         marginRight: theme.spacing(2),
     },
     anchorStall1: {
-        position: 'absolute', 
-        left: '14.88%', 
-        top: '16.67%', 
-        width: '75%', 
-        height: '75%', 
+        position: 'absolute',
+        left: '14.88%',
+        top: '16.67%',
+        width: '75%',
+        height: '75%',
         zIndex: 2
     },
 
@@ -121,16 +116,42 @@ const Results = ({
 }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const { enqueueSnackbar } = useSnackbar();
-    //const [open, setOpen] = useState(false);
+    const { enqueueSnackbar } = useSnackbar();    
     const [value, setValue] = React.useState(0);
-    const { isModalOpen } = useSelector((state) => state.exhibitor);
-    //const [fullWidth, setFullWidth] = React.useState(true);
-    //const [maxWidth, setMaxWidth] = React.useState('lg');
+    const { isModalOpen } = useSelector((state) => state.exhibitor);   
     const { user } = useAuth();
-
-    const handleChange = (event, newValue) => {
+    const orgid = localStorage.getItem('org_id')
+    // useEffect(() => {
+    //     if (value == 0) {
+    //         const dataleaderboard = {
+    //             log_type: "stall_tabs",
+    //             tab_type: 'about',
+    //             organizer_id: orgid,
+    //             exhibitor_id: exhibitor.id
+    //         };
+    //         dispatch(customlog_save(dataleaderboard));
+    //     }
+    // }, []);
+    const handleChange1 = (event, newValue) => {
         setValue(newValue);
+        if (newValue === 0) {
+            const dataleaderboard = {
+                log_type: "stall_tabs",
+                tab_type: 'about',
+                organizer_id: orgid,
+                exhibitor_id: exhibitor.id
+            };
+            dispatch(customlog_save(dataleaderboard));
+        }
+        else if (newValue === 6) {
+            const dataleaderboard = {
+                log_type: "stall_tabs",
+                tab_type: 'contact',
+                organizer_id: orgid,
+                exhibitor_id: exhibitor.id
+            };
+            dispatch(customlog_save(dataleaderboard));
+        }
     };
 
     const handleClickOpen = () => {
@@ -141,10 +162,9 @@ const Results = ({
         dispatch(closeModal());
     };
 
-    
+
 
     // let backgroundimage = null
-
     // if (exhibitor.id == 17) {
     //     backgroundimage = background1
     // }
@@ -167,7 +187,7 @@ const Results = ({
     // else if (exhibitor.id == 35) {
     //     backgroundimage = background4
     // }
-	
+
     return (
         <React.Fragment>
 
@@ -195,7 +215,7 @@ const Results = ({
                         </Typography>
                     </Toolbar>
                 </AppBar>
-                <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+                <Tabs value={value} onChange={handleChange1} aria-label="simple tabs example">
                     <Tab label="About" {...a11yProps(0)} />
                     <Tab label="Products" {...a11yProps(1)} />
                     <Tab label="Team" {...a11yProps(2)} />
@@ -209,26 +229,26 @@ const Results = ({
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     <Grid container xs={12} sm spacing={2}>
-                        <Product product={exhibitor.product_data}></Product>
+                        <Product exhibitorid={exhibitor.id} product={exhibitor.product_data}></Product>
                     </Grid>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     <Grid container xs={12} sm spacing={2}>
-                        <Team team={exhibitor.staff_data}></Team>
+                        <Team team={exhibitor.staff_data} exhibitorid={exhibitor.id}></Team>
                     </Grid>
                 </TabPanel>
                 <TabPanel value={value} index={3}>
                     <Grid container xs={12} sm spacing={2}>
-                        <Photo photo={exhibitor.photo_data}></Photo>
+                        <Photo photo={exhibitor.photo_data} exhibitorid={exhibitor.id}></Photo>
                     </Grid>
                 </TabPanel>
                 <TabPanel value={value} index={4}>
                     <Grid container xs={12} sm spacing={2}>
-                        <Video video={exhibitor.video_data}></Video>
+                        <Video video={exhibitor.video_data} exhibitorid={exhibitor.id}></Video>
                     </Grid>
                 </TabPanel>
                 <TabPanel value={value} index={5}>
-                    <Assets assets={exhibitor.assets_data}></Assets>
+                    <Assets assets={exhibitor.assets_data} exhibitorid={exhibitor.id}></Assets>
                 </TabPanel>
                 <TabPanel value={value} index={6}>
                     <Formik
@@ -342,5 +362,4 @@ Results.propTypes = {
 Results.defaultProps = {
     exhibitor: []
 };
-
 export default Results;

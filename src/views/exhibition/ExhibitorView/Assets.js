@@ -1,13 +1,13 @@
-import React from 'react';
-import {    
-    makeStyles 
-    ,Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
-    
+import React, { useEffect } from 'react';
+import {
+    makeStyles
+    , Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
+
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import useAuth from 'src/hooks/useAuth';
 import track from 'src/utils/analytics';
-import { lederboardsave } from 'src/slices/visitor'
+import { lederboardsave, customlog_save } from 'src/slices/visitor'
 import { useDispatch } from 'src/store';
 
 const useStyles = makeStyles(theme => ({
@@ -23,14 +23,28 @@ const useStyles = makeStyles(theme => ({
 const Assets = ({
     className,
     assets,
+    exhibitorid,
     ...rest
 }) => {
 
     const classes = useStyles();
     const { user } = useAuth();
     const dispatch = useDispatch();
+    const orgid = localStorage.getItem('org_id')
 
-    const handleclick = (exhibitor_id) => {       
+
+    useEffect(() => {
+        const dataleaderboard = {
+            log_type: "stall_tabs",
+            tab_type: 'assets',
+            organizer_id: orgid,
+            exhibitor_id: exhibitorid
+        };
+        dispatch(customlog_save(dataleaderboard));
+
+    }, []);
+
+    const handleclick = (exhibitor_id, assetsid, typetitle) => {
         track.event("Download Assets", {
             "event_category": "Assets",
             "event_label": user.email
@@ -38,11 +52,13 @@ const Assets = ({
 
         const dataleaderboard = {
             exhibitor_id: exhibitor_id,
-            leader_type: "chat",
+            assetsid: assetsid,
+            leader_type: "downloadresources",
+            typetitle: typetitle
         };
         dispatch(lederboardsave(dataleaderboard));
     }
-    if (assets === null || assets.length == 0 ) {
+    if (assets === null || assets.length == 0) {
         return <div>No Assets Aavailable</div>;
     }
 
@@ -52,7 +68,7 @@ const Assets = ({
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>File Name</TableCell>                           
+                            <TableCell>File Name</TableCell>
                             <TableCell align="right">Link</TableCell>
                         </TableRow>
                     </TableHead>
@@ -62,10 +78,10 @@ const Assets = ({
                                 <TableRow key={asset.id}>
                                     <TableCell component="th" scope="row">
                                         {asset.name}
-                                    </TableCell>                                    
-                                    <TableCell align="right" numeric component="a" target="_blank" href={asset.assets_url} 
-                                    className={classes.link} 
-                                    onClick={() => handleclick(asset.exhibitor_id)}
+                                    </TableCell>
+                                    <TableCell align="right" numeric component="a" target="_blank" href={asset.assets_url}
+                                        className={classes.link}
+                                        onClick={() => handleclick(asset.exhibitor_id, asset.id, asset.name)}
                                     >Download</TableCell>
                                 </TableRow>
                             );

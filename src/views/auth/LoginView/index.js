@@ -45,15 +45,15 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2)
   },
   cardContainer: {
-    paddingBottom: 80,
-    paddingTop: 80,       
+    paddingBottom: 10,
+    paddingTop: 20,       
     alignItems: 'center'    
   },
   cardContent: {
     padding: theme.spacing(4),
     display: 'flex',
     flexDirection: 'column',
-    minHeight: 400,
+    // minHeight: 400,
     alignItems: 'center'
   },
   currentMethodIcon: {
@@ -79,8 +79,7 @@ const LoginView = () => {
       className={classes.cardContainer}
       maxWidth="sm"
     >
-      <Box
-        mb={8}
+      <Box       
         display="flex"
         justifyContent="center"
       >
@@ -94,7 +93,7 @@ const LoginView = () => {
             alignItems="center"
             display="flex"
             justifyContent="space-between"
-            mb={3}
+            mb={1}
           >
             <div>
               <Typography
@@ -108,21 +107,21 @@ const LoginView = () => {
           </Box>
           <Box
             flexGrow={1}
-            mt={3}
+            mt={1}
           >
             <JWTLogin /> 
           </Box>
-          <Box my={3}>
+          {/* <Box my={3}>
               <Divider />
-            </Box>
-            <Link
+            </Box> */}
+            {/* <Link
               component={RouterLink}
               to="/register"
               variant="body2"
               color="textSecondary"
             >
               Create new account
-            </Link>
+            </Link> */}
         </CardContent>
       </Card>
     </Container>
