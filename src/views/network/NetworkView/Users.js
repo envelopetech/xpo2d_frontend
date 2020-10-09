@@ -91,6 +91,7 @@ const Users = ({
     const { user, client } = useAuth();
     const [isOpen, setisOpen] = useState(false);
     const [sharedisabled, setsharedisabled] = useState(false)
+    const orgid = localStorage.getItem('org_id')
     const [filters, setFilters] = useState({
         hasAcceptedMarketing: null,
         isProspect: null,
@@ -154,7 +155,8 @@ const Users = ({
             from_form: "sharecard",
             table_primary_id: user_id,
             user_type: user_type,
-            type: "visitingcard"
+            type: "visitingcard",
+            organizer_id: orgid,
         }
         dispatch(briefcasesave(data))
         setsharedisabled(true)
@@ -290,16 +292,7 @@ const Users = ({
                                 <Divider />
                                 {paginatedExhibitors.map((exhibitor, index) => {
                                     let status_briefcase = exhibitor.briefcase_status                                    
-                                    let designation = exhibitor.designation
-                                    // if (exhibitor.company !== null && exhibitor.designation !== null && exhibitor.company !== '' && exhibitor.designation !== '') {
-                                    //     designation = exhibitor.designation + " " + exhibitor.company
-                                    // }
-                                    // else if (exhibitor.company === null && exhibitor.designation !== null) {
-                                    //     designation = exhibitor.designation
-                                    // }
-                                    // else if (exhibitor.company !== null && exhibitor.designation === null) {
-                                    //     designation = exhibitor.company
-                                    // }
+                                    let designation = exhibitor.designation                                    
                                     return (
                                         <>
                                             <LazyLoad placeholder="Loading...">
