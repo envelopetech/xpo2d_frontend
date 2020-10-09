@@ -9,7 +9,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { userpage_save } from 'src/slices/notification'
 import useAuth from 'src/hooks/useAuth';
 import { lederboardsave } from 'src/slices/visitor'
-
+import track from 'src/utils/analytics';
 // const useStyles = makeStyles(theme => ({
 //     root: {
 //         maxWidth: 345,
@@ -31,6 +31,12 @@ export function Exhibitor() {
             pagename: "Exhibitor"
         }
         dispatch(userpage_save(data1))
+
+
+        track.event("Visitor Booth View", {
+            "event_category": "Booth View",
+            "event_label": user.email
+        });
 
         const dataleaderboard = {
             exhibitor_id: exhibitorid,

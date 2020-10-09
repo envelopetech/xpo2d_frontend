@@ -1,5 +1,4 @@
-import React  from 'react';
-
+import React from 'react';
 import { Router, BrowserRouter } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { create } from 'jss';
@@ -24,7 +23,6 @@ import routes, { renderRoutes } from 'src/routes';
 import ReactGA from 'react-ga';
 import Session from './Session'
 
-
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 const history = createBrowserHistory();
 
@@ -46,10 +44,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <React.StrictMode>
       <Session></Session>
-      </React.StrictMode>
-      
        <BrowserRouter>
       <StylesProvider jss={jss}>
         <MuiPickersUtilsProvider utils={MomentUtils}>
@@ -57,7 +52,6 @@ const App = () => {
             dense
             maxSnack={3}
           >
-            
             <Router history={history}>
               <AuthProvider>
                 <GlobalStyles />

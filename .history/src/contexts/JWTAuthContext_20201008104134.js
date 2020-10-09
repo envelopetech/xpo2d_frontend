@@ -145,10 +145,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = async () => {
-    const response = await axios.post('/api/user/logout',)
-    let user = []
-    user = response.data
+  const logout = () => {
     setSession(null);
     dispatch({ type: 'LOGOUT' });
   };

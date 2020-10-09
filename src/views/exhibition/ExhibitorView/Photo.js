@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
+import ModalImage from 'react-modal-image'
 import {
     Grid,
     makeStyles, Card, CardActionArea, CardMedia
@@ -8,6 +9,8 @@ import {
 import PropTypes from 'prop-types';
 import { customlog_save } from 'src/slices/visitor'
 import { useDispatch } from 'src/store';
+import useAuth from 'src/hooks/useAuth';
+import track from 'src/utils/analytics';
 
 const useStyles = makeStyles(theme => ({
     root: { maxWidth: 345, },
@@ -20,7 +23,7 @@ const Photo = ({
 }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-
+    const { user } = useAuth();
     const orgid = localStorage.getItem('org_id')
 
 
@@ -35,6 +38,23 @@ const Photo = ({
 
     }, []);
 
+
+    const handleclick = (id, name) => {        
+        track.event("View Photo", {
+            "event_category": "View Photo",
+            "event_label": user.email
+        });
+
+        const dataleaderboard = {
+            log_type: "photo",
+            organizer_id: orgid,
+            visited_id: id,
+            exhibitor_id: exhibitorid,
+            tab_type: name,
+        };
+        dispatch(customlog_save(dataleaderboard));
+    }
+
     if (photo === null || photo.length == 0) {
         return <div>No Photos Aavailable</div>;
     }
@@ -45,15 +65,21 @@ const Photo = ({
                 return (
                     <Grid item xs={4}>
                         <Card className={classes.root}>
-                            <CardActionArea>
-                                <CardMedia
+                            <CardActionArea onClick={() => handleclick(photodata.id, photodata.name)}>
+                                {/* <CardMedia
                                     component="img"
                                     alt={photodata.name}
                                     height="240"
                                     width="240"
                                     image={photodata.assets_url}
                                     title={photodata.name}
+                                /> */}
+                                <ModalImage 
+                                small={photodata.assets_url}
+                                large={photodata.assets_url}
+                                alt={photodata.name}
                                 />
+
                             </CardActionArea>
                         </Card>
                     </Grid>

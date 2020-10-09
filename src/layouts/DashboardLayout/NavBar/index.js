@@ -234,6 +234,7 @@ import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 import FeedbackIcon from '@material-ui/icons/Feedback';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import useAuth from 'src/hooks/useAuth';
+import { Button } from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -310,7 +311,7 @@ function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
 }
 
-export default function NavBar() {
+export default function NavBar({ openTour, isShowingMore, toggleShowMore }) {
   const classes = useStyles();
   const theme = useTheme();
   const { user } = useAuth();
@@ -319,6 +320,7 @@ export default function NavBar() {
     setAnchorEl(e.currentTarget)
     setOpen(true)
   }
+
 
   const handleClose = (e) => {
     setAnchorEl(null)
@@ -460,7 +462,7 @@ export default function NavBar() {
           <Tooltip title="Auditorium" placement="right">
             <ListItemLink component={Link} to="/app/agenda">
               <ListItemIcon>
-                <SlideshowIcon />
+                <SlideshowIcon/>
               </ListItemIcon>
               <ListItemText primary="Auditorium" />
             </ListItemLink>
@@ -478,7 +480,7 @@ export default function NavBar() {
           <Tooltip title="Exhibition" placement="right">
             <ListItemLink component={Link} to="/app/exhibition">
               <ListItemIcon>
-                <ArtTrackIcon />
+                <ArtTrackIcon data-tut="third"/>
               </ListItemIcon>
               <ListItemText primary="Exhibition" />
             </ListItemLink>
@@ -528,12 +530,12 @@ export default function NavBar() {
             </ListItemIcon>
             <ListItemText primary="Leaderboard" />
           </ListItemLink> 
-           {/* <ListItemLink component={Link} to="/app/briefcase">
+            <ListItemLink component={Link} to="/app/briefcase">
             <ListItemIcon>
               <BusinessCenterOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Briefcase" />
-          </ListItemLink> */}
+          </ListItemLink>
           <ListItemLink component={Link} to="/app/feedback">
             <ListItemIcon>
               <FeedbackIcon />

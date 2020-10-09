@@ -5,7 +5,7 @@ const initialState = {
     exhibitorstaff: [],   
 };
 const slice = createSlice({
-    name: 'exhibitor',
+    name: 'event',
     initialState,
     reducers: {
         geteventexhibitorstaff(state, action) {
@@ -16,7 +16,13 @@ const slice = createSlice({
         briefcasesave(state, action) {             
             const index  = action.payload;            
             let data = state.exhibitorstaff;
-            data[index].briefcase_status = true;
+            data= new function(){
+                this[index]={
+                    briefcase_status : 'true'
+                }
+            }
+           
+            //data[index].briefcase_status = true;
             state.exhibitorstaff = data
 
         }      
