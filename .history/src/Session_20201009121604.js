@@ -41,15 +41,21 @@ class Session extends React.Component{
     //   var message = "\o/";
       if (window.performance) {
         if (performance.navigation.type == 1) {
-           alert( "This page is reloaded" );
-        }
+          // alert( "This page is reloaded" );
+        // } else {
+        //   const response = axios.post('/api/user/logout',)
+        //   let user = []
+        //   user = response.data
+        //   setSession(null);
+        // }
       } else {
         const response = axios.post('/api/user/logout',)
         let user = []
         user = response.data
         setSession(null);
       }
- 
+      
+      
       // const response = axios.post('/api/user/logout',)
       // let user = []
       // user = response.data
