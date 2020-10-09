@@ -152,20 +152,17 @@ const Users = ({
 
         const data = {
             index: index,
-            from_form: "sharecard", //exhibitor product   exhibitor asset
-            table_primary_id: user_id,//product id  assetid
+            from_form: "sharecard",
+            table_primary_id: user_id,
             user_type: user_type,
             type: "visitingcard",
             organizer_id: orgid,
         }
         dispatch(briefcasesave(data))
-        //setsharedisabled(true)
+        setsharedisabled(true)
     }
     const handlemessage = (event, user_id, first_name, email, avatar) => {
         setisOpen(false);
-
-
-
         window._demo = {};
         Talk.ready.then(() => {
 
@@ -294,17 +291,8 @@ const Users = ({
                             <PerfectScrollbar>
                                 <Divider />
                                 {paginatedExhibitors.map((exhibitor, index) => {
-                                    let status_briefcase = exhibitor.briefcase_status
-                                    let designation = exhibitor.designation
-                                    // if (exhibitor.company !== null && exhibitor.designation !== null && exhibitor.company !== '' && exhibitor.designation !== '') {
-                                    //     designation = exhibitor.designation + " " + exhibitor.company
-                                    // }
-                                    // else if (exhibitor.company === null && exhibitor.designation !== null) {
-                                    //     designation = exhibitor.designation
-                                    // }
-                                    // else if (exhibitor.company !== null && exhibitor.designation === null) {
-                                    //     designation = exhibitor.company
-                                    // }
+                                    let status_briefcase = exhibitor.briefcase_status                                    
+                                    let designation = exhibitor.designation                                    
                                     return (
                                         <>
                                             <LazyLoad placeholder="Loading...">

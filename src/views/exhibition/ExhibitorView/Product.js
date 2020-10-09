@@ -16,14 +16,12 @@ import { briefcasesave } from 'src/slices/event'
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 
+
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
   }
 const useStyles = makeStyles(theme => ({
-    root: {width: '100%',
-    '& > * + *': {
-      marginTop: theme.spacing(2),
-    },},
+    root: { maxWidth: 345, },
     snackbar: {
         bottom: "45px"
     }

@@ -13,6 +13,13 @@ const slice = createSlice({
             exhibitor = action.payload
             state.exhibitorstaff = exhibitor;           
         },  
+        // briefcasesave(state, action) {             
+        //     const index  = action.payload;            
+        //     let data = state.exhibitorstaff;
+        //     data[index].briefcase_status = true;
+        //     state.exhibitorstaff = data
+
+        // }      
         briefcasesave(state, action) {             
             const index  = action.payload;            
             let data = state.exhibitorstaff;
@@ -25,10 +32,9 @@ const slice = createSlice({
             //data[index].briefcase_status = true;
             state.exhibitorstaff = data
 
-        }      
+        }    
     }
 });
-
 export const reducer = slice.reducer;
 
 export const geteventexhibitorstaff = (event_id) => async (dispatch) => {

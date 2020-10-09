@@ -140,11 +140,11 @@ const routes = [
         path: '/app/3D',
         component: lazy(() => import('src/views/3D'))
       },
-       {
-         exact: true,
-         path: '/app/briefcase',
-         component: lazy(() => import('src/views/briefcase/BriefcaseView'))
-       },
+      {
+        exact: true,
+        path: '/app/briefcase',
+        component: lazy(() => import('src/views/briefcase/BriefcaseView'))
+      },
       {
         exact: true,
         path: '/app/leaderboard',
