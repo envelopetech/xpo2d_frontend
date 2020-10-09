@@ -24,8 +24,6 @@ const setSession = (accessToken, userid, is_superuser, loggedin_id, user_type, o
 class Session extends React.Component{
     constructor(props) {
       super(props)
- 
-
       this.handleUnload = this.handleUnload.bind(this);
     }
   
@@ -39,21 +37,12 @@ class Session extends React.Component{
   
     handleUnload(e) {
     //   var message = "\o/";
-      if (window.performance) {
-        if (performance.navigation.type == 1) {
-           alert( "This page is reloaded" );
-        }
-      } else {
-        const response = axios.post('/api/user/logout',)
-        let user = []
-        user = response.data
-        setSession(null);
-      }
- 
-      // const response = axios.post('/api/user/logout',)
-      // let user = []
-      // user = response.data
-      // // setSession(null);
+      
+      
+      const response = axios.post('/api/user/logout',)
+      let user = []
+      user = response.data
+      // setSession(null);
   
     //   (e || window.event).returnValue = message; //Gecko + IE
       return ;
