@@ -10,23 +10,9 @@ import track from 'src/utils/analytics';
 import useAuth from 'src/hooks/useAuth';
 import { customlog_save } from 'src/slices/visitor'
 import { useDispatch } from 'src/store';
-import BusinessCenterOutlinedIcon from '@material-ui/icons/BusinessCenterOutlined';
-import { IconButton,Tooltip } from '@material-ui/core'
-import { briefcasesave } from 'src/slices/event'
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
 
-function Alert(props) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-  }
 const useStyles = makeStyles(theme => ({
-    root: {width: '100%',
-    '& > * + *': {
-      marginTop: theme.spacing(2),
-    },},
-    snackbar: {
-        bottom: "45px"
-    }
+    root: { maxWidth: 345, },
 }));
 
 const Product = ({
@@ -41,7 +27,7 @@ const Product = ({
     const dispatch = useDispatch();
 
     const orgid = localStorage.getItem('org_id')
-    const [open, setOpen] = React.useState(false);
+
 
     useEffect(() => {
         const dataleaderboard = {
@@ -54,21 +40,11 @@ const Product = ({
 
     }, []);
 
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-          return;
-        }
-    
-        setOpen(false);
-      };
-
     const handleclick = (id, name) => {
         track.event("Download Product Brochure", {
             "event_category": "Product Brochure",
             "event_label": user.email
         });
-
-    
 
         const dataleaderboard = {
             log_type: "productbrochure",
@@ -83,28 +59,8 @@ const Product = ({
         return <div>No Products Aavailable</div>;
     }
 
-    const briefcaseClick = (productid) => {
-
-        const data = {
-           
-            from_form: "exhibitor_product", //exhibitor product   exhibitor asset
-            table_primary_id: productid,//product id  assetid
-            type: "product" ,
-            organizer_id: orgid
-        }
-        dispatch(briefcasesave(data))
-        setOpen(true);
-    }
-
     return (
         <React.Fragment>
-            <Snackbar open={open}  className={classes.snackbar}
-            autoHideDuration={6000} 
-            onClose={handleClose}>
-                <Alert onClose={handleClose} severity="success">
-                Data saved in your briefcase
-                </Alert>
-            </Snackbar>
             {product.map((pro) => {
                 return (
                     <Grid item xs={6}>
@@ -129,13 +85,7 @@ const Product = ({
                             <CardActions>
                                 <Link href={pro.product_brochure} target="_blank" onClick={() => handleclick(pro.id, pro.name)}>
                                     View Brochure
-                                    
                                 </Link>
-                                <Tooltip title='Briefcase'>
-                                <IconButton onClick={() => briefcaseClick(pro.id)}  >
-                                <BusinessCenterOutlinedIcon />
-                                </IconButton>
-                                </Tooltip>
                             </CardActions>
                         </Card>
                     </Grid>

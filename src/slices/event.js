@@ -16,19 +16,12 @@ const slice = createSlice({
         briefcasesave(state, action) {             
             const index  = action.payload;            
             let data = state.exhibitorstaff;
-            data= new function(){
-                this[index]={
-                    briefcase_status : 'true'
-                }
-            }
-           
-            //data[index].briefcase_status = true;
+            data[index].briefcase_status = true;
             state.exhibitorstaff = data
 
         }      
     }
 });
-
 export const reducer = slice.reducer;
 
 export const geteventexhibitorstaff = (event_id) => async (dispatch) => {
