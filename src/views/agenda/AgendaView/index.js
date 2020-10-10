@@ -35,7 +35,7 @@ const useStyles = makeStyles({
 });
 export default function AgendaView() {
     const classes = useStyles();
-    const { eventagenda1, eventagenda2 } = useSelector((state) => state.eventagenda);
+    const { eventagenda1, eventagenda2, eventagenda2 } = useSelector((state) => state.eventagenda);
     // const { eventId } = useSelector((state) => state.organizer); 
     // alert(eventId)   
     const eventId = localStorage.getItem("eventId")
@@ -70,7 +70,7 @@ export default function AgendaView() {
             className={classes.root}
             title="Event Agenda"
         >
-            <Results eventagenda1={eventagenda1} eventagenda2={eventagenda2}></Results>
+            <Results eventagenda1={eventagenda1} eventagenda2={eventagenda2} eventagenda3={eventagenda3}></Results>
         </Page>
 
     )

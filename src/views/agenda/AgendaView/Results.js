@@ -65,6 +65,7 @@ const Results = ({
     className,
     eventagenda1,
     eventagenda2,
+    eventagenda3,
     ...rest
 }) => {
     const classes = useStyles();
@@ -79,6 +80,7 @@ const Results = ({
                 <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
                     <Tab label="Day 1" {...a11yProps(0)} />
                     <Tab label="Day 2" {...a11yProps(1)} />
+                    <Tab label="Day 3" {...a11yProps(2)} />
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
@@ -86,6 +88,9 @@ const Results = ({
             </TabPanel>
             <TabPanel value={value} index={1}>
                 <Itemdata eventagenda={eventagenda2}> </Itemdata>
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+                <Itemdata eventagenda={eventagenda3}> </Itemdata>
             </TabPanel>
         </div>
     );

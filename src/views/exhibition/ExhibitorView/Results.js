@@ -190,8 +190,6 @@ const Results = ({
 
     return (
         <React.Fragment>
-
-
             <Grid item container style={{
                 backgroundImage: `url(${exhibitor.stall_image})`,
                 backgroundPosition: "center",
@@ -223,7 +221,7 @@ const Results = ({
                     <Tab label="Video" {...a11yProps(4)} />
                     <Tab label="Assets" {...a11yProps(5)} />
                     <Tab label="Contact Us" {...a11yProps(6)} />
-                </Tabs>
+                </Tabs> 
                 <TabPanel value={value} index={0}>
                     <Typography>{ReactHtmlParser(exhibitor.about_me)}</Typography>
                 </TabPanel>
