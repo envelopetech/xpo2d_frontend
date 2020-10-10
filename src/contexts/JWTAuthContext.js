@@ -75,7 +75,7 @@ const reducer = (state, action) => {
 
       };
     }
-    case 'REGISTER': {     
+    case 'REGISTER': {
       const { isAuthenticated, user } = action.payload;
       return {
         ...state,
@@ -146,11 +146,17 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    const response = await axios.post('/api/user/logout',)
-    let user = []
-    user = response.data
-    setSession(null);
-    dispatch({ type: 'LOGOUT' });
+    const user_type = window.localStorage.getItem('user_type');
+    if (user_type == "visitor") {
+      const response = await axios.post('/api/user/logout',)
+      let user = []
+      user = response.data
+      setSession(null);
+      dispatch({ type: 'LOGOUT' });
+    } else {
+      setSession(null);
+      dispatch({ type: 'LOGOUT' });
+    }
   };
 
   useEffect(() => {
