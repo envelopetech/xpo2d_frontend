@@ -87,6 +87,10 @@ const Contacts = () => {
         console.log("3333333333333333333333")
         setmessengerdata(data)
         let getmessagecount = localStorage.getItem("messagecount")
+        if (getmessagecount === undefined || getmessagecount === null)
+        {
+          getmessagecount = 0; 
+        }
         let message_count = parseInt(getmessagecount, 10) + 1
         setmessagecount(parseInt(message_count));
         localStorage.setItem("messagecount", message_count)
