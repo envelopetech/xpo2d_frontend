@@ -295,7 +295,7 @@ const Users = ({
                                     let designation = exhibitor.designation                                    
                                     return (
                                         <>
-                                            <LazyLoad placeholder="Loading...">
+                                            <LazyLoad overflow="true">
                                                 <ListItem ContainerComponent="div">
                                                     <ListItemAvatar>
                                                         <Avatar className={classes.avatar_small} src={exhibitor.avatar}>
