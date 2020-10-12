@@ -86,13 +86,12 @@ const Contacts = () => {
       if (data.current_user_id === user.user_id) {
         console.log("3333333333333333333333")
         setmessengerdata(data)
-        // let getmessagecount = localStorage.getItem("messagecount")
-        // console.log(getmessagecount)
-        // if (getmessagecount === NaN || getmessagecount === undefined || getmessagecount === null)
-        // {
-        //   getmessagecount = 0; 
-        // }
-        let message_count = parseInt(messagecount, 10) + 1
+        let getmessagecount = localStorage.getItem("messagecount")        
+        if (getmessagecount === NaN || getmessagecount === undefined || getmessagecount === null || getmessagecount === 'NaN')
+        {          
+          getmessagecount = 0; 
+        }
+        let message_count = parseInt(getmessagecount, 10) + 1
         setmessagecount(parseInt(message_count));
         localStorage.setItem("messagecount", message_count)
       }
@@ -106,7 +105,7 @@ const Contacts = () => {
       setmessagecount(0)
       client.view_messages(messengerdata);
       history.push('/app/messages');
-      //localStorage.setItem("messagecount", 0)
+      localStorage.setItem("messagecount", 0)
       setOpen(false);
     } catch (err) {
       console.error(err);
@@ -116,7 +115,7 @@ const Contacts = () => {
     try {
       setmessagecount(0)
       setOpen(false);
-      //localStorage.setItem("messagecount", 0)
+      localStorage.setItem("messagecount", 0)
     } catch (err) {
       console.error(err);
     }
