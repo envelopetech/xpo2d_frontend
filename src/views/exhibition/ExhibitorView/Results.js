@@ -331,7 +331,7 @@ const Results = ({
                                                     label="Send Enquiry"
                                                     multiline
                                                     rows={4}
-                                                    defaultValue="Write your message here..."
+                                                    placeholder="Write your message here..."
                                                     variant="outlined"
                                                     onBlur={handleBlur}
                                                     onChange={handleChange}
