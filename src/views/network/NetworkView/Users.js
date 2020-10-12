@@ -34,7 +34,7 @@ import {
     Search as SearchIcon
 } from 'react-feather';
 import { useDispatch } from 'src/store';
-import { tabs, sortOptions, applyPagination, applySort, applyFilters } from 'src/utils/common'
+import { tabs, sortOptions, applyPagination, applySort, applyFiltersforchat } from 'src/utils/common'
 import Talk from "talkjs";
 import useAuth from 'src/hooks/useAuth';
 import ChatIcon from '@material-ui/icons/Chat';
@@ -223,7 +223,7 @@ const Users = ({
         });
     }
 
-    const filteredExhibitors = applyFilters(exhibitors, query, filters, ['name']);
+    const filteredExhibitors = applyFiltersforchat(exhibitors, query, filters, ['name']);
     const sortedExhibitors = applySort(filteredExhibitors, sort);
     const paginatedExhibitors = applyPagination(sortedExhibitors, page, limit);
     const selectedSomeExhibitors = selectedExhibitors.length > 0 && selectedExhibitors.length < exhibitors.length;
