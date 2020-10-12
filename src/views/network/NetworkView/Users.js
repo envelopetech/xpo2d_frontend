@@ -291,8 +291,9 @@ const Users = ({
                             <PerfectScrollbar>
                                 <Divider />
                                 {paginatedExhibitors.map((exhibitor, index) => {
-                                    let status_briefcase = exhibitor.briefcase_status                                    
-                                    let designation = exhibitor.designation                                    
+                                    let status_briefcase = exhibitor.briefcase_status
+                                    let designation = exhibitor.designation
+                                    let name = exhibitor.first_name + " " + exhibitor.last_name
                                     return (
                                         <>
                                             <LazyLoad overflow="true">
@@ -301,14 +302,14 @@ const Users = ({
                                                         <Avatar className={classes.avatar_small} src={exhibitor.avatar}>
                                                         </Avatar>
                                                     </ListItemAvatar>
-                                                    <ListItemText primary={exhibitor.name} secondary={designation} />
+                                                    <ListItemText primary={name} secondary={designation} />
                                                     <ListItemSecondaryAction className="user-action">
                                                         <Button onClick={(event) => handlemessage(event, exhibitor.id, exhibitor.name, exhibitor.email, exhibitor.avatar)}>
                                                             Message
                                                     </Button>
                                                         <Box ml={1}>
-                                                        <Button onClick={() => handlesharevisitongcard(exhibitor.id, exhibitor.user_type, index)} disabled={status_briefcase}>
-                                                            Share
+                                                            <Button onClick={() => handlesharevisitongcard(exhibitor.id, exhibitor.user_type, index)} disabled={status_briefcase}>
+                                                                Share
                                                     </Button></Box>
                                                     </ListItemSecondaryAction>
                                                 </ListItem>
