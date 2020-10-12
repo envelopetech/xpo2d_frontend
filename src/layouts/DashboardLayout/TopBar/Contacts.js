@@ -81,13 +81,15 @@ const Contacts = () => {
   useEffect(() => {
     const socket = socketIOClient(process.env.REACT_APP_SOCKET_END_POINT, { 'transports': ['websocket', 'polling'] });
     console.log("11111111111111111111111")
-    socket.on('show_network_message', (data) => {  
+    socket.on('show_network_message', (data) => {
       console.log("2222222222222222222222")
       if (data.current_user_id === user.user_id) {
         console.log("3333333333333333333333")
         setmessengerdata(data)
-        let message_count = parseInt(messagecount, 10) + 1
+        let getmessagecount = localStorage.getItem("messagecount")
+        let message_count = parseInt(getmessagecount, 10) + 1
         setmessagecount(parseInt(message_count));
+        localStorage.setItem("messagecount", message_count)
       }
     })
     return () => {
@@ -99,7 +101,17 @@ const Contacts = () => {
       setmessagecount(0)
       client.view_messages(messengerdata);
       history.push('/app/messages');
+      localStorage.setItem("messagecount", 0)
       setOpen(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  const markallasread = () => {
+    try {
+      setmessagecount(0)
+      setOpen(false);
+      localStorage.setItem("messagecount", 0)
     } catch (err) {
       console.error(err);
     }
@@ -169,9 +181,8 @@ const Contacts = () => {
                 justifyContent="center"
               >
                 <Button
-                  component={RouterLink}
                   size="small"
-                  to="#"
+                  onClick={markallasread}
                 >
                   Mark all as read
               </Button>
