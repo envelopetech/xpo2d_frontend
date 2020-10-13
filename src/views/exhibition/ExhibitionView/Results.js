@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import background from 'src/assets/images/solar-panel.jpg';
 import ReactHtmlParser from 'react-html-parser';
+import defaultlogo from 'src/assets/images/download.png';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -56,6 +57,7 @@ const Results = ({
                                             height="140"
                                             image={exhibitor.company_logo}
                                             title="Contemplative Reptile"
+                                            src={defaultlogo}
                                         />
                                         <CardContent>
                                             <Typography gutterBottom variant="h5" component="h2">
