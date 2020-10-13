@@ -74,7 +74,7 @@ const Team = ({
                 id: user.user_id,
                 name: user.first_name, // get this user data from the API
                 email: user.email,  // get this user data from the API
-                photoUrl: user.avatar,
+                //photoUrl: user.avatar,
                 welcomeMessage: "Hi there, how are you? :-)",  // get this user data from the API
                 role: "Member"
             });
@@ -87,7 +87,7 @@ const Team = ({
                 id: user_id,
                 name: first_name,
                 email: email,
-                photoUrl: avatar,
+                //photoUrl: avatar,
                 welcomeMessage: "Hi there, how are you? :-)",
                 role: "Member"
             });
