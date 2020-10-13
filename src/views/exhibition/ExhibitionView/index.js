@@ -19,7 +19,7 @@ export default function ExhibitionView() {
     const { user } = useAuth();
 
     const [state, setState] = React.useState({
-        iscard: true,
+        iscard: false,
     });
     const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
