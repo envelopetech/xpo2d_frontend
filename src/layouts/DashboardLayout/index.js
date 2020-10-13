@@ -88,10 +88,21 @@ const DashboardLayout = ({ children }) => {
           conversation.setParticipant(me);
           conversation.setParticipant(other);
 
-          var inbox = window.talkSession.createInbox({ selected: conversation });
-          let element = document.getElementById("talkjs-container")
-          element.classList.add("display_block")
-          inbox.mount(document.getElementById("talkjs-container"));
+          // var inbox = window.talkSession.createInbox({ selected: conversation });
+          // let element = document.getElementById("talkjs-container")
+          // element.classList.add("display_block")
+          // inbox.mount(document.getElementById("talkjs-container"));
+
+          var popup = window.talkSession.createPopup(conversation, { keepOpen: true });
+          popup.mount({ show: true });
+          var button = document.getElementById("btn-close");
+          button.classList.add("display_block")
+          button.addEventListener("click", function (event) {
+              event.preventDefault();
+              popup.hide();
+              button.classList.remove("display_block")
+          });
+          
           // button.addEventListener("click", function (event) {
           //   event.preventDefault();            
           //   button.classList.remove("display_block")
