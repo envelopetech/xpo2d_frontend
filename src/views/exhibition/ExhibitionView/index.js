@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box } from '@material-ui/core';
+import { Box, Grid, Container } from '@material-ui/core';
 //import useAuth from 'src/hooks/useAuth';
 import { useDispatch, useSelector } from 'src/store';
 import Results from './Results'
@@ -40,7 +40,7 @@ export default function ExhibitionView() {
         const t = document.createTextNode(`window.Intercom('boot', {hide_default_launcher: true, app_id: 'a5iw6q1x', name:'" + ${name} + "', email:'" + ${email} + "', created_at:'" + ${createdAt} + "', user_id:'" + ${userId} + "'});`);
         script.appendChild(t);
         //window.eval(script);
-        document.body.appendChild(script); 
+        document.body.appendChild(script);
     }, [dispatch]);
 
     if (exhibitors !== undefined && exhibitors.length === 0) {
@@ -52,21 +52,30 @@ export default function ExhibitionView() {
     return (
         <Page
             title="Exhibitor">
-            <Box>
-                <FormControlLabel
-                    control={
-                        <Switch
-                            checked={state.iscard}
-                            onChange={handleChange}
-                            name="iscard"
-                            color="primary"
+            <Grid container spacing={3}>
+                <Grid container
+                    direction="row"
+                    justify="center"
+                    alignItems="center">
+                    <Box mb={2} mt={2}>
+                        <FormControlLabel
+                            control={
+                                <Switch
+                                    checked={state.iscard}
+                                    onChange={handleChange}
+                                    name="iscard"
+                                    color="primary"
+                                />
+                            }
+                            label="Card"
                         />
-                    }
-                    label="Card"
-                />
-            </Box>
+                    </Box>
+                </Grid>
+            </Grid>
             {
-                (state.iscard) && (<Results exhibitors={exhibitors}></Results>)
+                (state.iscard) && (
+
+                    <Results exhibitors={exhibitors}></Results>)
             }
             {
                 (!state.iscard) && (<Stallview exhibitors={exhibitors}></Stallview>)

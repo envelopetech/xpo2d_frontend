@@ -117,9 +117,9 @@ const Results = ({
 }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const { enqueueSnackbar } = useSnackbar();    
+    const { enqueueSnackbar } = useSnackbar();
     const [value, setValue] = React.useState(0);
-    const { isModalOpen } = useSelector((state) => state.exhibitor);   
+    const { isModalOpen } = useSelector((state) => state.exhibitor);
     const { user } = useAuth();
     const orgid = localStorage.getItem('org_id')
     // useEffect(() => {
@@ -266,15 +266,31 @@ const Results = ({
             }}>
                 {
                     (exhibitor.is_viewthreed) && (
-                        <Grid item style={{ position: 'absolute', right: '0%', top: ' 50%', backgroundColor: 'forestgreen', color: 'white' }}>
-                            <Tooltip title="Chat">
+                        <Grid item style={{ position: 'absolute', right: '0%', top: ' 40%', backgroundColor: 'forestgreen', color: 'white' }}>
+                            <Tooltip title="View in 3D">
                                 <IconButton
+                                    variant="contained"
                                     color="inherit"
+                                    href="https://www.google.com"
+                                    target="_blank"
                                 >
-                                    {/* <SvgIcon fontSize="large">
-                                        <ChatIcon />
-                                    </SvgIcon> */}
                                     <Typography>View in 3D</Typography>
+                                </IconButton>
+                            </Tooltip>
+                        </Grid>
+                    )
+                }
+                {
+                    (exhibitor.is_zoomroom) && (
+                        <Grid item style={{ position: 'absolute', right: '0%', top: ' 50%', backgroundColor: 'forestgreen', color: 'white' }}>
+                            <Tooltip title="Meeting room">
+                                <IconButton
+                                    variant="contained"
+                                    color="inherit"
+                                    href="https://www.google.com"
+                                    target="_blank"
+                                >
+                                    <Typography>Meeting Room</Typography>
                                 </IconButton>
                             </Tooltip>
                         </Grid>
@@ -304,7 +320,7 @@ const Results = ({
                     <Tab label="Video" {...a11yProps(4)} />
                     <Tab label="Assets" {...a11yProps(5)} />
                     <Tab label="Contact Us" {...a11yProps(6)} />
-                </Tabs> 
+                </Tabs>
                 <TabPanel value={value} index={0}>
                     <Typography>{ReactHtmlParser(exhibitor.about_me)}</Typography>
                 </TabPanel>

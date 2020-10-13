@@ -110,7 +110,7 @@ export default function KeynoteView() {
 
     return (
         <Page className={classes.root}
-            title="Keynote">
+            title="HelpDesk">
             {/* <div>
                 <div className={classes.imgContainer}>
                     <ImageMapper src={audi} width={'100%'} imgWidth={1920} map={MAP} onClick={handleClickOpen} />
