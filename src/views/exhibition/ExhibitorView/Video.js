@@ -39,7 +39,7 @@ const Video = ({
     }, []);
 
 
-    const customloghandler = (id) => {
+    const customloghandler = (id) => {        
         track.event("Play Video", {
             "event_category": "Video",
             "event_label": user.email
@@ -55,20 +55,21 @@ const Video = ({
     }
     if (video === null || video.length == 0) {
         return <div>No Videos Aavailable</div>;
-    }
+    }    
     //const classes = useStyles();
     return (
         <React.Fragment>
             {video.map((videodata) => {
                 return (
                     <Grid item xs={4}>
-                        {/* <iframe title="Video" width="100%" height="240" src={videodata.assets_url} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
-                        <ReactPlayer url={videodata.assets_url} className={classes.anchorVideo}
-                            width="100%" height="240"
-                            playing='true'
-                            volume='6'
-                            loop='true'
-                            onStart={() => customloghandler(videodata.id)} />
+                        <ReactPlayer
+                            url={videodata.assets_url}
+                            className='react-player'
+                            playing={false}
+                            width='100%'
+                            height='300px'
+                            onStart={() => customloghandler(videodata.id)}
+                        />
                     </Grid>
                 );
             })}
