@@ -164,13 +164,12 @@ const Users = ({
     const handlemessage = (event, user_id, first_name, email, avatar) => {
         setisOpen(false);
         window._demo = {};
-        Talk.ready.then(() => {
-
+        Talk.ready.then(() => {            
             const me = new Talk.User({
                 id: user.user_id,
                 name: user.first_name, // get this user data from the API
                 email: user.email,  // get this user data from the API
-                photoUrl: user.avatar,
+                //photoUrl: user.avatar,
                 welcomeMessage: "Hi there, how are you? :-)",  // get this user data from the API
                 role: "Member"
             });
@@ -183,7 +182,7 @@ const Users = ({
                 id: user_id,
                 name: first_name,
                 email: email,
-                photoUrl: avatar,
+                //photoUrl: avatar,
                 welcomeMessage: "Hi there, how are you? :-)",
                 role: "Member"
             });
@@ -207,10 +206,6 @@ const Users = ({
                 popup.hide();
                 button.classList.remove("display_block")
             });
-
-
-
-
             me.current_user_id = user_id;
             me.current_user_name = first_name;
             me.current_user_email = email;
@@ -291,7 +286,7 @@ const Users = ({
                             <PerfectScrollbar>
                                 <Divider />
                                 {paginatedExhibitors.map((exhibitor, index) => {
-                                    let status_briefcase = exhibitor.briefcase_status
+                                    //let status_briefcase = exhibitor.briefcase_status
                                     let designation = exhibitor.designation
                                     let name = exhibitor.first_name + " " + exhibitor.last_name
                                     return (
@@ -304,11 +299,13 @@ const Users = ({
                                                     </ListItemAvatar>
                                                     <ListItemText primary={name} secondary={designation} />
                                                     <ListItemSecondaryAction className="user-action">
-                                                        <Button onClick={(event) => handlemessage(event, exhibitor.user_id, exhibitor.name, exhibitor.email, exhibitor.avatar)}>
+                                                        <Button onClick={(event) => handlemessage(event, exhibitor.user_id, name, exhibitor.email, exhibitor.avatar)}>
                                                             Message
                                                     </Button>
                                                         <Box ml={1}>
-                                                            <Button onClick={() => handlesharevisitongcard(exhibitor.user_id, exhibitor.user_type, index)} disabled={status_briefcase}>
+                                                            <Button onClick={() => handlesharevisitongcard(exhibitor.user_id, exhibitor.user_type, index)} 
+                                                            //disabled={status_briefcase}
+                                                            >
                                                                 Share
                                                     </Button></Box>
                                                     </ListItemSecondaryAction>
