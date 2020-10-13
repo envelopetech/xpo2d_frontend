@@ -118,7 +118,7 @@ export default function LobbyView() {
     }, []);
   
     return (
-        <Page>
+        <Page title="Lobby">
             {/* <div className={classes.imgContainer}>
             <ImageMapper src={lobby} width={1366} imgWidth={1280} map={MAP}/>
         </div> */}

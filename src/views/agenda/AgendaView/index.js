@@ -68,7 +68,7 @@ export default function AgendaView() {
     return (
         <Page
             className={classes.root}
-            title="Event Agenda"
+            title="Agenda"
         >
             <Results eventagenda1={eventagenda1} eventagenda2={eventagenda2} eventagenda3={eventagenda3}></Results>
         </Page>

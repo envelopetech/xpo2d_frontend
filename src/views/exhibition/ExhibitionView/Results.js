@@ -37,7 +37,7 @@ const Results = ({
     return (
         <React.Fragment>
             <Grid item container style={{
-                backgroundImage: `url(${background})`,
+                //backgroundImage: `url(${background})`,
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
@@ -53,10 +53,10 @@ const Results = ({
                                     <CardActionArea>
                                         <CardMedia
                                             component="img"
-                                            alt="Contemplative Reptile"
+                                            alt={exhibitor.name}
                                             height="140"
                                             image={exhibitor.company_logo}
-                                            title="Contemplative Reptile"
+                                            title={exhibitor.name}
                                             src={defaultlogo}
                                         />
                                         <CardContent>
