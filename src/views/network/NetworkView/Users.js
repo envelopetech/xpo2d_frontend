@@ -34,7 +34,7 @@ import {
     Search as SearchIcon
 } from 'react-feather';
 import { useDispatch } from 'src/store';
-import { tabs, sortOptions, applyPagination, applySort, applyFiltersforchat } from 'src/utils/common'
+import { tabs, sortOptionschat, applyPagination, applySort, applyFiltersforchat } from 'src/utils/common'
 import Talk from "talkjs";
 import useAuth from 'src/hooks/useAuth';
 import ChatIcon from '@material-ui/icons/Chat';
@@ -84,7 +84,7 @@ const Users = ({
     const [page, setPage] = useState(0);
     const [limit, setLimit] = useState(1000);
     const [query, setQuery] = useState('');
-    const [sort, setSort] = useState(sortOptions[0].value);
+    const [sort, setSort] = useState('first_name');
     const [open, setOpen] = React.useState(false);
     const [selectedExhibitor, setselectedExhibitor] = React.useState();
     const dispatch = useDispatch();
@@ -217,10 +217,11 @@ const Users = ({
             //client.network_message(me);
         });
     }
+    debugger;
 
     const filteredExhibitors = applyFiltersforchat(exhibitors, query, filters, ['name']);
-    const sortedExhibitors = applySort(filteredExhibitors, sort);
-    const paginatedExhibitors = applyPagination(sortedExhibitors, page, limit);
+    //const sortedExhibitors = applySort(filteredExhibitors, sort);
+    const paginatedExhibitors = applyPagination(filteredExhibitors, page, limit);
     const selectedSomeExhibitors = selectedExhibitors.length > 0 && selectedExhibitors.length < exhibitors.length;
     const selectedAllExhibitors = selectedExhibitors.length === exhibitors.length;
     const user_type = window.localStorage.getItem('user_type');
@@ -258,7 +259,7 @@ const Users = ({
 
                                     <Divider />
                                     <Box
-                                        mt={5}
+                                        mt={3}
                                         p={2}
                                         minHeight={56}
                                         display="flex"
@@ -286,10 +287,10 @@ const Users = ({
                                         <Box flexGrow={1} />
 
                                     </Box>
-                                    <Box mt={5}>
+                                    <Box mt={3}>
                                         <PerfectScrollbar>
                                             <Divider />
-                                            {paginatedExhibitors.map((exhibitor, index) => {
+                                            {paginatedExhibitors.map((exhibitor, index) => {                                                
                                                 //let status_briefcase = exhibitor.briefcase_status
                                                 let designation = exhibitor.designation
                                                 let name = exhibitor.first_name + " " + exhibitor.last_name
