@@ -61,9 +61,9 @@ const Results = ({
                                             <Typography gutterBottom variant="h5" component="h2">
                                                 {exhibitor.name}
                                             </Typography>
-                                            <Typography variant="body2" color="textSecondary" component="p">                                                
+                                            {/* <Typography variant="body2" color="textSecondary" component="p">                                                
                                                 {ReactHtmlParser(exhibitor.description)}
-                                            </Typography>
+                                            </Typography> */}
                                         </CardContent>
                                     </CardActionArea>
 

@@ -7,14 +7,12 @@ import Grid from "@material-ui/core/Grid";
 import background from '../../../assets/images/lobby.jpg';
 import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
-import MovieIcon from '@material-ui/icons/Movie';
 import Tooltip from '@material-ui/core/Tooltip';
-import Styles from './styles.css';
-import ReactPlayer from 'react-player'
-import video from '../../../assets/media/video1.mp4'
 import useAuth from 'src/hooks/useAuth';
 import { useDispatch } from 'src/store';
 import { userpage_save } from 'src/slices/notification'
+import Styles from './styles.css';
+
 
 const useStyles = makeStyles(theme => ({
     imgContainer: {
@@ -116,8 +114,10 @@ export default function LobbyView() {
         //window.eval(script);
         document.body.appendChild(script); 
     }, []);
+
+  
     return (
-        <Page>
+        <Page title="Lobby">
             {/* <div className={classes.imgContainer}>
             <ImageMapper src={lobby} width={1366} imgWidth={1280} map={MAP}/>
         </div> */}
@@ -170,12 +170,12 @@ export default function LobbyView() {
                    overflow: 'hidden',
             }}>
                 <div className="audi-background">
-                <ReactPlayer url={video} className={classes.anchorVideo}
+                {/* <ReactPlayer url={video} className={classes.anchorVideo}
                 width='19%' 
-                height='51%'
+                height='19%'
                 playing='true'
                 volume= '0'
-                loop='true' />
+                loop='true' /> */}
                 <img alt="auditorium" src={background} className="background-fluid" />
                 </div>
                 <div className="audi-content">
@@ -183,20 +183,20 @@ export default function LobbyView() {
                     {/* <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ElnqwnadBGY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
                     </div>
                     <div className="users">
-                    <Link href='/app/networking' className={classes.anchorKeynote}>
-                    <LightTooltip title="See who all are attending and get a chance to interact with them">
+                    <Link href='/app/exhibition' className={classes.anchorKeynote}>
+                    <LightTooltip title="Click here to attend panel discussions by healthcare industry leaders">
                         <Button variant="outlined" style={{width:'100%', height:'100%'}} aria-label="auditorium">    
                         </Button>
                     </LightTooltip>
                     </Link>
-                    <Link href='/app/agenda' className={classes.anchorExhibition}> 
-                    <LightTooltip title="Click here to attend panel discussions by healthcare industry leaders">
+                    <Link href='/app/keynote' className={classes.anchorExhibition}> 
+                    <LightTooltip title="Visit our expert partners from across the world">
                         <Button variant="outlined" style={{width:'100%', height:'100%'}} aria-label="auditorium">    
                         </Button>
                     </LightTooltip>            
                     </Link>
-                    <Link href='/app/exhibition' className={classes.anchorNetwork}>
-                    <LightTooltip title="Visit our expert partners from across the world">
+                    <Link href='/app/networking' className={classes.anchorNetwork}>
+                    <LightTooltip title="See who all are attending and get a chance to interact with them">
                         <Button variant="outlined" style={{width:'100%', height:'100%'}} aria-label="auditorium">    
                         </Button>
                     </LightTooltip>   

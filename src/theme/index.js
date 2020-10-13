@@ -7,6 +7,7 @@ import {
 import { THEMES } from 'src/constants';
 import { softShadows, strongShadows } from './shadows';
 import typography from './typography';
+import { FileText } from 'react-feather';
 
 const baseOptions = {
   direction: 'ltr',
@@ -26,6 +27,11 @@ const baseOptions = {
     MuiChip: {
       root: {
         backgroundColor: 'rgba(0,0,0,0.075)'
+      }
+    },
+    MuiCardMedia:{
+      img: {
+        objectFit: 'contain'
       }
     }
   }
