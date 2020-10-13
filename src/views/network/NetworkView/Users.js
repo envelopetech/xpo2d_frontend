@@ -304,11 +304,11 @@ const Users = ({
                                                     </ListItemAvatar>
                                                     <ListItemText primary={name} secondary={designation} />
                                                     <ListItemSecondaryAction className="user-action">
-                                                        <Button onClick={(event) => handlemessage(event, exhibitor.id, exhibitor.name, exhibitor.email, exhibitor.avatar)}>
+                                                        <Button onClick={(event) => handlemessage(event, exhibitor.user_id, exhibitor.name, exhibitor.email, exhibitor.avatar)}>
                                                             Message
                                                     </Button>
                                                         <Box ml={1}>
-                                                            <Button onClick={() => handlesharevisitongcard(exhibitor.id, exhibitor.user_type, index)} disabled={status_briefcase}>
+                                                            <Button onClick={() => handlesharevisitongcard(exhibitor.user_id, exhibitor.user_type, index)} disabled={status_briefcase}>
                                                                 Share
                                                     </Button></Box>
                                                     </ListItemSecondaryAction>
