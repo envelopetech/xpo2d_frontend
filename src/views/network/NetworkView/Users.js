@@ -164,7 +164,7 @@ const Users = ({
     const handlemessage = (event, user_id, first_name, email, avatar) => {
         setisOpen(false);
         window._demo = {};
-        Talk.ready.then(() => {            
+        Talk.ready.then(() => {
             const me = new Talk.User({
                 id: user.user_id,
                 name: user.first_name, // get this user data from the API
@@ -223,103 +223,111 @@ const Users = ({
     const paginatedExhibitors = applyPagination(sortedExhibitors, page, limit);
     const selectedSomeExhibitors = selectedExhibitors.length > 0 && selectedExhibitors.length < exhibitors.length;
     const selectedAllExhibitors = selectedExhibitors.length === exhibitors.length;
+    const user_type = window.localStorage.getItem('user_type');
 
     return (
         <>
-            <Tooltip title="Chat">
-                <IconButton
-                    color="inherit"
-                    onClick={handleOpen}
-                >
-                    <SvgIcon fontSize="large">
-                        <ChatIcon />
-                    </SvgIcon>
-                    <Typography>Click to Network</Typography>
-                </IconButton>
-            </Tooltip>
-            <Drawer
-                anchor="right"
-                classes={{ paper: classes.drawer }}
-                ModalProps={{ BackdropProps: { invisible: true } }}
-                onClose={handleClose}
-                open={isOpen}
-                variant="temporary"
-            >
-                <PerfectScrollbar options={{ suppressScrollX: true }}>
-
-                    <Card
-                        className={clsx(classes.root, className)}
-                        {...rest}
-                    >
-
-                        <Divider />
-                        <Box
-                            mt={5}
-                            p={2}
-                            minHeight={56}
-                            display="flex"
-                            alignItems="center"
+            {
+                (user_type !== 'visitor') && (
+                    <>
+                        <Tooltip title="Chat">
+                            <IconButton
+                                color="inherit"
+                                onClick={handleOpen}
+                            >
+                                <SvgIcon fontSize="large">
+                                    <ChatIcon />
+                                </SvgIcon>
+                                <Typography>Click to Network</Typography>
+                            </IconButton>
+                        </Tooltip>
+                        <Drawer
+                            anchor="right"
+                            classes={{ paper: classes.drawer }}
+                            ModalProps={{ BackdropProps: { invisible: true } }}
+                            onClose={handleClose}
+                            open={isOpen}
+                            variant="temporary"
                         >
-                            <TextField
-                                className={classes.queryField}
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <SvgIcon
-                                                fontSize="small"
-                                                color="action"
-                                            >
-                                                <SearchIcon />
-                                            </SvgIcon>
-                                        </InputAdornment>
-                                    )
-                                }}
-                                onChange={handleQueryChange}
-                                placeholder="Search peoples"
-                                value={query}
-                                variant="outlined"
-                            />
-                            <Box flexGrow={1} />
+                            <PerfectScrollbar options={{ suppressScrollX: true }}>
 
-                        </Box>
-                        <Box mt={5}>
-                            <PerfectScrollbar>
-                                <Divider />
-                                {paginatedExhibitors.map((exhibitor, index) => {
-                                    //let status_briefcase = exhibitor.briefcase_status
-                                    let designation = exhibitor.designation
-                                    let name = exhibitor.first_name + " " + exhibitor.last_name
-                                    return (
-                                        <>
-                                            <LazyLoad overflow="true">
-                                                <ListItem ContainerComponent="div">
-                                                    <ListItemAvatar>
-                                                        <Avatar className={classes.avatar_small} src={exhibitor.avatar}>
-                                                        </Avatar>
-                                                    </ListItemAvatar>
-                                                    <ListItemText primary={name} secondary={designation} />
-                                                    <ListItemSecondaryAction className="user-action">
-                                                        <Button onClick={(event) => handlemessage(event, exhibitor.user_id, name, exhibitor.email, exhibitor.avatar)}>
-                                                            Message
-                                                    </Button>
-                                                        <Box ml={1}>
-                                                            <Button onClick={() => handlesharevisitongcard(exhibitor.user_id, exhibitor.user_type, index)} 
-                                                            //disabled={status_briefcase}
-                                                            >
-                                                                Share
-                                                    </Button></Box>
-                                                    </ListItemSecondaryAction>
-                                                </ListItem>
-                                            </LazyLoad>
+                                <Card
+                                    className={clsx(classes.root, className)}
+                                    {...rest}
+                                >
+
+                                    <Divider />
+                                    <Box
+                                        mt={5}
+                                        p={2}
+                                        minHeight={56}
+                                        display="flex"
+                                        alignItems="center"
+                                    >
+                                        <TextField
+                                            className={classes.queryField}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <SvgIcon
+                                                            fontSize="small"
+                                                            color="action"
+                                                        >
+                                                            <SearchIcon />
+                                                        </SvgIcon>
+                                                    </InputAdornment>
+                                                )
+                                            }}
+                                            onChange={handleQueryChange}
+                                            placeholder="Search peoples"
+                                            value={query}
+                                            variant="outlined"
+                                        />
+                                        <Box flexGrow={1} />
+
+                                    </Box>
+                                    <Box mt={5}>
+                                        <PerfectScrollbar>
                                             <Divider />
-                                        </>
-                                    );
-                                })}
+                                            {paginatedExhibitors.map((exhibitor, index) => {
+                                                //let status_briefcase = exhibitor.briefcase_status
+                                                let designation = exhibitor.designation
+                                                let name = exhibitor.first_name + " " + exhibitor.last_name
+                                                return (
+                                                    <>
+                                                        <LazyLoad overflow="true">
+                                                            <ListItem ContainerComponent="div">
+                                                                <ListItemAvatar>
+                                                                    <Avatar className={classes.avatar_small} src={exhibitor.avatar}>
+                                                                    </Avatar>
+                                                                </ListItemAvatar>
+                                                                <ListItemText primary={name} secondary={designation} />
+                                                                <ListItemSecondaryAction className="user-action">
+                                                                    <Button onClick={(event) => handlemessage(event, exhibitor.user_id, name, exhibitor.email, exhibitor.avatar)}>
+                                                                        Message
+                                                        </Button>
+                                                                    <Box ml={1}>
+                                                                        <Button onClick={() => handlesharevisitongcard(exhibitor.user_id, exhibitor.user_type, index)}
+                                                                        //disabled={status_briefcase}
+                                                                        >
+                                                                            Share
+                                                        </Button></Box>
+                                                                </ListItemSecondaryAction>
+                                                            </ListItem>
+                                                        </LazyLoad>
+                                                        <Divider />
+                                                    </>
+                                                );
+                                            })}
+                                        </PerfectScrollbar>
+                                    </Box>
+                                </Card>
                             </PerfectScrollbar>
-                        </Box>
-                    </Card>
-                </PerfectScrollbar>
-            </Drawer>
+                        </Drawer>
+                    </>
+                )
+            }
+
         </>
     );
 };
