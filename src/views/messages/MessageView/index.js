@@ -10,14 +10,16 @@ const MessageView = () => {
     const { user, client } = useAuth();
     useEffect(() => {
         Talk.ready.then(() => {
+            console.log("start")
             const me = new Talk.User({
                 id: user.user_id,
                 name: user.name,
                 email: user.email,
-                photoUrl: user.avatar,
+                //photoUrl: user.avatar,
                 welcomeMessage: "Hi there, how are you? :-)",
                 role: "Member"
             });
+            console.log(me)
             window.talkSession = new Talk.Session({
                 appId: process.env.REACT_APP_TALKJS_APP_ID, // replace with your appId
                 me: me
