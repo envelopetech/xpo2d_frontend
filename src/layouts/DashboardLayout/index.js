@@ -66,7 +66,7 @@ const DashboardLayout = ({ children }) => {
             id: data.current_user_id,
             name: data.current_user_name,
             email: data.current_user_email,
-            photoUrl: data.current_user_avatar,
+            //photoUrl: data.current_user_avatar,
             welcomeMessage: "Hi there, how are you? :-)",
             role: "Member"
           });
@@ -79,7 +79,7 @@ const DashboardLayout = ({ children }) => {
             id: data.id,
             name: data.name, // get this user data from the API
             email: data.email,  // get this user data from the API
-            photoUrl: data.avatar,
+            //photoUrl: data.avatar,
             welcomeMessage: "Hi there, how are you? :-)",  // get this user data from the API
             role: "Member"
           });
