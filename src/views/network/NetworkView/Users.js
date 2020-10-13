@@ -227,9 +227,9 @@ const Users = ({
 
     return (
         <>
-            {
+            {/* {
                 (user_type !== 'visitor') && (
-                    <>
+                    <> */}
                         <Tooltip title="Chat">
                             <IconButton
                                 color="inherit"
@@ -324,9 +324,9 @@ const Users = ({
                                 </Card>
                             </PerfectScrollbar>
                         </Drawer>
-                    </>
+                    {/* </>
                 )
-            }
+            } */}
 
         </>
     );
