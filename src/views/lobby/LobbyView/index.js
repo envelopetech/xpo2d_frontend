@@ -7,11 +7,12 @@ import Grid from "@material-ui/core/Grid";
 import background from '../../../assets/images/lobby.jpg';
 import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
+import MovieIcon from '@material-ui/icons/Movie';
 import Tooltip from '@material-ui/core/Tooltip';
-import useAuth from 'src/hooks/useAuth';
-import { useDispatch } from 'src/store';
-import { userpage_save } from 'src/slices/notification'
 import Styles from './styles.css';
+import ReactPlayer from 'react-player'
+import video from '../../../assets/media/video1.mp4'
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -114,10 +115,9 @@ export default function LobbyView() {
         //window.eval(script);
         document.body.appendChild(script); 
     }, []);
-
   
     return (
-        <Page title="Lobby">
+        <Page>
             {/* <div className={classes.imgContainer}>
             <ImageMapper src={lobby} width={1366} imgWidth={1280} map={MAP}/>
         </div> */}
