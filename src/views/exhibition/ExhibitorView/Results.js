@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import {
     Dialog, Grid,
     AppBar, Toolbar, IconButton, makeStyles, Typography, Slide, Button, Tabs, Tab
-    , Box, TextField
+    , Box, TextField, Tooltip, SvgIcon
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -24,7 +24,8 @@ import { createEnquiry } from 'src/slices/enquiry'
 import useAuth from 'src/hooks/useAuth';
 import Photo from './Photo'
 import { customlog_save } from 'src/slices/visitor'
-import backgroundimage from '../../../assets/images/solar-panel.jpg';
+import testbackground from 'src/assets/images/stall1.png'
+import ChatIcon from '@material-ui/icons/Chat';
 
 
 
@@ -164,39 +165,121 @@ const Results = ({
 
 
 
-    // let backgroundimage = null
-    // if (exhibitor.id == 17) {
+    let backgroundimage = testbackground
+    // if (exhibitor.id == 36) { //Prakriya green wisdom school
     //     backgroundimage = background1
     // }
-    // else if (exhibitor.id == 18) {
+    // else if (exhibitor.id == 37) { //Trio world school
     //     backgroundimage = background5
     // }
-    // else if (exhibitor.id == 19) {
+    // else if (exhibitor.id == 39) { //Triumph world school
     //     backgroundimage = background6
     // }
-    // else if (exhibitor.id == 20) {
+    // else if (exhibitor.id == 40) { //Treamis
     //     backgroundimage = background3
     // }
-    // else if (exhibitor.id == 21) {
+    // else if (exhibitor.id == 41) { //Skei
     //     backgroundimage = background2
     // }
-    // else if (exhibitor.id == 22) {
+    // else if (exhibitor.id == 42) { //Educationist corporation
     //     backgroundimage = background7
     // }
 
-    // else if (exhibitor.id == 35) {
+    // else if (exhibitor.id == 43) { //Reflex
+    //     backgroundimage = background4
+    // }
+
+    // else if (exhibitor.id == 44) { //Learning arc
+    //     backgroundimage = background4
+    // }
+    // else if (exhibitor.id == 45) { //Investography
+    //     backgroundimage = background4
+    // }
+
+
+    // else if (exhibitor.id == 46) { //Learn.win
+    //     backgroundimage = background4
+    // }
+    // else if (exhibitor.id == 47) { //Vingyan
+    //     backgroundimage = background4
+    // }
+    // else if (exhibitor.id == 48) { //Joy of anubhava
+    //     backgroundimage = background4
+    // }
+    // else if (exhibitor.id == 49) { //Global indian international school
+    //     backgroundimage = background4
+    // }
+    // else if (exhibitor.id == 50) { //Quizzy edtech
+    //     backgroundimage = background4
+    // }
+
+    // else if (exhibitor.id == 51) { //Vidya sagar
+    //     backgroundimage = background4
+    // }
+    // else if (exhibitor.id == 52) { //Delhi public international school
+    //     backgroundimage = background4
+    // }
+    // else if (exhibitor.id == 53) { //S stemlabs edugames india pvt ltd
+    //     backgroundimage = background4
+    // }
+    // else if (exhibitor.id == 54) { //Aurinko academy
+    //     backgroundimage = background4
+    // }
+    // else if (exhibitor.id == 55) { //Next education india pvt ltd
+    //     backgroundimage = background4
+    // }
+    // else if (exhibitor.id == 56) { //Chaman bhartiya school
+    //     backgroundimage = background4
+    // }
+    // else if (exhibitor.id == 57) { //Coingal education pvt ltd
+    //     backgroundimage = background4
+    // }
+
+    // else if (exhibitor.id == 58) {//Indian school of excellence
+    //     backgroundimage = background4
+    // }
+    // else if (exhibitor.id == 59) { //Linguaphile skills hub
+    //     backgroundimage = background4
+    // }
+    // else if (exhibitor.id == 60) { //Kunskapsskolan
+    //     backgroundimage = background4
+    // }
+
+    // else if (exhibitor.id == 61) { //Envision group
+    //     backgroundimage = background4
+    // }
+    // else if (exhibitor.id == 62) { //Karadi path
+    //     backgroundimage = background4
+    // }
+    // else if (exhibitor.id == 63) { //The foundation school
     //     backgroundimage = background4
     // }
 
     return (
         <React.Fragment>
             <Grid item container style={{
-                backgroundImage: `url(${exhibitor.stall_image})`,
+                backgroundImage: `url(${backgroundimage})`,
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
                 height: "calc(100vh - 64px)"
             }}>
+                {
+                    (exhibitor.is_viewthreed) && (
+                        <Grid item style={{ position: 'absolute', right: '0%', top: ' 50%', backgroundColor: 'forestgreen', color: 'white' }}>
+                            <Tooltip title="Chat">
+                                <IconButton
+                                    color="inherit"
+                                >
+                                    {/* <SvgIcon fontSize="large">
+                                        <ChatIcon />
+                                    </SvgIcon> */}
+                                    <Typography>View in 3D</Typography>
+                                </IconButton>
+                            </Tooltip>
+                        </Grid>
+                    )
+                }
                 <div className="users">
                     <div className={classes.anchorStall1} onClick={handleClickOpen} style={{ cursor: 'pointer' }}></div>
                 </div>
@@ -215,7 +298,7 @@ const Results = ({
                 </AppBar>
                 <Tabs value={value} onChange={handleChange1} aria-label="simple tabs example">
                     <Tab label="About" {...a11yProps(0)} />
-                    <Tab label="Products" {...a11yProps(1)} />
+                    <Tab label="Offerings" {...a11yProps(1)} />
                     <Tab label="Team" {...a11yProps(2)} />
                     <Tab label="Photo" {...a11yProps(3)} />
                     <Tab label="Video" {...a11yProps(4)} />
