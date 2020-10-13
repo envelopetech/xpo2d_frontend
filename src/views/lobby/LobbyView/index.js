@@ -12,8 +12,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Styles from './styles.css';
 import ReactPlayer from 'react-player'
 import video from '../../../assets/media/video1.mp4'
-
-
+import useAuth from 'src/hooks/useAuth';
+import { useDispatch } from 'src/store';
+import { userpage_save } from 'src/slices/notification'
 
 const useStyles = makeStyles(theme => ({
     imgContainer: {
