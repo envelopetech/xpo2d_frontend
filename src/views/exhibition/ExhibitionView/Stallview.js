@@ -227,7 +227,7 @@ export default function LobbyView() {
                             <div className="lobby-content-center">
                             </div>
                             <div className="users">
-                                <Link href='/app/exhibitor/kunskapsskolan/60' className={classes.anchorStall1}>
+                                <Link href='/app/exhibitor/valistus/65' className={classes.anchorStall1}>
                                     <LightTooltip title="Valistus (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
