@@ -198,7 +198,7 @@ const Results = ({
 
 
 
-    let backgroundimage = ''
+    let backgroundimage = null
     if (exhibitor.id == 36) { //Prakriya green wisdom school
         backgroundimage = exhibitorbg9
     }
