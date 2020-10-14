@@ -47,9 +47,9 @@ export default function BriefcaseView() {
     dispatch(getbriefcase());
   }, [dispatch]);
 
-  if (briefcase !== undefined && briefcase.length === 0) {
-    return <Skeleton></Skeleton>;
-  }
+  // if (briefcase !== undefined && briefcase.length === 0) {
+  //   return <Skeleton></Skeleton>;
+  // }
   return (
     <Page
       className={classes.root}
