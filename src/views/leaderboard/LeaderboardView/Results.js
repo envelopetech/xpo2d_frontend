@@ -166,6 +166,9 @@ const Results = ({
                             <TableHead>
                                 <TableRow>
                                     <StyledTableCell>
+                                        Rank
+                                    </StyledTableCell>
+                                    <StyledTableCell>
                                         Visitor Name
                                     </StyledTableCell>
                                     {/* <StyledTableCell>
@@ -177,14 +180,18 @@ const Results = ({
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {paginatedExhibitors.map((exhibitor) => {
+                                {paginatedExhibitors.map((exhibitor, index) => {
                                     const isExhibitorSelected = selectedExhibitors.includes(exhibitor.id);
+                                    let displayindex = index + 1;
                                     return (
                                         <TableRow
                                             hover
                                             key={exhibitor.id}
                                             selected={isExhibitorSelected}
                                         >
+                                            <StyledTableCell>
+                                                {displayindex}
+                                            </StyledTableCell>
                                             <StyledTableCell>
                                                 <Box
                                                     display="flex"
