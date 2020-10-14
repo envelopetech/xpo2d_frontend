@@ -168,9 +168,9 @@ const Results = ({
                                     <StyledTableCell>
                                         Visitor Name
                                     </StyledTableCell>
-                                    <StyledTableCell>
+                                    {/* <StyledTableCell>
                                         Company Name
-                                    </StyledTableCell>
+                                    </StyledTableCell> */}
                                     <StyledTableCell>
                                         Points
                                     </StyledTableCell>
@@ -203,16 +203,16 @@ const Results = ({
                                                         >
                                                             {exhibitor.visitor__first_name} {exhibitor.visitor__last_name}
                                                         </Typography>
-                                                        <Typography
+                                                        {/* <Typography
                                                             variant="body2"
                                                             color="textSecondary"
                                                         >
                                                             {exhibitor.visitor__company}
-                                                        </Typography>
+                                                        </Typography> */}
                                                     </div>
                                                 </Box>
                                             </StyledTableCell>
-                                            <StyledTableCell>
+                                            {/* <StyledTableCell>
                                                 <Box
                                                     display="flex"
                                                     alignItems="center"
@@ -232,7 +232,7 @@ const Results = ({
                                                         </Typography>
                                                     </div>
                                                 </Box>
-                                            </StyledTableCell>
+                                            </StyledTableCell> */}
                                             <StyledTableCell>{exhibitor.totalscore}</StyledTableCell>
                                         </TableRow>
                                     );
