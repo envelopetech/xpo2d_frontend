@@ -26,7 +26,7 @@ import Photo from './Photo'
 import { customlog_save } from 'src/slices/visitor'
 import Iframe from 'react-iframe';
 import LaunchIcon from '@material-ui/icons/Launch';
-
+import Banner from './Banner';
 
 import xpoimage from 'src/assets/images/stall1.png'
 import exhibitorbg from 'src/assets/images/exhibitor-bg.jpg'
@@ -386,10 +386,11 @@ const Results = ({
                     <Tab label="About" {...a11yProps(0)} />
                     <Tab label="Offerings" {...a11yProps(1)} />
                     <Tab label="Team" {...a11yProps(2)} />
-                    <Tab label="Photo" {...a11yProps(3)} />
-                    <Tab label="Video" {...a11yProps(4)} />
-                    <Tab label="Assets" {...a11yProps(5)} />
-                    <Tab label="Contact Us" {...a11yProps(6)} />
+                    <Tab label="Banner" {...a11yProps(3)} />
+                    <Tab label="Photo" {...a11yProps(4)} />
+                    <Tab label="Video" {...a11yProps(5)} />
+                    <Tab label="Assets" {...a11yProps(6)} />
+                    <Tab label="Contact Us" {...a11yProps(7)} />
                 </Tabs>
                 <TabPanel value={value} index={0}>
                     <Typography>{ReactHtmlParser(exhibitor.about_me)}</Typography>
@@ -406,18 +407,23 @@ const Results = ({
                 </TabPanel>
                 <TabPanel value={value} index={3}>
                     <Grid container xs={12} sm spacing={2}>
-                        <Photo photo={exhibitor.photo_data} exhibitorid={exhibitor.id}></Photo>
+                        <Banner photo={exhibitor.banner_data} exhibitorid={exhibitor.id}></Banner>
                     </Grid>
                 </TabPanel>
                 <TabPanel value={value} index={4}>
                     <Grid container xs={12} sm spacing={2}>
-                        <Video video={exhibitor.video_data} exhibitorid={exhibitor.id}></Video>
+                        <Photo photo={exhibitor.photo_data} exhibitorid={exhibitor.id}></Photo>
                     </Grid>
                 </TabPanel>
                 <TabPanel value={value} index={5}>
-                    <Assets assets={exhibitor.assets_data} exhibitorid={exhibitor.id}></Assets>
+                    <Grid container xs={12} sm spacing={2}>
+                        <Video video={exhibitor.video_data} exhibitorid={exhibitor.id}></Video>
+                    </Grid>
                 </TabPanel>
                 <TabPanel value={value} index={6}>
+                    <Assets assets={exhibitor.assets_data} exhibitorid={exhibitor.id}></Assets>
+                </TabPanel>
+                <TabPanel value={value} index={7}>
                     <Formik
                         initialValues={{
                             message: '',
