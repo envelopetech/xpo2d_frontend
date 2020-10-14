@@ -111,13 +111,15 @@ const Team = ({
                 popup.hide();
                 button.classList.remove("display_block")
             });
-
             me.current_user_id = user_id;
             me.current_user_name = first_name;
             me.current_user_email = email;
             me.current_user_avatar = avatar;
-            client.team_chat(me);
-
+            //client.team_chat(me);
+            popup.on("sendMessage", function () {
+                console.log("message send")
+                client.network_message(me);
+            })
 
         });
 
