@@ -322,7 +322,7 @@ export default function LobbyView() {
                             <div className="lobby-content-center">
                             </div>
                             <div className="users">
-                                <Link href='/app/exhibitor/vidya-sagar/51' className={classes.anchorStall2Left}>
+                                <Link href='/app/exhibitor/vidya-sagar/66' className={classes.anchorStall2Left}>
                                     <LightTooltip title="VidyaSagar PreSchool (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
