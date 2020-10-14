@@ -17,6 +17,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import background from 'src/assets/images/exhibit-hall-sponsor1.jpg';
 import background2 from 'src/assets/images/exhibit-hall-sponsor2.jpg';
+import background3 from 'src/assets/images/exhibit-hall-sponsor3.jpg';
+import background4 from 'src/assets/images/exhibit-hall-sponsor4.jpg';
 import background5 from 'src/assets/images/exhibit-hall-gold1.jpg';
 import background6 from 'src/assets/images/exhibit-hall-gold2.jpg';
 import background7 from 'src/assets/images/exhibit-hall-gold3.jpg';
@@ -222,7 +224,7 @@ export default function LobbyView() {
                         </div>
                     </div>
                     <div>
-                        <img alt="auditorium" src={background} className="background-fluid" />
+                        <img alt="auditorium" src={background3} className="background-fluid" />
                         <div className="audi-content">
                             <div className="lobby-content-center">
                             </div>
@@ -237,7 +239,7 @@ export default function LobbyView() {
                         </div>
                     </div>
                     <div>
-                        <img alt="auditorium" src={background} className="background-fluid" />
+                        <img alt="auditorium" src={background4} className="background-fluid" />
                         <div className="audi-content">
                             <div className="lobby-content-center">
                             </div>
