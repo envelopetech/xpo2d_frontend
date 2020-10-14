@@ -244,7 +244,7 @@ const Results = ({
         backgroundimage = exhibitorbg13
     }
 
-    else if (exhibitor.id == 51) { //Vidya sagar
+    else if (exhibitor.id == 66) { //Vidya sagar
         backgroundimage = exhibitorbg11
     }
     else if (exhibitor.id == 52) { //Delhi public international school
