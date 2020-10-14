@@ -106,7 +106,7 @@ export const applyFiltersLeaderboard = (list_object, query, filters, properties)
     let matches = true;
 
     if (query) {
-      let properties = ['exhibitor__name', 'visitor__first_name', 'visitor__last_name'];
+      let properties = ['visitor__first_name', 'visitor__last_name'];
       let containsQuery = false;
 
       properties.forEach((property) => {
