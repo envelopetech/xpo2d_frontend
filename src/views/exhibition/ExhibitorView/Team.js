@@ -68,7 +68,7 @@ const Team = ({
             assetsid: assetsid
         };
         dispatch(lederboardsave(dataleaderboard));
-
+        window._demo = {};
         Talk.ready.then(() => {
             const me = new Talk.User({
                 id: user.user_id,
