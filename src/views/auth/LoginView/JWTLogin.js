@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
@@ -27,9 +27,9 @@ const JWTLogin = ({ className, ...rest }) => {
   let domain_name = window.location.hostname;
   const dispatch = useDispatch();
 
-  useEffect(() => {    
+  useEffect(() => {
     dispatch(getorganizer(domain_name));
-  }, []); 
+  }, []);
 
   return (
     <Formik
@@ -57,7 +57,7 @@ const JWTLogin = ({ className, ...rest }) => {
             setSubmitting(false);
 
           }
-        } catch (err) {          
+        } catch (err) {
           console.error(err);
           if (isMountedRef.current) {
             setStatus({ success: false });
@@ -127,7 +127,19 @@ const JWTLogin = ({ className, ...rest }) => {
               >
                 Log In
             </Button>
+              <Button
+                color="#FFFFFF"
+                fullWidth
+                size="large"
+                type="submit"
+                variant="contained"
+                style={{ marginTop: '20px' }}
+                href="https://bsei-xporium.herokuapp.com/"
+              >
+                Register for free
+            </Button>
             </Box>
+
           </form>
         )}
     </Formik>
