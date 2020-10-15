@@ -31,7 +31,8 @@ const Results = ({
     const classes = useStyles();
     const history = useHistory();
     const handleexhibitorpage = (event, slugname, id) => {
-        history.push(`/app/exhibitor/${slugname}/${id}`);
+        //history.push(`/app/exhibitor/${slugname}/${id}`);
+        window.open(`/app/exhibitor/${slugname}/${id}`, '_blank');
     }
 
     return (
