@@ -13,7 +13,7 @@ import {
 import Page from 'src/components/Page';
 import Logo from 'src/components/Logo';
 //import useAuth from 'src/hooks/useAuth';
-
+import logoimg from 'src/assets/images/logo-lg.png';
 
 import JWTLogin from './JWTLogin';
 
@@ -62,7 +62,10 @@ const useStyles = makeStyles((theme) => ({
       width: 'auto',
       maxHeight: '100%'
     }
-  }
+  },
+  logo: {
+    height: '220px',
+  },
 }));
 
 const LoginView = () => {
@@ -84,7 +87,11 @@ const LoginView = () => {
         justifyContent="center"
       >
         <RouterLink to="/">
-          <Logo />
+        <img
+      alt="Logo"
+      src={logoimg}
+      className={classes.logo}
+    />
         </RouterLink>
       </Box>
       <Card>

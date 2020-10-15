@@ -67,7 +67,7 @@ export default function ExhibitionView() {
                                     color="primary"
                                 />
                             }
-                            label="Card"
+                            label="Stall Gallery"
                         />
                     </Box>
                 </Grid>

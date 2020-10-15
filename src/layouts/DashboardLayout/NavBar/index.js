@@ -244,7 +244,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     height: '60px',
-    marginLeft: '40%',
+    marginLeft: '21%',
   },
   appBar: {
     background: '#ffffff',

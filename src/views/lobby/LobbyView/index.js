@@ -73,6 +73,30 @@ const useStyles = makeStyles(theme => ({
         top: '17%',
         right: '40.5%',
         },
+        anchorSideLeft: {
+            position: 'absolute', 
+            left: '37%', 
+            top: '61.5%', 
+            width: '4.2%', 
+            height: '17.85%', 
+            zIndex: 2
+        },
+        anchorSideRight: {
+            position: 'absolute', 
+            left: '58%', 
+            top: '61.5%', 
+            width: '4.2%', 
+            height: '17.85%', 
+            zIndex: 2
+        },
+        anchorAgenda: {
+            position: 'absolute', 
+            left: '13%', 
+            top: '26.5%', 
+            width: '6.2%', 
+            height: '31.85%', 
+            zIndex: 2
+        },
 }));
 
 const LightTooltip = withStyles((theme) => ({
@@ -208,6 +232,10 @@ export default function LobbyView() {
                         </Button>
                     </LightTooltip>   
                     </Link>
+                    <Link className={classes.anchorSideLeft} style={{ cursor: 'pointer' }} 
+                    href='https://zoom.us/meeting/register/tJEvcuGsrj0qHta0sLk0iRXDHpc7wps4b-vG' target="_blank"></Link>
+                    <Link className={classes.anchorSideRight} style={{ cursor: 'pointer' }}></Link>
+                    <Link className={classes.anchorAgenda} style={{ cursor: 'pointer' }} href='/app/keynote'></Link>
                 </div>
                 </div>
             </Grid>

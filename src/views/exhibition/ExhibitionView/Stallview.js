@@ -13,8 +13,6 @@ import Styles from './styles.css';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-
-
 import background from 'src/assets/images/exhibit-hall-sponsor1.jpg';
 import background2 from 'src/assets/images/exhibit-hall-sponsor2.jpg';
 import background3 from 'src/assets/images/exhibit-hall-sponsor3.jpg';
@@ -29,8 +27,6 @@ import background11 from 'src/assets/images/exhibit-hall-silver2.jpg';
 import background12 from 'src/assets/images/exhibit-hall-silver3.jpg';
 import background13 from 'src/assets/images/exhibit-hall-silver4.jpg';
 import background14 from 'src/assets/images/exhibit-hall-silver5.jpg';
-
-
 
 const useStyles = makeStyles(theme => ({
     imgContainer: {
@@ -154,6 +150,15 @@ const useStyles = makeStyles(theme => ({
         top: '17%',
         right: '40.5%',
     },
+    anchorStall1: {
+        position: 'absolute',
+        left: '14.88%',
+        top: '37.67%',
+        width: '75%',
+        height: '50%',
+        zIndex: 2
+    },
+  
 }));
 
 const LightTooltip = withStyles((theme) => ({
@@ -180,6 +185,7 @@ export default function LobbyView() {
         script.appendChild(t);
         document.body.appendChild(script);
     }, []);
+
     return (
         <Page title="Exhibition">
             <Grid item container style={{
@@ -199,6 +205,9 @@ export default function LobbyView() {
                             <div className="lobby-content-center">
                             </div>
                             <div className="users">
+                                
+                                
+
                                 <Link href='/app/exhibitor/chaman-bhartiya-school/56' target="_blank" className={classes.anchorStall1}>
                                     <LightTooltip title="Chaman Bhartiya School (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
