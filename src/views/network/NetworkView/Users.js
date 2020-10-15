@@ -161,10 +161,10 @@ const Users = ({
         dispatch(briefcasesave(data))
         setsharedisabled(true)
     }
-    const handlemessage = (event, user_id, first_name, email, avatar) => {
+    const handlemessage = async (event, user_id, first_name, email, avatar) => {
         setisOpen(false);
         window._demo = {};
-        Talk.ready.then(() => {
+        Talk.ready.then(async () => {
             const me = new Talk.User({
                 id: user.user_id,
                 name: user.first_name, // get this user data from the API
@@ -177,6 +177,9 @@ const Users = ({
                 appId: process.env.REACT_APP_TALKJS_APP_ID,
                 me: me
             });
+
+            await new Promise(resolve => window.talkSession.unreads.on("change", resolve));
+
             console.log(me)
             const other = new Talk.User({
                 id: user_id,
@@ -290,7 +293,7 @@ const Users = ({
                                     <Box mt={3}>
                                         <PerfectScrollbar>
                                             <Divider />
-                                            {paginatedExhibitors.map((exhibitor, index) => {                                                
+                                            {paginatedExhibitors.map((exhibitor, index) => {
                                                 //let status_briefcase = exhibitor.briefcase_status
                                                 let designation = exhibitor.designation
                                                 let name = exhibitor.first_name + " " + exhibitor.last_name
