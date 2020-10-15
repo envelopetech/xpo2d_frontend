@@ -350,14 +350,14 @@ const Results = ({
                         </Grid>
                     )
                 }
-                {/* {
+                {
                     (exhibitor.is_zoomroom) && (
                         <Grid item style={{ position: 'absolute', right: '0%', top: ' 50%', backgroundColor: '#000', color: 'white' }}>
                             <Tooltip title="Meeting room">
                                 <IconButton
                                     variant="contained"
                                     color="inherit"
-                                    href="https://www.google.com"
+                                    href={exhibitor.meeting_url}
                                     target="_blank"
                                 >
                                     <Typography>Meeting Room</Typography>
@@ -365,7 +365,7 @@ const Results = ({
                             </Tooltip>
                         </Grid>
                     )
-                } */}
+                }
                 <div className="users">
                     <div className={classes.anchorStall1} onClick={handleClickOpen} style={{ cursor: 'pointer' }}></div>
                 </div>
