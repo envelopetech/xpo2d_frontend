@@ -199,7 +199,7 @@ export default function LobbyView() {
                             <div className="lobby-content-center">
                             </div>
                             <div className="users">
-                                <Link href='/app/exhibitor/chaman-bhartiya-school/56' className={classes.anchorStall1}>
+                                <Link href='/app/exhibitor/chaman-bhartiya-school/56' target="_blank" className={classes.anchorStall1}>
                                     <LightTooltip title="Chaman Bhartiya School (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
@@ -214,7 +214,7 @@ export default function LobbyView() {
                             <div className="lobby-content-center">
                             </div>
                             <div className="users">
-                                <Link href='/app/exhibitor/kunskapsskolan/60' className={classes.anchorStall1}>
+                                <Link href='/app/exhibitor/kunskapsskolan/60' target="_blank" className={classes.anchorStall1}>
                                     <LightTooltip title="Kunskapsskolan (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
@@ -229,7 +229,7 @@ export default function LobbyView() {
                             <div className="lobby-content-center">
                             </div>
                             <div className="users">
-                                <Link href='/app/exhibitor/valistus/65' className={classes.anchorStall1}>
+                                <Link href='/app/exhibitor/valistus/65' target="_blank" className={classes.anchorStall1}>
                                     <LightTooltip title="Valistus (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
@@ -244,7 +244,7 @@ export default function LobbyView() {
                             <div className="lobby-content-center">
                             </div>
                             <div className="users">
-                                <Link href='/app/exhibitor/linguaphile-skills-hub/59' className={classes.anchorStall1}>
+                                <Link href='/app/exhibitor/linguaphile-skills-hub/59' target="_blank" className={classes.anchorStall1}>
                                     <LightTooltip title="Linguaphile (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
@@ -259,13 +259,13 @@ export default function LobbyView() {
                             <div className="lobby-content-center">
                             </div>
                             <div className="users">
-                                <Link href='/app/exhibitor/karadi-path/62' className={classes.anchorStall2Left}>
+                                <Link href='/app/exhibitor/karadi-path/62' target="_blank" className={classes.anchorStall2Left}>
                                     <LightTooltip title="Karadi Path (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
                                     </LightTooltip>
                                 </Link>
-                                <Link href='/app/exhibitor/aurinko-academy/54' className={classes.anchorStall2Right}>
+                                <Link href='/app/exhibitor/aurinko-academy/54' target="_blank" className={classes.anchorStall2Right}>
                                     <LightTooltip title="Aurinko Academy (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
@@ -280,13 +280,13 @@ export default function LobbyView() {
                             <div className="lobby-content-center">
                             </div>
                             <div className="users">
-                                <Link href='/app/exhibitor/trio-world-school/37' className={classes.anchorStall2Left}>
+                                <Link href='/app/exhibitor/trio-world-school/37' target="_blank" className={classes.anchorStall2Left}>
                                     <LightTooltip title="Trio World School (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
                                     </LightTooltip>
                                 </Link>
-                                <Link href='/app/exhibitor/treamis/40' className={classes.anchorStall2Right}>
+                                <Link href='/app/exhibitor/treamis/40' target="_blank" className={classes.anchorStall2Right}>
                                     <LightTooltip title="Tremis (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
@@ -301,13 +301,13 @@ export default function LobbyView() {
                             <div className="lobby-content-center">
                             </div>
                             <div className="users">
-                                <Link href='/app/exhibitor/prakriya-green-wisdom-school/36' className={classes.anchorStall2Left}>
+                                <Link href='/app/exhibitor/prakriya-green-wisdom-school/36' target="_blank" className={classes.anchorStall2Left}>
                                     <LightTooltip title="Prakriya School(Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
                                     </LightTooltip>
                                 </Link>
-                                <Link href='/app/exhibitor/skei/41' className={classes.anchorStall2Right}>
+                                <Link href='/app/exhibitor/skei/41' target="_blank" className={classes.anchorStall2Right}>
                                     <LightTooltip title="SKEI (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
@@ -322,13 +322,13 @@ export default function LobbyView() {
                             <div className="lobby-content-center">
                             </div>
                             <div className="users">
-                                <Link href='/app/exhibitor/vidya-sagar/66' className={classes.anchorStall2Left}>
+                                <Link href='/app/exhibitor/vidya-sagar/66' target="_blank" className={classes.anchorStall2Left}>
                                     <LightTooltip title="VidyaSagar PreSchool (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
                                     </LightTooltip>
                                 </Link>
-                                <Link href='/app/exhibitor/triumph-world-school/39' className={classes.anchorStall2Right}>
+                                <Link href='/app/exhibitor/triumph-world-school/39' target="_blank" className={classes.anchorStall2Right}>
                                     <LightTooltip title="Triumph School (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
@@ -343,13 +343,13 @@ export default function LobbyView() {
                             <div className="lobby-content-center">
                             </div>
                             <div className="users">
-                                <Link href='/app/exhibitor/quizzy-edtech/50' className={classes.anchorStall2Left}>
+                                <Link href='/app/exhibitor/quizzy-edtech/50' target="_blank" className={classes.anchorStall2Left}>
                                     <LightTooltip title="Quizzy EdTech (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
                                     </LightTooltip>
                                 </Link>
-                                <Link href='/app/exhibitor/envision-group/61' className={classes.anchorStall2Right}>
+                                <Link href='/app/exhibitor/envision-group/61' target="_blank" className={classes.anchorStall2Right}>
                                     <LightTooltip title="Envision High (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
@@ -364,19 +364,19 @@ export default function LobbyView() {
                             <div className="lobby-content-center">
                             </div>
                             <div className="users">
-                                <Link href='/app/exhibitor/learning-arc/44' className={classes.anchorStall3Left}>
+                                <Link href='/app/exhibitor/learning-arc/44' target="_blank" className={classes.anchorStall3Left}>
                                     <LightTooltip title="Learning Arc (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
                                     </LightTooltip>
                                 </Link>
-                                <Link href='/app/exhibitor/vingyan/47' className={classes.anchorStall3Middle}>
+                                <Link href='/app/exhibitor/vingyan/47' target="_blank" className={classes.anchorStall3Middle}>
                                     <LightTooltip title="Vingyan (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
                                     </LightTooltip>
                                 </Link>
-                                <Link href='/app/exhibitor/educationist-corporation/42' className={classes.anchorStall3Right}>
+                                <Link href='/app/exhibitor/educationist-corporation/42' target="_blank" className={classes.anchorStall3Right}>
                                     <LightTooltip title="Educationist Corporation (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
@@ -391,19 +391,19 @@ export default function LobbyView() {
                             <div className="lobby-content-center">
                             </div>
                             <div className="users">
-                                <Link href='/app/exhibitor/learn.win/46' className={classes.anchorStall3Left}>
+                                <Link href='/app/exhibitor/learn.win/46' target="_blank" className={classes.anchorStall3Left}>
                                     <LightTooltip title="8Worksera(Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
                                     </LightTooltip>
                                 </Link>
-                                <Link href='/app/exhibitor/joy-of-anubhava/48' className={classes.anchorStall3Middle}>
+                                <Link href='/app/exhibitor/joy-of-anubhava/48' target="_blank" className={classes.anchorStall3Middle}>
                                     <LightTooltip title="Joy of Anubhava (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
                                     </LightTooltip>
                                 </Link>
-                                <Link href='/app/exhibitor/investography/45' className={classes.anchorStall3Right}>
+                                <Link href='/app/exhibitor/investography/45' target="_blank" className={classes.anchorStall3Right}>
                                     <LightTooltip title="Investography (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
@@ -418,19 +418,19 @@ export default function LobbyView() {
                             <div className="lobby-content-center">
                             </div>
                             <div className="users">
-                                <Link href='/app/exhibitor/reflex/43' className={classes.anchorStall3Left}>
+                                <Link href='/app/exhibitor/reflex/43' target="_blank" className={classes.anchorStall3Left}>
                                     <LightTooltip title="Reflex (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
                                     </LightTooltip>
                                 </Link>
-                                <Link href='/app/exhibitor/global-indian-international-school/49' className={classes.anchorStall3Middle}>
+                                <Link href='/app/exhibitor/global-indian-international-school/49' target="_blank" className={classes.anchorStall3Middle}>
                                     <LightTooltip title="Global Indian International School (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
                                     </LightTooltip>
                                 </Link>
-                                <Link href='/app/exhibitor/s-stemlabs-edugames-india-pvt-ltd/53' className={classes.anchorStall3Right}>
+                                <Link href='/app/exhibitor/s-stemlabs-edugames-india-pvt-ltd/53' target="_blank" className={classes.anchorStall3Right}>
                                     <LightTooltip title="S Stem Labs Edugames (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
@@ -445,19 +445,19 @@ export default function LobbyView() {
                             <div className="lobby-content-center">
                             </div>
                             <div className="users">
-                                <Link href='/app/exhibitor/next-education-india-pvt-ltd/55' className={classes.anchorStall3Left}>
+                                <Link href='/app/exhibitor/next-education-india-pvt-ltd/55' target="_blank" className={classes.anchorStall3Left}>
                                     <LightTooltip title="Next Education (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
                                     </LightTooltip>
                                 </Link>
-                                <Link href='/app/exhibitor/coingal-education-pvt-ltd/57' className={classes.anchorStall3Middle}>
+                                <Link href='/app/exhibitor/coingal-education-pvt-ltd/57' target="_blank" className={classes.anchorStall3Middle}>
                                     <LightTooltip title="Coingal Education Pvt Ltd (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
                                     </LightTooltip>
                                 </Link>
-                                <Link href='/app/exhibitor/resonate/58' className={classes.anchorStall3Right}>
+                                <Link href='/app/exhibitor/resonate/58' target="_blank" className={classes.anchorStall3Right}>
                                     <LightTooltip title="Resonate (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
@@ -472,13 +472,13 @@ export default function LobbyView() {
                             <div className="lobby-content-center">
                             </div>
                             <div className="users">
-                                <Link href='/app/exhibitor/delhi-public-international-school/52' className={classes.anchorStall3Left}>
+                                <Link href='/app/exhibitor/delhi-public-international-school/52' target="_blank" className={classes.anchorStall3Left}>
                                     <LightTooltip title="Delhi Public International School (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
                                     </LightTooltip>
                                 </Link>
-                                <Link href='/app/exhibitor/the-foundation-school/63' className={classes.anchorStall3Middle}>
+                                <Link href='/app/exhibitor/the-foundation-school/63' target="_blank" className={classes.anchorStall3Middle}>
                                     <LightTooltip title="The Foundation School (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
