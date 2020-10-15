@@ -124,11 +124,10 @@ const Team = ({
                 console.log("message send")
                 //await new Promise(resolve => window.talkSession.unreads.on("change", resolve));
                 client.network_message(me);
-            })
+            })           
             
-            dispatch(closeModal());
         });
-        
+        dispatch(closeModal());
 
     }
     const handleclick = (exhibitorid, assetsid) => {

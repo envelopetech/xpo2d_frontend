@@ -457,8 +457,8 @@ export default function LobbyView() {
                                         </Button>
                                     </LightTooltip>
                                 </Link>
-                                <Link href='/app/exhibitor/indian-school-of-excellence/58' className={classes.anchorStall3Right}>
-                                    <LightTooltip title="Indian School of Excellence (Click to open)" placement="top">
+                                <Link href='/app/exhibitor/resonate/58' className={classes.anchorStall3Right}>
+                                    <LightTooltip title="Resonate (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
                                     </LightTooltip>

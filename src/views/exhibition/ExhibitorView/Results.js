@@ -314,7 +314,7 @@ const Results = ({
                         </Typography>
                     </Toolbar>
                 </AppBar>
-                <Iframe src="https://mnisarg.shapespark.com/bsei/"
+                <Iframe src={exhibitor.threed_url}
                     width="100%"
                     height="95%"
                     id="myId"
@@ -331,7 +331,7 @@ const Results = ({
             }}>
                 {
                     (exhibitor.is_viewthreed) && (
-                        <Grid item style={{ position: 'absolute', right: '0%', top: ' 40%', backgroundColor: '#000', color: 'white' }}>
+                        <Grid item style={{ position: 'absolute', right: '0%', top: ' 35%', backgroundColor: '#000', color: 'white' }}>
                             <Box>
                                 <Tooltip title="3D View">
                                     <IconButton
@@ -352,7 +352,7 @@ const Results = ({
                 }
                 {
                     (exhibitor.is_zoomroom) && (
-                        <Grid item style={{ position: 'absolute', right: '0%', top: ' 50%', backgroundColor: '#000', color: 'white' }}>
+                        <Grid item style={{ position: 'absolute', right: '0%', top: ' 55%', backgroundColor: '#000', color: 'white' }}>
                             <Tooltip title="Meeting room">
                                 <IconButton
                                     variant="contained"
@@ -360,6 +360,11 @@ const Results = ({
                                     href={exhibitor.meeting_url}
                                     target="_blank"
                                 >
+                                    <Box mr={1}>
+                                            <SvgIcon fontSize="large"  >
+                                                <LaunchIcon />
+                                            </SvgIcon>
+                                        </Box>
                                     <Typography>Meeting Room</Typography>
                                 </IconButton>
                             </Tooltip>
