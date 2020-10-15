@@ -57,11 +57,7 @@ const useStyles = makeStyles((theme) => ({
         minHeight: '100%',
     },
 
-    playbutton: {
-        display: "inline-block",
-        marginBottom: "20px",
-        color: "#000"
-    },
+
 
     appBar: {
         position: 'relative',
@@ -85,12 +81,6 @@ const useStyles = makeStyles((theme) => ({
         top: '0',
         width: '100%',
     },
-    speedDial: {
-        position: 'absolute',
-        bottom: theme.spacing(10),
-        right: theme.spacing(6),
-    },
-
     btnAgenda: {
         position: 'absolute',
         bottom: '30%',
@@ -98,27 +88,8 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-});
-const MAP = {
-    name: "lobby-map",
-    areas: [
-        { name: "Webinar", shape: "rect", coords: [896, 357, 449, 143] },
 
-    ]
-}
 
-const actions = [
-    { icon: <FileCopyIcon />, name: 'All' },
-];
-
-function a11yProps(index) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
 
 const TabPanel = (props) => {
     const { children, value, index, ...other } = props;
@@ -181,7 +152,7 @@ export function KeynoteView() {
         const t = document.createTextNode(`window.Intercom('boot', {hide_default_launcher: true, app_id: 'a5iw6q1x', name:'" + ${name} + "', email:'" + ${email} + "', created_at:'" + ${createdAt} + "', user_id:'" + ${userId} + "'});`);
         script.appendChild(t);
         //window.eval(script);
-        document.body.appendChild(script); 
+        document.body.appendChild(script);
     }, [dispatch]);
 
     const handleClickOpen = () => {

@@ -10,11 +10,11 @@ import Button from '@material-ui/core/Button';
 import MovieIcon from '@material-ui/icons/Movie';
 import Tooltip from '@material-ui/core/Tooltip';
 import Styles from './styles.css';
-import ReactPlayer from 'react-player'
-import video from '../../../assets/media/video1.mp4'
 import useAuth from 'src/hooks/useAuth';
 import { useDispatch } from 'src/store';
 import { userpage_save } from 'src/slices/notification'
+
+
 
 const useStyles = makeStyles(theme => ({
     imgContainer: {
@@ -22,10 +22,10 @@ const useStyles = makeStyles(theme => ({
     },
     anchorKeynote: {
         position: 'absolute', 
-        left: '23.34%', 
-        top: '53.74%', 
-        width: '8.99%', 
-        height: '6.2%', 
+        left: '9.34%', 
+        top: '61.74%', 
+        width: '12.99%', 
+        height: '15.2%', 
         zIndex: 2
     },
     anchorResource: {
@@ -39,25 +39,25 @@ const useStyles = makeStyles(theme => ({
     anchorExhibition: {
         position: 'absolute', 
         left: '41.94%', 
-        top: '52.5%', 
+        top: '62.5%', 
         width: '15.57%', 
-        height: '7.15%', 
+        height: '16.15%', 
         zIndex: 2
     },
     anchorNetwork: {
         position: 'absolute', 
-        left: '66.02%', 
-        top: '54.7%', 
+        left: '78.02%', 
+        top: '61.7%', 
         width: '11.2%', 
-        height: '4.85%', 
+        height: '26.85%', 
         zIndex: 2
     },
     anchorHelp: {
         position: 'absolute', 
-        left: '12%', 
-        top: '75.5%', 
-        width: '14.2%', 
-        height: '7.85%', 
+        left: '9%', 
+        top: '80.5%', 
+        width: '16.2%', 
+        height: '12.85%', 
         zIndex: 2
     },
     fab: {
@@ -118,7 +118,7 @@ export default function LobbyView() {
     }, []);
   
     return (
-        <Page title="Lobby">
+        <Page>
             {/* <div className={classes.imgContainer}>
             <ImageMapper src={lobby} width={1366} imgWidth={1280} map={MAP}/>
         </div> */}
@@ -184,14 +184,14 @@ export default function LobbyView() {
                     {/* <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ElnqwnadBGY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
                     </div>
                     <div className="users">
-                    <Link href='/app/exhibition' className={classes.anchorKeynote}>
-                    <LightTooltip title="Click here to attend panel discussions by healthcare industry leaders">
+                    <Link href='/app/keynote' className={classes.anchorKeynote}>
+                    <LightTooltip title="Click here to attend panel discussions by industry leaders">
                         <Button variant="outlined" style={{width:'100%', height:'100%'}} aria-label="auditorium">    
                         </Button>
                     </LightTooltip>
                     </Link>
-                    <Link href='/app/keynote' className={classes.anchorExhibition}> 
-                    <LightTooltip title="Visit our expert partners from across the world">
+                    <Link href='/app/exhibition' className={classes.anchorExhibition}> 
+                    <LightTooltip title="Visit our exhibitors and interact on their booth in real time">
                         <Button variant="outlined" style={{width:'100%', height:'100%'}} aria-label="auditorium">    
                         </Button>
                     </LightTooltip>            
