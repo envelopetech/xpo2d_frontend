@@ -73,6 +73,17 @@ const Itemdata = ({
             console.error(err);
         }
     }
+
+    const handledata = async (webinarid) => {
+        try {
+            localStorage.setItem("webinarurl", webinarid)
+            history.push(`/app/keynote`);
+
+        } catch (err) {
+            console.error(err);
+        }
+    }
+    
     return (
         <React.Fragment>
             {eventagenda.map((event1) => {
@@ -108,8 +119,7 @@ const Itemdata = ({
                                             variant="contained"
                                             color="secondary"
                                             className={classes.button}
-                                            href={event1.webinar_url}
-                                            target="_blank"
+                                            onClick={() => handledata(event1.webinar_url)}
                                         >
                                             Watch on Demand
                                         </Button>

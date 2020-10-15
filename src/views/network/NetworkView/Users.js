@@ -162,7 +162,7 @@ const Users = ({
         setsharedisabled(true)
     }
     const handlemessage = async (event, user_id, first_name, email, avatar) => {
-        setisOpen(false);
+       
         window._demo = {};
         Talk.ready.then(async () => {
             const me = new Talk.User({
@@ -200,15 +200,15 @@ const Users = ({
             // inbox.mount(document.getElementById("talkjs-container"));
 
 
-            var popup = window.talkSession.createPopup(conversation, { keepOpen: true });
+            var popup = window.talkSession.createPopup(conversation, { keepOpen: true, showCloseInHeader: true  });
             popup.mount({ show: true });
-            var button = document.getElementById("btn-close");
-            button.classList.add("display_block")
-            button.addEventListener("click", function (event) {
-                event.preventDefault();
-                popup.hide();
-                button.classList.remove("display_block")
-            });
+            // var button = document.getElementById("btn-close");
+            // button.classList.add("display_block")
+            // button.addEventListener("click", function (event) {
+            //     event.preventDefault();
+            //     popup.hide();
+            //     button.classList.remove("display_block")
+            // });
             me.current_user_id = user_id;
             me.current_user_name = first_name;
             me.current_user_email = email;
@@ -218,6 +218,8 @@ const Users = ({
                 client.network_message(me);
             })
             //client.network_message(me);
+
+            setisOpen(false);
         });
     }
     debugger;
