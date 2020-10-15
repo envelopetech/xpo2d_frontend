@@ -135,11 +135,11 @@ const DashboardLayout = ({ children }) => {
                 <img alt="company logo" src={logo2} className={classes.logo} />
               </Grid>
               <Grid item>
-                <small>&copy; Copyright 2020, Xporium Technologies Pte Ltd. All rights reserved.</small>
+                <small>&copy; Copyright 2020, Envelope Technologies Pvt Ltd. All rights reserved.</small>
               </Grid>
               <Grid item >
-                <a href="www.xporium.com">Privacy Policy &middot;</a>
-                <a href="www.xporium.com">Terms of Service</a>
+                <a href="https://app.xporium.com/privacypolicy">Privacy Policy &middot;</a>
+                <a href="https://app.xporium.com/termsofservice">Terms of Service</a>
               </Grid>
             </Grid>
 

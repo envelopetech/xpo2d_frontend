@@ -27,7 +27,7 @@ import { customlog_save } from 'src/slices/visitor'
 import Iframe from 'react-iframe';
 import LaunchIcon from '@material-ui/icons/Launch';
 import Banner from './Banner';
-
+import Link from '@material-ui/core/Link';
 import xpoimage from 'src/assets/images/stall1.png'
 import exhibitorbg from 'src/assets/images/exhibitor-bg.jpg'
 import exhibitorbg2 from 'src/assets/images/exhibitor-bg2.jpg'
@@ -127,11 +127,27 @@ const useStyles = makeStyles(theme => ({
         marginRight: theme.spacing(2),
     },
     anchorStall1: {
+        position: 'absolute', 
+        left: '14.88%', 
+        top: '37.67%', 
+        width: '75%', 
+        height: '50%', 
+        zIndex: 2
+    },
+    anchorVideoLeft: {
         position: 'absolute',
-        left: '14.88%',
-        top: '16.67%',
-        width: '75%',
-        height: '75%',
+        left: '17%',
+        top: '14%',
+        width: '15%',
+        height: '20%',
+        zIndex: 2
+    },
+    anchorVideoRight: {
+        position: 'absolute',
+        left: '71%',
+        top: '14%',
+        width: '15%',
+        height: '20%',
         zIndex: 2
     },
 
@@ -323,7 +339,7 @@ const Results = ({
                     position="relative"
                     allowFullScreen />              </Dialog>
             <Grid item container style={{
-                backgroundImage: `url(${backgroundimage})`,
+                backgroundImage: `url(${exhibitorbg})`,
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
@@ -361,10 +377,10 @@ const Results = ({
                                     target="_blank"
                                 >
                                     <Box mr={1}>
-                                            <SvgIcon fontSize="large"  >
-                                                <LaunchIcon />
-                                            </SvgIcon>
-                                        </Box>
+                                        <SvgIcon fontSize="large"  >
+                                            <LaunchIcon />
+                                        </SvgIcon>
+                                    </Box>
                                     <Typography>Meeting Room</Typography>
                                 </IconButton>
                             </Tooltip>
@@ -373,6 +389,18 @@ const Results = ({
                 }
                 <div className="users">
                     <div className={classes.anchorStall1} onClick={handleClickOpen} style={{ cursor: 'pointer' }}></div>
+                    {/* <Link className={classes.anchorVideoLeft} href="https://www.youtube.com/watch?v=9mwFUNZQMn0" target="_blank" style={{ cursor: 'pointer' }}></Link>
+                    <Link className={classes.anchorVideoRight} href="https://drive.google.com/file/d/1Zgv7svLZuZFTw6tqSUsrAyeXHJoqNNfS/view?usp=sharing" target="_blank" style={{ cursor: 'pointer' }}></Link> */}
+                    {
+                        (exhibitor.video_urlone !== undefined && exhibitor.video_urlone !== null) && (
+                            <Link className={classes.anchorVideoLeft} href={exhibitor.video_urlone} target="_blank" style={{ cursor: 'pointer' }}></Link>
+                        )
+                    }                    
+                    {
+                        (exhibitor.video_urltwo !== undefined && exhibitor.video_urltwo !== null) && (
+                            <Link className={classes.anchorVideoRight} href={exhibitor.video_urltwo} target="_blank" style={{ cursor: 'pointer' }}></Link>
+                        )
+                    }
                 </div>
             </Grid>
             <Dialog fullWidth={true}
