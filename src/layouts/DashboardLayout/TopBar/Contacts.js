@@ -174,7 +174,7 @@ const Contacts = () => {
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText
-                    primary={`${messengerdata.name} message you`}
+                    primary={`${messengerdata.name} messaged you`}
                     primaryTypographyProps={{ variant: 'subtitle2', color: 'textPrimary' }}
                   />
                 </ListItem>

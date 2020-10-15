@@ -93,15 +93,15 @@ const DashboardLayout = ({ children }) => {
           // element.classList.add("display_block")
           // inbox.mount(document.getElementById("talkjs-container"));
 
-          var popup = window.talkSession.createPopup(conversation, { keepOpen: true });
+          var popup = window.talkSession.createPopup(conversation, { keepOpen: true, showCloseInHeader: true  });
           popup.mount({ show: true });
-          var button = document.getElementById("btn-close");
-          button.classList.add("display_block")
-          button.addEventListener("click", function (event) {
-              event.preventDefault();
-              popup.hide();
-              button.classList.remove("display_block")
-          });
+          // var button = document.getElementById("btn-close");
+          // button.classList.add("display_block")
+          // button.addEventListener("click", function (event) {
+          //     event.preventDefault();
+          //     popup.hide();
+          //     button.classList.remove("display_block")
+          // });
           
           // button.addEventListener("click", function (event) {
           //   event.preventDefault();            
