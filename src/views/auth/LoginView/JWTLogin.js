@@ -135,6 +135,7 @@ const JWTLogin = ({ className, ...rest }) => {
                 variant="contained"
                 style={{ marginTop: '20px' }}
                 href="https://bsei-xporium.herokuapp.com/"
+                target="_blank"
               >
                 Register for free
             </Button>

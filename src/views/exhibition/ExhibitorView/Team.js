@@ -49,7 +49,7 @@ const Team = ({
         dispatch(customlog_save(dataleaderboard));
 
     }, []);
-    const handlechat = (event, user_id, first_name, email, avatar, exhibitor_id, assetsid) => {
+    const handlechat = async (event, user_id, first_name, email, avatar, exhibitor_id, assetsid) => {
         dispatch(closeModal());
         const data = ({
             id: user.user_id,
@@ -69,7 +69,7 @@ const Team = ({
         };
         dispatch(lederboardsave(dataleaderboard));
         window._demo = {};
-        Talk.ready.then(() => {
+        Talk.ready.then( async () => {
             const me = new Talk.User({
                 id: user.user_id,
                 name: user.first_name, // get this user data from the API
@@ -82,6 +82,9 @@ const Team = ({
                 appId: process.env.REACT_APP_TALKJS_APP_ID,
                 me: me
             });
+
+            await new Promise(resolve => window.talkSession.unreads.on("change", resolve));
+
             console.log(me)
             const other = new Talk.User({
                 id: user_id,
@@ -115,11 +118,14 @@ const Team = ({
             me.current_user_name = first_name;
             me.current_user_email = email;
             me.current_user_avatar = avatar;
-            //client.team_chat(me);
+            //client.team_chat(me);   
+            //const session = new Talk.Session();                   
             popup.on("sendMessage", function () {
                 console.log("message send")
+                //await new Promise(resolve => window.talkSession.unreads.on("change", resolve));
                 client.network_message(me);
             })
+            
 
         });
 
