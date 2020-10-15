@@ -339,7 +339,7 @@ const Results = ({
                     position="relative"
                     allowFullScreen />              </Dialog>
             <Grid item container style={{
-                backgroundImage: `url(${exhibitorbg})`,
+                backgroundImage: `url(${backgroundimage})`,
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
