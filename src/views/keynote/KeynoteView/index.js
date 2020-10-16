@@ -27,6 +27,7 @@ import ImageMapper from 'react-image-mapper';
 import audi from 'src/assets/images/audi.jpg';
 import Page from 'src/components/Page';
 import background from 'src/assets/images/audi.jpg';
+import background1 from 'src/assets/images/audi2.jpg';
 import Styles from './styles.css';
 import Backdrop from '@material-ui/core/Backdrop';
 import SpeedDial from '@material-ui/lab/SpeedDial';
@@ -50,6 +51,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import {
     getEventAgendas
 } from 'src/slices/eventagenda';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -130,13 +132,22 @@ export function KeynoteView() {
     const [webinarurl, setwebinarurl] = React.useState(localStorage.getItem("webinarurl"));
     const { eventagenda1, eventagenda2 } = useSelector((state) => state.eventagenda);
     const eventId = localStorage.getItem("eventId")
-
+    const { track } = useParams();
 
     const [value, setValue] = React.useState(0);
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
+    let backgroud_image = ''
+    
+    if(track === "contest")
+    {
+        backgroud_image = background1
+    }
+    else{
+        backgroud_image = background
+    }
     useEffect(() => {
         const data = {
             pagename: "Keynote"
@@ -220,7 +231,7 @@ export function KeynoteView() {
                 overflow: 'hidden',
             }}>
                 <div className="audi-background">
-                    <img alt="auditorium" src={background} className="background-fluid" />
+                    <img alt="auditorium" src={backgroud_image} className="background-fluid" />
                 </div>
                 <div className="audi-content">
 
