@@ -242,7 +242,5 @@ export default function LobbyView() {
                 </div>
             </Grid>
         </Page>
-
-
     )
 }
