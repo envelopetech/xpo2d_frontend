@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     agendaContainer: {
         marginTop: '2em',
     }
-    
+
 }));
 
 const Itemdata = ({
@@ -74,16 +74,16 @@ const Itemdata = ({
         }
     }
 
-    const handledata = async (webinarid) => {
-        try {
-            localStorage.setItem("webinarurl", webinarid)
-            history.push(`/app/keynote`);
+    // const handledata = async (webinarid) => {
+    //     try {
+    //         localStorage.setItem("webinarurl", webinarid)
+    //         history.push(`/app/keynote`);
 
-        } catch (err) {
-            console.error(err);
-        }
-    }
-    
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
+    // }
+
     return (
         <React.Fragment>
             {eventagenda.map((event1) => {
@@ -119,7 +119,9 @@ const Itemdata = ({
                                             variant="contained"
                                             color="secondary"
                                             className={classes.button}
-                                            onClick={() => handledata(event1.webinar_url)}
+                                            //onClick={() => handledata(event1.webinar_url)}
+                                            href={event1.webinar_url}
+                                            target="_blank"
                                         >
                                             Watch on Demand
                                         </Button>
