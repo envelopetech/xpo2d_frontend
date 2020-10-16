@@ -310,6 +310,13 @@ const Results = ({
 
     const handleOpen3dview = () => {
         setopen3d(true);
+        const dataleaderboard = {
+            log_type: "threed",
+            tab_type: 'Threed',
+            organizer_id: orgid,
+            exhibitor_id: exhibitor.id
+        };
+        dispatch(customlog_save(dataleaderboard));
     };
     const handlecloseOpen3dview = () => {
         setopen3d(false);
