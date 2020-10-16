@@ -234,6 +234,9 @@ import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 import FeedbackIcon from '@material-ui/icons/Feedback';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import useAuth from 'src/hooks/useAuth';
+import { useSnackbar } from 'notistack';
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import { useHistory } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -313,8 +316,11 @@ function ListItemLink(props) {
 export default function NavBar() {
   const classes = useStyles();
   const theme = useTheme();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [open, setOpen] = React.useState(false);
+  const { enqueueSnackbar } = useSnackbar();
+  const history = useHistory();
+
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget)
     setOpen(true)
@@ -336,6 +342,19 @@ export default function NavBar() {
     setOpen(false);
   };
 
+
+  const handleLogout = async () => {
+    try {
+      
+      await logout();
+      history.push('/login');
+    } catch (err) {
+      console.error(err);
+      enqueueSnackbar('Unable to logout', {
+        variant: 'error'
+      });
+    }
+  };
   const menuId = 'primary-search-account-menu';
 
   //   const renderMenu = (
@@ -539,6 +558,12 @@ export default function NavBar() {
               <FeedbackIcon />
             </ListItemIcon>
             <ListItemText primary="Feedback" />
+          </ListItemLink>
+          <ListItemLink onClick={handleLogout}>
+            <ListItemIcon>
+              <PowerSettingsNewIcon />
+            </ListItemIcon>
+            <ListItemText primary="Logout" />
           </ListItemLink>
         </List>
         <Divider />
