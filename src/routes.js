@@ -97,7 +97,7 @@ const routes = [
       },
       {
         exact: true,
-        path: '/app/keynote',
+        path: '/app/keynote/:track?',
         component: lazy(() => import('src/views/keynote/KeynoteView'))
       },
       {
