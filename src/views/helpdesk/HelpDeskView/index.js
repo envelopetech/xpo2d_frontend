@@ -68,8 +68,8 @@ export default function KeynoteView() {
         // const createdAt = Math.floor(Date.now() / 1000);
         // const userId = "123456";
         // const script = document.createElement("script");
-        // //const t = document.createTextNode("window.intercomSettings = {app_id: 'a5iw6q1x', name:'"+`${name}`+"', email:'"+`${email}`+"', created_at:'"+`${createdAt}`+"', user_id:'"+`${userId}`+"'};");
-        // const t = document.createTextNode("window.Intercom('boot', {hide_default_launcher: false, app_id: 'a5iw6q1x', name:'" + `${name}` + "', email:'" + `${email}` + "', created_at:'" + `${createdAt}` + "', user_id:'" + `${userId}` + "'});");
+        // //const t = document.createTextNode("window.intercomSettings = {app_id: 'awgmsv98', name:'"+`${name}`+"', email:'"+`${email}`+"', created_at:'"+`${createdAt}`+"', user_id:'"+`${userId}`+"'};");
+        // const t = document.createTextNode("window.Intercom('boot', {hide_default_launcher: false, app_id: 'awgmsv98', name:'" + `${name}` + "', email:'" + `${email}` + "', created_at:'" + `${createdAt}` + "', user_id:'" + `${userId}` + "'});");
         // script.appendChild(t);
         // //window.eval(script);
         // document.body.appendChild(script);
