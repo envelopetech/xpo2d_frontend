@@ -71,8 +71,8 @@ const useStyles = makeStyles(theme => ({
       },
       anchorVideo: {
         position: 'absolute',
-        top: '17%',
-        right: '40.5%',
+        top: '46%',
+        right: '42.5%',
         },
         anchorSideLeft: {
             position: 'absolute', 
