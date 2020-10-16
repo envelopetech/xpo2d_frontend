@@ -54,7 +54,7 @@ const Itemdata = ({
     const isMountedRef = useIsMountedRef();
     const history = useHistory();
 
-    const handleagenda = async (webinarid) => {
+    const handleagenda = async (webinarid, track) => {
         try {
 
             let data = {
@@ -66,23 +66,22 @@ const Itemdata = ({
             if (isMountedRef.current) {
                 //setdata(response.data.enter_uri);
                 localStorage.setItem("webinarurl", response.data.enter_uri)
-                history.push(`/app/keynote`);
-
+                history.push(`/app/keynote/${track}`);
             }
         } catch (err) {
             console.error(err);
         }
     }
 
-    // const handledata = async (webinarid) => {
-    //     try {
-    //         localStorage.setItem("webinarurl", webinarid)
-    //         history.push(`/app/keynote`);
+    const handledata = async (webinarid, track) => {
+        try {
+            localStorage.setItem("webinarurl", webinarid)
+            history.push(`/app/keynote/${track}`);
 
-    //     } catch (err) {
-    //         console.error(err);
-    //     }
-    // }
+        } catch (err) {
+            console.error(err);
+        }
+    }
 
     return (
         <React.Fragment>
@@ -119,9 +118,7 @@ const Itemdata = ({
                                             variant="contained"
                                             color="secondary"
                                             className={classes.button}
-                                            //onClick={() => handledata(event1.webinar_url)}
-                                            href={event1.webinar_url}
-                                            target="_blank"
+                                            onClick={() => handledata(event1.webinar_url, event1.track)}                                            
                                         >
                                             Watch on Demand
                                         </Button>
@@ -132,7 +129,7 @@ const Itemdata = ({
                                                 <Button
                                                     color="secondary"
                                                     variant="contained"
-                                                    onClick={() => handleagenda(event1.webinar_url)}
+                                                    onClick={() => handleagenda(event1.webinar_url, event1.track)}
                                                 // component={RouterLink}
                                                 // to={`/app/keynote/${user.id}/${event.id}`}
                                                 >

@@ -222,7 +222,7 @@ const Users = ({
             setisOpen(false);
         });
     }
-    debugger;
+   
 
     const filteredExhibitors = applyFiltersforchat(exhibitors, query, filters, ['name']);
     //const sortedExhibitors = applySort(filteredExhibitors, sort);

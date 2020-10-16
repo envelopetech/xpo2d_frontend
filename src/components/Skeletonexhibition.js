@@ -3,7 +3,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import {
     Card, CardContent, Typography, Grid, makeStyles, CardActionArea
 } from '@material-ui/core';
-import background from 'src/assets/images/exhibit-hall.jpg';
+import background from 'src/assets/images/exhibit-hall-gold1.jpg';
 
 const useStyles = makeStyles((theme) => ({
     root: {
