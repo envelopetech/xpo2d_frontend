@@ -332,7 +332,7 @@ export default function LobbyView() {
                             </div>
                             <div className="users">
                                 <Link href='/app/exhibitor/vidya-sagar/66' target="_blank" className={classes.anchorStall2Left}>
-                                    <LightTooltip title="VidyaSagar PreSchool (Click to open)" placement="top">
+                                    <LightTooltip title="Vidyasagar PreSchool (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
                                     </LightTooltip>
@@ -353,7 +353,7 @@ export default function LobbyView() {
                             </div>
                             <div className="users">
                                 <Link href='/app/exhibitor/quizzy-edtech/50' target="_blank" className={classes.anchorStall2Left}>
-                                    <LightTooltip title="Quizzy EdTech (Click to open)" placement="top">
+                                    <LightTooltip title="Quizzy (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
                                     </LightTooltip>
@@ -380,7 +380,7 @@ export default function LobbyView() {
                                     </LightTooltip>
                                 </Link>
                                 <Link href='/app/exhibitor/vingyan/47' target="_blank" className={classes.anchorStall3Middle}>
-                                    <LightTooltip title="Vingyan (Click to open)" placement="top">
+                                    <LightTooltip title="Tecklab (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
                                     </LightTooltip>
@@ -461,7 +461,7 @@ export default function LobbyView() {
                                     </LightTooltip>
                                 </Link>
                                 <Link href='/app/exhibitor/coingal-education-pvt-ltd/57' target="_blank" className={classes.anchorStall3Middle}>
-                                    <LightTooltip title="Coingal Education Pvt Ltd (Click to open)" placement="top">
+                                    <LightTooltip title="Codingal Education Pvt Ltd (Click to open)" placement="top">
                                         <Button variant="outlined" style={{ width: '100%', height: '100%' }} aria-label="auditorium">
                                         </Button>
                                     </LightTooltip>

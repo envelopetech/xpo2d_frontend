@@ -13,7 +13,8 @@ import Styles from './styles.css';
 import useAuth from 'src/hooks/useAuth';
 import { useDispatch } from 'src/store';
 import { userpage_save } from 'src/slices/notification'
-
+//import video from 'src/assets/media/video1.mp4'
+import ReactPlayer from 'react-player'
 
 
 const useStyles = makeStyles(theme => ({
@@ -195,12 +196,13 @@ export default function LobbyView() {
                    overflow: 'hidden',
             }}>
                 <div className="audi-background">
-                {/* <ReactPlayer url={video} className={classes.anchorVideo}
-                width='19%' 
-                height='19%'
+                <ReactPlayer url='https://www.youtube.com/watch?v=5UB1TpMdP9E&feature=youtu.be' className={classes.anchorVideo}
+                width='15%' 
+                height='17%'
                 playing='true'
-                volume= '0'
-                loop='true' /> */}
+                volume= '6'
+                loop='true'
+                allowFullScreen />
                 <img alt="auditorium" src={background} className="background-fluid" />
                 </div>
                 <div className="audi-content">
@@ -208,7 +210,7 @@ export default function LobbyView() {
                     {/* <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ElnqwnadBGY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
                     </div>
                     <div className="users">
-                    <Link href='/app/keynote' className={classes.anchorKeynote}>
+                    <Link href='/app/agenda' className={classes.anchorKeynote}>
                     <LightTooltip title="Click here to attend panel discussions by industry leaders">
                         <Button variant="outlined" style={{width:'100%', height:'100%'}} aria-label="auditorium">    
                         </Button>
@@ -235,7 +237,7 @@ export default function LobbyView() {
                     <Link className={classes.anchorSideLeft} style={{ cursor: 'pointer' }} 
                     href='https://zoom.us/meeting/register/tJEvcuGsrj0qHta0sLk0iRXDHpc7wps4b-vG' target="_blank"></Link>
                     <Link className={classes.anchorSideRight} style={{ cursor: 'pointer' }}></Link>
-                    <Link className={classes.anchorAgenda} style={{ cursor: 'pointer' }} href='/app/keynote'></Link>
+                    <Link className={classes.anchorAgenda} style={{ cursor: 'pointer' }} href='/app/agenda'></Link>
                 </div>
                 </div>
             </Grid>
