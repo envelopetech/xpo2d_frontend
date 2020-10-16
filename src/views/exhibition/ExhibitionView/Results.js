@@ -12,7 +12,6 @@ import {
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import background from 'src/assets/images/solar-panel.jpg';
 import ReactHtmlParser from 'react-html-parser';
 import defaultlogo from 'src/assets/images/download.png';
 
@@ -37,8 +36,7 @@ const Results = ({
 
     return (
         <React.Fragment>
-            <Grid item container style={{
-                //backgroundImage: `url(${background})`,
+            <Grid item container style={{                
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
