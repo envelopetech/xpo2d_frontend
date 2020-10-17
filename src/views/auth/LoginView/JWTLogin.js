@@ -14,6 +14,7 @@ import useAuth from 'src/hooks/useAuth';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import { getorganizer } from 'src/slices/organizer';
 import { useDispatch } from 'src/store';
+import { useMediaQuery } from 'react-responsive'
 
 const useStyles = makeStyles(() => ({
   root: {}
@@ -27,9 +28,20 @@ const JWTLogin = ({ className, ...rest }) => {
   let domain_name = window.location.hostname;
   const dispatch = useDispatch();
 
+  const isTabletOrMobile = useMediaQuery({ query: '(min-width:768px)' })
+
   useEffect(() => {
     dispatch(getorganizer(domain_name));
   }, []);
+
+
+  if(!isTabletOrMobile){
+    return <div>
+      <h3>Your browser is too small!</h3>
+      <p>Kindly login from your laptop or your desktop to login.</p>
+    </div>
+  }
+  
 
   return (
     <Formik
