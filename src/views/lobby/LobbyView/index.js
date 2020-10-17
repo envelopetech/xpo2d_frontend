@@ -73,31 +73,33 @@ const useStyles = makeStyles(theme => ({
         position: 'absolute',
         top: '46%',
         right: '42.5%',
-        },
-        anchorSideLeft: {
-            position: 'absolute', 
-            left: '37%', 
-            top: '61.5%', 
-            width: '4.2%', 
-            height: '17.85%', 
-            zIndex: 2
-        },
-        anchorSideRight: {
-            position: 'absolute', 
-            left: '58%', 
-            top: '61.5%', 
-            width: '4.2%', 
-            height: '17.85%', 
-            zIndex: 2
-        },
-        anchorAgenda: {
-            position: 'absolute', 
-            left: '13%', 
-            top: '26.5%', 
-            width: '6.2%', 
-            height: '31.85%', 
-            zIndex: 2
-        },
+        height: "17%",
+        width: '15%'
+    },
+    anchorSideLeft: {
+        position: 'absolute',
+        left: '20%',
+        top: '34.5%',
+        width: '6.2%',
+        height: '23.85%',
+        zIndex: 2
+    },
+    anchorSideRight: {
+        position: 'absolute',
+        left: '20%',
+        top: '20.5%',
+        width: '7.2%',
+        height: '11.85%',
+        zIndex: 2
+    },
+    anchorAgenda: {
+        position: 'absolute',
+        left: '12.5%',
+        top: '17.5%',
+        width: '6.2%',
+        height: '38.85%',
+        zIndex: 2
+    },
 }));
 
 const LightTooltip = withStyles((theme) => ({
@@ -196,13 +198,15 @@ export default function LobbyView() {
                    overflow: 'hidden',
             }}>
                 <div className="audi-background">
-                <ReactPlayer url='https://www.youtube.com/watch?v=5UB1TpMdP9E&feature=youtu.be' className={classes.anchorVideo}
+                {/* <ReactPlayer url='https://www.youtube.com/watch?v=5UB1TpMdP9E&feature=youtu.be' className={classes.anchorVideo}
                 width='15%' 
                 height='17%'
                 playing='true'
                 volume= '6'
                 loop='true'
-                allowFullScreen />
+                allowFullScreen /> */}
+                <iframe className={classes.anchorVideo} width="100%" height="100%" src="https://www.youtube.com/embed/5UB1TpMdP9E" frameborder="0" showInfo='0' allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+
                 <img alt="auditorium" src={background} className="background-fluid" />
                 </div>
                 <div className="audi-content">
