@@ -99,7 +99,7 @@ const Itemdata = ({
                 let finaltime = `${startdate} - ${enddate}`
                 var today = moment()
                 var result = moment(today).isBetween(event1.start_date, event1.end_date)
-                result = true;
+                //result = true;
                 console.log(result)
                 var checkafterwebinar = moment(today).isAfter(event1.end_date)
                 //checkafterwebinar = false
