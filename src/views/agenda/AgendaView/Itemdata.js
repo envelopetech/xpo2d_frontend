@@ -54,20 +54,28 @@ const Itemdata = ({
     const isMountedRef = useIsMountedRef();
     const history = useHistory();
 
-    const handleagenda = async (webinarid, track) => {
+    const handleagenda = async (webinarid, track, is_other_url) => {
         try {
 
-            let data = {
-                webinarid: webinarid,
-                email: user.email,
-                name: user.name
+            if(is_other_url)
+            {
+                window.open(webinarid, '_blank');
             }
-            const response = await axios.post('/api/eventspeaker/userenterwebinarcovid', data);
-            if (isMountedRef.current) {
-                //setdata(response.data.enter_uri);
-                localStorage.setItem("webinarurl", response.data.enter_uri)
-                history.push(`/app/keynote/${track}`);
+            else
+            {
+                let data = {
+                    webinarid: webinarid,
+                    email: user.email,
+                    name: user.name
+                }
+                const response = await axios.post('/api/eventspeaker/userenterwebinarcovid', data);
+                if (isMountedRef.current) {
+                    //setdata(response.data.enter_uri);
+                    localStorage.setItem("webinarurl", response.data.enter_uri)
+                    history.push(`/app/keynote/${track}`);
+                }
             }
+            
         } catch (err) {
             console.error(err);
         }
@@ -91,8 +99,10 @@ const Itemdata = ({
                 let finaltime = `${startdate} - ${enddate}`
                 var today = moment()
                 var result = moment(today).isBetween(event1.start_date, event1.end_date)
+                //result = true;
                 console.log(result)
                 var checkafterwebinar = moment(today).isAfter(event1.end_date)
+                //checkafterwebinar = false
                 return (
                     <Container className={classes.agendaContainer}>
                         <Card className={classes.root}>
@@ -129,7 +139,7 @@ const Itemdata = ({
                                                 <Button
                                                     color="secondary"
                                                     variant="contained"
-                                                    onClick={() => handleagenda(event1.webinar_url, event1.track)}
+                                                    onClick={() => handleagenda(event1.webinar_url, event1.track, event1.is_other_url)}
                                                 // component={RouterLink}
                                                 // to={`/app/keynote/${user.id}/${event.id}`}
                                                 >
