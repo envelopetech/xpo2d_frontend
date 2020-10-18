@@ -14,12 +14,13 @@ import useAuth from 'src/hooks/useAuth';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import { getorganizer } from 'src/slices/organizer';
 import { useDispatch } from 'src/store';
+​
 import { useMediaQuery } from 'react-responsive'
-
+​
 const useStyles = makeStyles(() => ({
   root: {}
 }));
-
+​
 const JWTLogin = ({ className, ...rest }) => {
   const classes = useStyles();
   let { login } = useAuth();
@@ -27,23 +28,28 @@ const JWTLogin = ({ className, ...rest }) => {
   //const { organizers } = useSelector((state) => state.organizer);
   let domain_name = window.location.hostname;
   const dispatch = useDispatch();
-
-  const isTabletOrMobile = useMediaQuery({ query: '(min-width:768px)' })
-
+ 
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width:768px)' })
+  const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
+​
+​
   useEffect(() => {
     dispatch(getorganizer(domain_name));
   }, []);
-
-
-  if(!isTabletOrMobile){
+​
+  if(isTabletOrMobile && isPortrait){
     return <div>
-      <h3>Your browser is too small!</h3>
-      <p>Kindly login from your laptop or your desktop to login.</p>
+      <h3>Your browser is too small!</h3><br></br>
+      <p>For a better experience of the BSEI expo, kindly login from laptop or desktop.</p><br></br>
+      <p>To still continue, please rotate your device to landscape mode.</p>
     </div>
   }
-  
-
   return (
+    
+     
+    <React.Fragment>
+      
+    
     <Formik
       initialValues={{
         // email: 'test@test.com',
@@ -64,10 +70,10 @@ const JWTLogin = ({ className, ...rest }) => {
         try {
           await login(values.email, values.password);
           if (isMountedRef.current) {
-
+​
             setStatus({ success: true });
             setSubmitting(false);
-
+​
           }
         } catch (err) {
           console.error(err);
@@ -152,15 +158,17 @@ const JWTLogin = ({ className, ...rest }) => {
                 Register for free
             </Button>
             </Box>
-
+​
           </form>
         )}
     </Formik>
+    </React.Fragment>
   );
 };
-
+​
 JWTLogin.propTypes = {
   className: PropTypes.string,
 };
-
+​
+​
 export default JWTLogin;
