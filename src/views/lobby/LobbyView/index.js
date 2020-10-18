@@ -239,8 +239,8 @@ export default function LobbyView() {
                     </LightTooltip>   
                     </Link>
                     <Link className={classes.anchorSideLeft} style={{ cursor: 'pointer' }} 
-                    href='https://audi.xporium.com/' target="_blank"></Link>
-                    <Link className={classes.anchorSideRight} style={{ cursor: 'pointer' }} href="https://bsei-expo.webflow.io/" target="_blank"></Link>
+                    href='https://zoom.us/meeting/register/tJwvd-Cgpz4rE9W0opIOhXvtVev9GTgLHor-' target="_blank"></Link>
+                    <Link className={classes.anchorSideRight} style={{ cursor: 'pointer' }} href="https://smolcoach.zoom.us/j/91896904884" target="_blank"></Link>
                     <Link className={classes.anchorAgenda} style={{ cursor: 'pointer' }} href='/app/agenda'></Link>
                 </div>
                 </div>
