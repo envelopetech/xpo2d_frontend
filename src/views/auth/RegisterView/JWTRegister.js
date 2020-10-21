@@ -93,14 +93,23 @@ const JWTRegister = ({ className, ...rest }) => {
           email: '',
           first_name: '',
           last_name: '',
+          password:'',
+          passwordConfirm:'',
           occupation: '',
           childage: '',
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          // email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-          // first_name: Yup.string().max(255).required('First name is required'),
-          // last_name: Yup.string().max(255).required('Last name is required'),
+          email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+          first_name: Yup.string().max(255).required('First name is required'),
+          last_name: Yup.string().max(255).required('Last name is required'),
+          password: Yup.string()
+          .min(7, 'Must be at least 7 characters')
+          .max(255)
+          .required('Required'),
+        passwordConfirm: Yup.string()
+          .oneOf([Yup.ref('password'), null], 'Passwords must match')
+          .required('Required')
         })}
         onSubmit={async (values, {
           setErrors,
@@ -117,7 +126,8 @@ const JWTRegister = ({ className, ...rest }) => {
               , document.querySelector('#general-setting-google-map').value
               , value.value
               , values.childage,
-              orgid);
+              orgid
+              ,values.password);
             if (isMountedRef.current) {
               resetForm();
               setStatus({ success: true });
@@ -193,6 +203,30 @@ const JWTRegister = ({ className, ...rest }) => {
                 variant="outlined"
                 required
               />
+              <TextField
+                    error={Boolean(touched.password && errors.password)}
+                    fullWidth
+                    helperText={touched.password && errors.password}
+                    label="Password"
+                    name="password"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    type="password"
+                    value={values.password}
+                    variant="outlined"
+                  />
+                  <TextField
+                    error={Boolean(touched.passwordConfirm && errors.passwordConfirm)}
+                    fullWidth
+                    helperText={touched.passwordConfirm && errors.passwordConfirm}
+                    label="Password Confirmation"
+                    name="passwordConfirm"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    type="password"
+                    value={values.passwordConfirm}
+                    variant="outlined"
+                  />
               <Box mt={2}>
                 <PhoneInput
                   error={Boolean(touched.phone && errors.phone)}

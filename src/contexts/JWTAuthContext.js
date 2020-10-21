@@ -119,7 +119,7 @@ export const AuthProvider = ({ children }) => {
       });
     }
   };
-  const register = async (email, first_name, last_name, phone_number, occupation, location, yourrole, childage, organizer_id) => {
+  const register = async (email, first_name, last_name, phone_number, occupation, location, yourrole, childage, organizer_id,password) => {
     const response = await axios.post('/api/user/bsei_user_create', {
       email,
       first_name,
@@ -129,7 +129,8 @@ export const AuthProvider = ({ children }) => {
       location,
       yourrole,
       childage,
-      organizer_id
+      organizer_id,
+      password
     });
     let user = []
     user = response.data
