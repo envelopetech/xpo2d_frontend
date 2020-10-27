@@ -34,7 +34,7 @@ import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input'
 import CustomPhoneNumber from 'src/components/Phonenumber'
 import track from 'src/utils/analytics';
-
+import { Link as RouterLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   imgContainer: {
@@ -57,6 +57,11 @@ const yourrole = [
   { title: 'Both', value: "both" },
   { title: 'None of the Above', value: "none" },
 ]
+
+const handleClick=()=>{
+  return(
+  <RouterLink to="/"></RouterLink>
+  )}
 
 const JWTRegister = ({ className, ...rest }) => {
   const classes = useStyles();
@@ -95,8 +100,8 @@ const JWTRegister = ({ className, ...rest }) => {
           last_name: '',
           password:'',
           passwordConfirm:'',
-          occupation: '',
-          childage: '',
+          //occupation: '',
+          //childage: '',
           submit: null
         }}
         validationSchema={Yup.object().shape({
@@ -123,10 +128,10 @@ const JWTRegister = ({ className, ...rest }) => {
               , values.last_name
               , phone1
               , values.occupation
-              , document.querySelector('#general-setting-google-map').value
-              , value.value
-              , values.childage,
-              orgid
+              // , document.querySelector('#general-setting-google-map').value
+              // , value.value
+              // , values.childage,
+              ,orgid
               ,values.password);
             if (isMountedRef.current) {
               resetForm();
@@ -212,6 +217,7 @@ const JWTRegister = ({ className, ...rest }) => {
                     onBlur={handleBlur}
                     onChange={handleChange}
                     type="password"
+                    margin="normal"
                     value={values.password}
                     variant="outlined"
                   />
@@ -224,6 +230,7 @@ const JWTRegister = ({ className, ...rest }) => {
                     onBlur={handleBlur}
                     onChange={handleChange}
                     type="password"
+                    margin="normal"
                     value={values.passwordConfirm}
                     variant="outlined"
                   />
@@ -252,9 +259,9 @@ const JWTRegister = ({ className, ...rest }) => {
                 value={values.occupation}
                 variant="outlined"
               />
-              <GoogleMaps id="general-setting-google-map" editvalue={values.location}
-              />
-              <Box mt={2}>
+              {/* <GoogleMaps id="general-setting-google-map" editvalue={values.location}
+              /> */}
+              {/* <Box mt={2}>
                 <Autocomplete
                   id="combo-box-demo"
                   options={yourrole}
@@ -277,7 +284,7 @@ const JWTRegister = ({ className, ...rest }) => {
                 onChange={handleChange}
                 value={values.childage}
                 variant="outlined"
-              />
+              /> */}
 
               {errors.submit && (
                 <Box mt={3}>
@@ -287,6 +294,7 @@ const JWTRegister = ({ className, ...rest }) => {
                 </Box>
               )}
               <Box mt={2}>
+                
                 <Button
                   color="secondary"
                   disabled={isSubmitting}
@@ -294,9 +302,11 @@ const JWTRegister = ({ className, ...rest }) => {
                   size="large"
                   type="submit"
                   variant="contained"
+                  onSubmit={handleClick}
                 >
                   Register
             </Button>
+           
               </Box>
             </form>
           )}
