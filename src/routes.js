@@ -65,6 +65,18 @@ const routes = [
   },
   {
     exact: true,
+    guard: GuestGuard,
+    path: '/forgot',
+    component: lazy(() => import('src/views/auth/LoginView/Forgot'))
+  },
+  {
+    exact: true,
+    guard: GuestGuard,
+    path: '/reset/:id?',
+    component: lazy(() => import('src/views/auth/LoginView/Reset'))
+  },
+  {
+    exact: true,
     path: '/login-unprotected',
     component: lazy(() => import('src/views/auth/LoginView'))
   },
