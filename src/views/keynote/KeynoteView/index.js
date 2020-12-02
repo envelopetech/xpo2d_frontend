@@ -51,7 +51,12 @@ import { Link as RouterLink } from 'react-router-dom';
 import {
     getEventAgendas
 } from 'src/slices/eventagenda';
+import { ZoomMtg } from '@zoomus/websdk'
 
+ZoomMtg.preLoadWasm();
+ZoomMtg.prepareJssdk();
+ZoomMtg.setZoomJSLib('https://source.zoom.us/1.8.1/lib', '/av');
+// const zoomMeeting = document.getElementById("zmmtg-root")
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -133,7 +138,27 @@ export function KeynoteView() {
     const { eventagenda1, eventagenda2 } = useSelector((state) => state.eventagenda);
     const eventId = localStorage.getItem("eventId")
     const { track } = useParams();
-
+    const signature = localStorage.getItem("signature")
+    const name = localStorage.getItem("name")
+    const email = localStorage.getItem("email")
+    const webinarid = localStorage.getItem("webinarid")
+    const zoomlink = 'http://127.0.0.1:9999/meeting.html?' + 'name=' + name + '&' + 'mn=' + webinarid + '&' + 'email=' + email + '&' + 'pwd=' + 'bJGYv8' + '&' + 'role=0&lang=en-US&signature=' + signature + '&' + 'china=0&apiKey=nyN04PPYSJqVPeb0RWtwLA'
+    
+    console.log(zoomlink)
+    
+    const src = zoomlink
+    // const meetConfig = {
+    //     apiKey: '3nyN04PPYSJqVPeb0RWtwLA',
+    //     meetingNumber: webinarurl,
+    //     leaveUrl: 'https://xporium.com',
+    //     userName: ' Hetal Mehta',
+    //     userEmail: 'hetal@xporium.com', // required
+    //     // passWord: 'YR2c4g', // if required
+    //     role: 0 // 1 for host; 0 for attendee
+    
+    // };
+    
+    
     const [value, setValue] = React.useState(0);
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -165,7 +190,7 @@ export function KeynoteView() {
         //window.eval(script);
         document.body.appendChild(script);
     }, [dispatch]);
-
+   
     const handleClickOpen = () => {
         setOpen2(true);
     };
@@ -194,7 +219,42 @@ export function KeynoteView() {
                 email: user.email,
                 name: user.name
             }
-            const response = await axios.post('/api/eventspeaker/userenterwebinarinforma', data);
+            
+            const response = await axios.post('/api/eventspeaker/zoomuserenterwebinar', data);
+            console.log('response',response)
+            
+            // call the init method with meeting settings
+//             ZoomMtg.init({
+//                 leaveUrl: meetConfig.leaveUrl,
+//                 isSupportAV: true,
+//                 // on success, call the join method 
+//                 success: function() {	
+//                     ZoomMtg.join({
+//                         // pass your signature response in the join method
+//                         signature: response.data.signature,
+//                         apiKey: meetConfig.apiKey,
+//                         meetingNumber: meetConfig.meetingNumber,
+//                         userName: meetConfig.userName,
+//                         passWord: meetConfig.passWord,
+//                         // on success, get the attendee list and verify the current user
+//                         success: function (res) {
+//             console.log("join meeting success");
+//             console.log("get attendee list");
+//             ZoomMtg.getAttendeeslist({});
+//             ZoomMtg.getCurrentUser({
+//                 success: function (res) {
+//                 console.log("success getCurrentUser", res.result.currentUser);
+//                 },
+//             });
+//             },
+// error: function (res) {
+//             console.log('response',res);
+//             },
+//                     })		
+//                 }
+//             })
+            
+            
 
             if (isMountedRef.current) {
                 setwebinarurl(response.data.enter_uri)
@@ -217,7 +277,7 @@ export function KeynoteView() {
         document.getElementById("exit-full-screen").classList.remove("display");
         //setHidden((prevHidden) => !prevHidden);
     };
-
+    
     return (
         <Page className={classes.root}
             title="Keynote">
@@ -238,12 +298,16 @@ export function KeynoteView() {
                     <div className="audi-content-center">
                         <Button className="fullscreen" id="full-screen" onClick={handleFullScreen}>Full Screen</Button>
                         <Button className="exitfullscreen" id="exit-full-screen" onClick={handleExitFullScreen}>Exit Full Screen</Button>
-
-                        <iframe id="audi-iframe" scrolling="no" width="100%" height="100%" src={webinarurl}
+                        {/* <Button className="fullscreen" id="full-screen" onClick={handleagenda}>ZOOM</Button> */}
+                        <iframe id="audi-iframe" scrolling="no" width="100%" height="100%" src={src}
                             frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true">
-                        </iframe>
+                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true">
+                         </iframe> 
 
+                        {/* <iframe id="audi-iframe" scrolling="no" width="100%" height="100%" src={src} */}
+
+                        
+                        {/* <iframe src={src} allow="microphone; camera; fullscreen" /> */}
                         {/* {
                             (webinarurl != "undefined") && (
                                 <iframe url={webinarurl}

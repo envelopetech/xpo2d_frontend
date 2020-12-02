@@ -18,16 +18,21 @@ import * as serviceWorker from 'src/serviceWorker';
 import store from 'src/store';
 import { SettingsProvider } from 'src/contexts/SettingsContext';
 import App from 'src/App';
+import { ZoomMtg } from '@zoomus/websdk'
+
+ZoomMtg.preLoadWasm();
+ZoomMtg.prepareJssdk();
+
 
 enableES5();
-
 ReactDOM.render(
   <Provider store={store}>
     <SettingsProvider>
       <App />
     </SettingsProvider>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root', "zmmtg-root")
+  // document.getElementById("zmmtg-root")
 );
 
 serviceWorker.register();

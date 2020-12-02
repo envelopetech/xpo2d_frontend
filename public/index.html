@@ -11,7 +11,25 @@
     rel="stylesheet" />
 
 
-  <title>Xporium</title>
+  <!-- import local css for #zmmtg-root -->
+  <link type="text/css" rel="stylesheet" href="node_modules/@zoomus/websdk/dist/css/bootstrap.css" />
+  <link type="text/css" rel="stylesheet" href="node_modules/@zoomus/websdk/dist/css/react-select.css" />
+
+  <!-- import ZoomMtg dependencies -->
+<script src="https://source.zoom.us/1.8.1/lib/vendor/react.min.js"></script>
+<script src="https://source.zoom.us/1.8.1/lib/vendor/react-dom.min.js"></script>
+<script src="https://source.zoom.us/1.8.1/lib/vendor/redux.min.js"></script>
+<script src="https://source.zoom.us/1.8.1/lib/vendor/redux-thunk.min.js"></script>
+<script src="https://source.zoom.us/1.8.1/lib/vendor/jquery.min.js"></script>
+<script src="https://source.zoom.us/1.8.1/lib/vendor/lodash.min.js"></script>
+
+<!-- import ZoomMtg -->
+<script src="https://source.zoom.us/zoom-meeting-1.8.1.min.js"></script>
+
+<!-- import local .js file -->
+<script src="js/index.js"></script>
+ 
+<title>Xporium</title>
   <script src="https://apis.google.com/js/client:platform.js"></script>
   <script>
     // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/awgmsv98'
@@ -102,13 +120,31 @@
   </style>
 </head>
 
-<body>
+<body class="ReactModal__Body--open">
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
   <button id="btn-close" class="closebuttonclass"><i class="fa fa-close"
       style="font-size:24px; color:#fff"></i></button>
   <div id="talkjs-container" />
+
+   <!-- added on import -->
+   <div id="zmmtg-root"></div>
+   <div id="aria-notify-area"></div>
+
+    <!-- added on import -->
+    <div id="zmmtg-root"></div>
+    <div id="aria-notify-area"></div>
+    
+    <!-- added on meeting init -->
+    <div class="ReactModalPortal"></div>
+    <div class="ReactModalPortal"></div>
+    <div class="ReactModalPortal"></div>
+    <div class="ReactModalPortal"></div>
+    <div class="global-pop-up-box"></div>
+    <div class="sharer-controlbar-container sharer-controlbar-container--hidden"></div>
 </body>
+
+
 <script>
   window.intercomSettings = {
     app_id: "awgmsv98"

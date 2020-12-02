@@ -67,6 +67,7 @@ const reducer = (state, action) => {
 
       };
     }
+    
     case 'LOGOUT': {
       return {
         ...state,
@@ -74,17 +75,6 @@ const reducer = (state, action) => {
         user: null,
 
       };
-    }
-    case 'REGISTER': {
-      const { isAuthenticated, user } = action.payload;
-      return {
-        ...state,
-        isAuthenticated: isAuthenticated,
-        user
-      };
-    }
-    default: {
-      return { ...state };
     }
   }
 };
@@ -99,6 +89,24 @@ const AuthContext = createContext({
 
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialAuthState);
+
+  const forgotpassword = async (email) =>{
+    const response = await axios.post('api/user/forgot_password',{email});
+    let user = []
+    user = response.data[0];
+
+
+    if (user.access_token !== undefined) {
+      
+      dispatch({
+        payload: {
+          email,
+
+        }
+      });
+    }
+  }
+
 
   const login = async (email, password) => {
     const response = await axios.post('api/user/login', { email, password });
@@ -119,17 +127,15 @@ export const AuthProvider = ({ children }) => {
       });
     }
   };
-  const register = async (email, first_name, last_name, phone_number, occupation, location, yourrole, childage, organizer_id) => {
+  const register = async (email, first_name, last_name, phone_number, occupation, organizer_id,password) => {
     const response = await axios.post('/api/user/bsei_user_create', {
       email,
       first_name,
       last_name,
       phone_number,
       occupation,
-      location,
-      yourrole,
-      childage,
-      organizer_id
+      organizer_id,
+      password
     });
     let user = []
     user = response.data
@@ -144,6 +150,7 @@ export const AuthProvider = ({ children }) => {
       });
     }
   };
+
 
   const logout = async () => {
     const user_type = window.localStorage.getItem('user_type');
@@ -218,6 +225,8 @@ export const AuthProvider = ({ children }) => {
         ...state,
         method: 'JWT',
         login,
+        forgotpassword,
+       
         logout,
         register
       }}

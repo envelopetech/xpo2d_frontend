@@ -221,7 +221,7 @@ import Grid from '@material-ui/core/Grid';
 import Account from '../TopBar/Account';
 import Contacts from '../TopBar/Contacts';
 import Notifications from '../TopBar/Notifications';
-//import Search from '../TopBar/Search';
+import Search from '../TopBar/Search';
 import Settings from '../TopBar/Settings';
 import EventIcon from '@material-ui/icons/Event';
 import SlideshowIcon from '@material-ui/icons/Slideshow';
@@ -237,9 +237,15 @@ import useAuth from 'src/hooks/useAuth';
 import { useSnackbar } from 'notistack';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import { useHistory } from 'react-router-dom';
+import {TextField} from '@material-ui/core';
+import {Button, FormHelperText}from '@material-ui/core';
+import { productrecommendation} from 'src/slices/visitor'
+import { useDispatch } from 'src/store';
+import { Formik } from 'formik';
+import useIsMountedRef from 'src/hooks/useIsMountedRef';
 
 const drawerWidth = 240;
-
+// const productRecommendation = 
 const useStyles = makeStyles((theme) => ({
   root: {
     //display: 'flex',
@@ -307,6 +313,22 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  header__searchInput: {
+    height: '12px',
+    padding: '10px',
+    border: 'none',
+    width: '100%',
+  },
+  login__signInButton: {
+    background: '#f0c14b',
+    // border-radius: '2px',
+    width: '100%',
+    height: '30px',
+    border: '1px solid',
+    // margin-top: '10px',
+    // border-color:' #a88734 #9c7e31 #846a29',
+  }
+  
 }));
 
 function ListItemLink(props) {
@@ -320,12 +342,12 @@ export default function NavBar() {
   const [open, setOpen] = React.useState(false);
   const { enqueueSnackbar } = useSnackbar();
   const history = useHistory();
-
+  const isMountedRef = useIsMountedRef();
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget)
     setOpen(true)
   }
-
+  const dispatch = useDispatch();
   const handleClose = (e) => {
     setAnchorEl(null)
     setOpen(false)
@@ -408,7 +430,23 @@ export default function NavBar() {
                 </Grid> */}
             </Grid>
           </Typography>
-          <img alt="company logo" src={logo} className={classes.logo} />
+          {/* <img alt="company logo" src={logo} className={classes.logo} /> */}
+        
+              
+                <Button
+                  color="secondary"
+                  component={Link} to="/app/recommendation"
+                  // disabled={isSubmitting}
+                  type="submit"
+                  variant="contained"
+                >
+                  Search
+              </Button>
+              
+  
+  
+          
+          {/* <SearchIcon className="header__searchIcon" /> */}
           <Box
             ml={2}
             flexGrow={1}
@@ -553,6 +591,16 @@ export default function NavBar() {
             </ListItemIcon>
             <ListItemText primary="Briefcase" />
           </ListItemLink>
+
+          <Tooltip title="Recommendation" placement="right">
+            <ListItemLink component={Link} to="/app/recommendation">
+              <ListItemIcon>
+                <HelpOutlineIcon />
+              </ListItemIcon>
+              <ListItemText primary="Recommendation" />
+            </ListItemLink>
+          </Tooltip>
+
           <ListItemLink component={Link} to="/app/feedback">
             <ListItemIcon>
               <FeedbackIcon />

@@ -48,6 +48,11 @@ export const getleaderboard = () => async (dispatch) => {
     dispatch(slice.actions.getleaderboard(response.data));
 };
 
+export const productrecommendation = (data) => async (dispatch) => {
+    const response = await axios.get(`/api/recommendation/product`);
+    dispatch(slice.actions.productrecommendation(response.data));
+};
+
 export const lederboardsave = (data) => async () => {
     const response = await axios.post('/api/leadertype/save', data);    
 };

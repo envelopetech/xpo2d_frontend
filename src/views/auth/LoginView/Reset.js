@@ -18,18 +18,21 @@ import {
   makeStyles
 } from '@material-ui/core';
 import {
-  updateUserpassword, 
+  resetpassword, 
 } from 'src/slices/generalsettings';
 import { useDispatch } from 'src/store';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   root: {}
 }));
 
-const Security = ({ className, ...rest }) => {
+const Reset = ({ className, ...rest }) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
+  const {id}=useParams();
+  const history = useHistory();
 
   return (
     <Formik
@@ -55,10 +58,12 @@ const Security = ({ className, ...rest }) => {
       }) => {
         try {
           const data = {
+            id:id,
             password: values.password
            
           };
-          await dispatch(updateUserpassword(data));
+          await dispatch(resetpassword(data));
+          history.push('/login');
           //await wait(500);
           resetForm();
           setStatus({ success: true });
@@ -164,8 +169,8 @@ const Security = ({ className, ...rest }) => {
   );
 };
 
-Security.propTypes = {
+Reset.propTypes = {
   className: PropTypes.string
 };
 
-export default Security;
+export default Reset;

@@ -1,25 +1,76 @@
-import React, { useEffect } from 'react';
-import clsx from 'clsx';
-import * as Yup from 'yup';
-import PropTypes from 'prop-types';
+import React, {useEffect} from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { Formik } from 'formik';
+import { useParams } from "react-router-dom";
 import {
   Box,
-  Button,
+  Card,
+  CardContent,  
+  Container,  
+  Typography,
+  makeStyles,
   FormHelperText,
+  Divider,
+  Button,
   TextField,
-  makeStyles
 } from '@material-ui/core';
-import useAuth from 'src/hooks/useAuth';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { getorganizer } from 'src/slices/organizer';
+import {getuser} from 'src/slices/generalsettings'
+import useAuth from 'src/hooks/useAuth';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import useIsMountedRef from 'src/hooks/useIsMountedRef';
+import Page from 'src/components/Page';
+import Logo from 'src/components/Logo';
+//import useAuth from 'src/hooks/useAuth';
+import logoimg from 'src/assets/images/logo-lg.png';
+import JWTLogin from './JWTLogin';
 import { useDispatch } from 'src/store';
 import { useMediaQuery } from 'react-responsive'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
+
+
+//import './App.css'
+
+import Paper from '@material-ui/core/Paper';
+
+import { SocialIcon } from 'react-social-icons';
+import Carousel from 'react-material-ui-carousel'
+
+
+
+
+// const methodIcons = {
+//   'Auth0': '/static/images/auth0.svg',
+//   'FirebaseAuth': '/static/images/firebase.svg',
+//   'JWT': '/static/images/jwt.svg'
+// };
+
+function Example(props)
+{
+    var items = [
+        {
+            name: "Random Name #1",
+            src:'https://cdn.logo.com/hotlink-ok/logo-social.png'
+        },
+        {
+            name: "Random Name #2",
+            src:'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/minimal-watercolor-youtube-channel-art-banner-design-template-6b4603eb075eea7e65af2ee226d3d317_screen.jpg?ts=1561444958'
+        }
+    ]
+ 
+    return (
+        <Carousel>
+            {
+                items.map( (item, i) => <Item key={i} item={item} /> )
+            }
+        </Carousel>
+    )
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,12 +120,29 @@ const useStyles = makeStyles((theme) => ({
      padding:'0 10px', 
   }
  
+ 
 }));
 
+function Item(props)
+{
+  console.log(props)
+    return (
+        <Paper>
+            <h2>{props.item.name}</h2>
+            <img styles={{height:'100vh'}} src={props.item.src}></img>
+ 
+            
+        </Paper>
+    )
+}
 
-const JWTLogin = ({ className, ...rest }) => {
+
+const Forgot = () => {
   const classes = useStyles();
-  let { login } = useAuth();
+  //const { method } = useAuth();
+  const {user_id}=useParams();
+ 
+  let { forgotpassword } = useAuth();
   const isMountedRef = useIsMountedRef();
   //const { organizers } = useSelector((state) => state.organizer);
   let domain_name = window.location.hostname;
@@ -83,12 +151,9 @@ const JWTLogin = ({ className, ...rest }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width:768px)' })
   const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
 
-
   useEffect(() => {
-    dispatch(getorganizer(domain_name));
+    dispatch(getuser(user_id));
   }, []);
-
-
   if(isTabletOrMobile && isPortrait){
     return <div>
       <h3>Your browser is too small!</h3><br></br>
@@ -96,30 +161,42 @@ const JWTLogin = ({ className, ...rest }) => {
       <p>To still continue, please rotate your device to landscape mode.</p>
     </div>
   }
-  
+
 
   return (
-    <Formik
+    <Grid container component="main" className={classes.root}>
+      
+      <Grid item xs={false} sm={4} md={8} ><Example/></Grid>
+      <Grid item xs={12} sm={8} md={4} component={Paper} elevation={6} square>
+        <div className={classes.paper}>
+          
+          <Typography component="h1" variant="h4">
+            Forgot Password
+          </Typography>
+          <Formik
       initialValues={{
         // email: 'test@test.com',
         // password: 'Test@@123',
         email: '',
-        password: '',
+        
         submit: null
       }}
       validationSchema={Yup.object().shape({
         email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-        password: Yup.string().max(255).required('Password is required')
+       
       })}
       onSubmit={async (values, {
         setErrors,
+        resetForm,
         setStatus,
         setSubmitting
       }) => {
         try {
-          await login(values.email, values.password);
+          console.log('calling')
+          await forgotpassword(values.email);
+          alert('Mail has been send to your email id.')
           if (isMountedRef.current) {
-
+            resetForm();
             setStatus({ success: true });
             setSubmitting(false);
 
@@ -143,77 +220,11 @@ const JWTLogin = ({ className, ...rest }) => {
         touched,
         values
       }) => (
-          // <form
-          //   noValidate
-          //   onSubmit={handleSubmit}
-          //   className={clsx(classes.root, className)}
-          //   {...rest}
-          // >
-          //   <TextField
-          //     error={Boolean(touched.email && errors.email)}
-          //     fullWidth
-          //     autoFocus
-          //     helperText={touched.email && errors.email}
-          //     label="Email Address"
-          //     margin="normal"
-          //     name="email"
-          //     onBlur={handleBlur}
-          //     onChange={handleChange}
-          //     type="email"
-          //     value={values.email}
-          //     variant="outlined"
-          //   />
-          //   <TextField
-          //     error={Boolean(touched.password && errors.password)}
-          //     fullWidth
-          //     helperText={touched.password && errors.password}
-          //     label="Password"
-          //     margin="normal"
-          //     name="password"
-          //     onBlur={handleBlur}
-          //     onChange={handleChange}
-          //     type="password"
-          //     value={values.password}
-          //     variant="outlined"
-          //   />
-          //   {errors.submit && (
-          //     <Box mt={3}>
-          //       <FormHelperText error>
-          //         {errors.submit}
-          //       </FormHelperText>
-          //     </Box>
-          //   )}
-          //   <Box mt={2}>
-          //     <Button
-          //       color="secondary"
-          //       disabled={isSubmitting}
-          //       fullWidth
-          //       size="large"
-          //       type="submit"
-          //       variant="contained"
-          //     >
-          //       Log In
-          //   </Button>
-          //     <Button
-          //       color="#FFFFFF"
-          //       fullWidth
-          //       size="large"
-          //       type="submit"
-          //       variant="contained"
-          //       style={{ marginTop: '20px' }}
-          //       href="https://bsei-xporium.herokuapp.com/"
-          //       target="_blank"
-          //     >
-          //       Register for free
-          //   </Button>
-          //   </Box>
-
-          // </form>
+          
           <form 
           noValidate
           onSubmit={handleSubmit}
-          className={clsx(classes.form, className)}
-          {...rest}>
+         >
             <TextField
               error={Boolean(touched.email && errors.email)}
               helperText={touched.email && errors.email}
@@ -231,23 +242,7 @@ const JWTLogin = ({ className, ...rest }) => {
               autoComplete="email"
               
             />
-            <TextField
-              error={Boolean(touched.password && errors.password)}
-              fullWidth
-              helperText={touched.password && errors.password}
-              variant="outlined"
-              margin="normal"
-              required
-              onBlur={handleBlur}
-              onChange={handleChange}
-              type="password"
-              value={values.password}
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
+            
             
             {errors.submit && (
               <Box mt={3}>
@@ -264,29 +259,17 @@ const JWTLogin = ({ className, ...rest }) => {
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              Send Link
             </Button>
-            <Grid container>
-              <Grid item xs>
-              <RouterLink to="/forgot">
-              <Link variant="body2">Forgot password?</Link>
-                </RouterLink>
-              </Grid>
-              <Grid item>
-                <RouterLink to="/register">
-                  <Link variant="body2">Don't have an account? Sign Up</Link>
-                </RouterLink>
-              </Grid>
-            </Grid>
+           
             
           </form>
         )}
     </Formik>
+          
+        </div>
+      </Grid>
+    </Grid>
   );
-};
-
-JWTLogin.propTypes = {
-  className: PropTypes.string,
-};
-
-export default JWTLogin;
+}
+export default Forgot

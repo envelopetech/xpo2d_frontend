@@ -20,7 +20,8 @@ const setSession = (accessToken, userid, is_superuser, loggedin_id, user_type, o
       delete axios.defaults.headers.common.Authorization;
     }
   };
-
+const isTabletOrMobile = useMediaQuery({ query: '(max-width:768px)' })
+const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
 class Session extends React.Component{
     constructor(props) {
       super(props)
@@ -57,6 +58,25 @@ class Session extends React.Component{
   
     //   (e || window.event).returnValue = message; //Gecko + IE
       return ;
+    }
+    // handleUnload(e) {
+    //   window.onunload = function () {
+    //   const response = axios.post('/api/user/logout',)
+    //   let user = []
+    //   user = response.data
+    //   // setSession(null);
+    // }
+    // }
+    // handleUnload(e) {
+    //   alert('logout')
+    //   if(isTabletOrMobile && isPortrait){
+    //   const response = axios.post('/api/user/logout',)
+    //     let user = []
+    //     user = response.data
+    //     // setSession(null);
+    //   }
+    //   }
+    
     }
     render=()=>(
         <div></div>

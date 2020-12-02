@@ -18,7 +18,10 @@ import ReactHtmlParser from 'react-html-parser';
 import useAuth from 'src/hooks/useAuth';
 import axios from 'src/utils/axios';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
+// import { ZoomMtg } from '@zoomus/websdk'
 
+// ZoomMtg.preLoadWasm();
+// ZoomMtg.prepareJssdk();
 const useStyles = makeStyles((theme) => ({
     root: {
         minWidth: 275,
@@ -53,13 +56,23 @@ const Itemdata = ({
     const { user } = useAuth();
     const isMountedRef = useIsMountedRef();
     const history = useHistory();
-
+  
     const handleagenda = async (webinarid, track, is_other_url) => {
         try {
 
-            if(is_other_url)
+            if(!is_other_url)
             {
-                window.open(webinarid, '_blank');
+                let data = {
+                    webinarid: webinarid,
+                    email: user.email,
+                    name: user.name
+                }
+                // window.open(webinarid, '_blank');
+                const response = await axios.post('/api/eventspeaker/zoomuserenterwebinar', data);
+                // const response = await axios.post('/api/eventspeaker/userenterwebinarcovid', data);
+                console.log('response:', response)
+                
+
             }
             else
             {
@@ -68,11 +81,21 @@ const Itemdata = ({
                     email: user.email,
                     name: user.name
                 }
-                const response = await axios.post('/api/eventspeaker/userenterwebinarcovid', data);
+                
+                // const response = await axios.post('/api/eventspeaker/userenterwebinarcovid', data);
+                const response = await axios.post('/api/eventspeaker/zoomuserenterwebinar', data);
+                console.log('response:',response)
+                // alert(response)
                 if (isMountedRef.current) {
                     //setdata(response.data.enter_uri);
                     localStorage.setItem("webinarurl", response.data.enter_uri)
+                    const signature = localStorage.setItem("signature", response.data.signature)
+                    const name = localStorage.setItem("name", response.data.name)
+                    const email = localStorage.setItem("email", response.data.email)
+                    const webinarid = localStorage.setItem("webinarid", response.data.webinarid)
+                    // console.log('my signature', signature)
                     history.push(`/app/keynote/${track}`);
+                    
                 }
             }
             

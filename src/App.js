@@ -40,6 +40,7 @@ const App = () => {
     responsiveFontSizes: settings.responsiveFontSizes,
     theme: settings.theme
   });
+  
 
   return (
     <ThemeProvider theme={theme}>
